@@ -6,9 +6,6 @@ template <class TTr>
 void Rpc<TTr>::process_comps_st() {
   assert(in_dispatch());
   const size_t num_pkts = transport_->rx_burst();
-  if(num_pkts != 0){ 
-    ERPC_INFO("in process comps st: %lu\n", num_pkts);
-  }
   if (num_pkts == 0) return;
 
   // Measure RX burst size

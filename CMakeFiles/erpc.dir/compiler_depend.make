@@ -84,6 +84,8 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -107,6 +109,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -114,10 +117,14 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -152,6 +159,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -242,6 +250,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -267,6 +276,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -291,6 +301,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -300,6 +311,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o: src/nexus_impl/nexus.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -950,6 +962,8 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -976,6 +990,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -983,10 +998,14 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -1050,6 +1069,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -1157,6 +1177,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -1182,6 +1203,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -1206,6 +1228,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -1215,6 +1238,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o: src/nexus_impl/nexus_bg
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -1904,6 +1928,8 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -1927,6 +1953,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -1934,10 +1961,14 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -1972,6 +2003,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -2062,6 +2094,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -2087,6 +2120,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -2111,6 +2145,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -2120,6 +2155,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o: src/nexus_impl/nexus_sm
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -2791,6 +2827,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -2798,7 +2835,9 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/bits/algorithmfwd.h \
   /usr/include/c++/11/bits/stl_heap.h \
@@ -2823,6 +2862,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/exception \
   /usr/include/c++/11/bits/exception_ptr.h \
   /usr/include/c++/11/bits/cxxabi_init_exception.h \
@@ -2881,6 +2921,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -2954,6 +2996,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -2989,6 +3033,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -3014,6 +3059,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -3038,6 +3084,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -3047,6 +3094,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o: src/rpc_impl/rpc.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -3720,6 +3768,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -3787,8 +3836,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -3797,6 +3849,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -3856,6 +3910,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -3903,6 +3959,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -3928,6 +3985,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -3952,6 +4010,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -3961,6 +4020,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o: src/rpc_impl/rpc_con
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -4634,6 +4694,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -4701,8 +4762,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -4711,6 +4775,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -4770,6 +4836,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -4817,6 +4885,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -4842,6 +4911,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -4866,6 +4936,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -4875,6 +4946,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o: src/rpc_impl/rpc_cr.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -5548,6 +5620,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -5615,8 +5688,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -5625,6 +5701,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -5684,6 +5762,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -5731,6 +5811,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -5756,6 +5837,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -5780,6 +5862,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -5789,6 +5872,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o: src/rpc_impl/rpc_
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -6462,6 +6546,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -6529,8 +6614,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -6539,6 +6627,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -6598,6 +6688,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -6645,6 +6737,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -6670,6 +6763,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -6694,6 +6788,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -6703,6 +6798,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o: src/rpc_impl/rpc_ev_loop.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -7376,6 +7472,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -7443,8 +7540,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -7453,6 +7553,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -7512,6 +7614,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -7559,6 +7663,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -7584,6 +7689,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -7608,6 +7714,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -7617,6 +7724,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o: src/rpc_impl/rpc_fault_i
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -8290,6 +8398,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -8357,8 +8466,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -8367,6 +8479,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -8426,6 +8540,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -8473,6 +8589,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -8498,6 +8615,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -8522,6 +8640,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -8531,6 +8650,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o: src/rpc_impl/rpc_kick.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -9204,6 +9324,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -9271,8 +9392,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -9281,6 +9405,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -9340,6 +9466,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -9387,6 +9515,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -9412,6 +9541,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -9436,6 +9566,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -9445,6 +9576,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o: src/rpc_impl/rpc_pkt_loss.cc
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -10118,6 +10250,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -10185,8 +10318,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -10195,6 +10331,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -10254,6 +10392,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -10301,6 +10441,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -10326,6 +10467,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -10350,6 +10492,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -10359,6 +10502,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o: src/rpc_impl/rpc_queues.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -11012,6 +11156,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/cstdint \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
   /usr/include/stdint.h \
@@ -11086,8 +11231,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -11096,6 +11244,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -11168,6 +11318,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -11215,6 +11367,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -11240,6 +11393,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -11264,6 +11418,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -11273,6 +11428,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o: src/rpc_impl/rpc_req.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -11946,6 +12102,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -12013,8 +12170,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -12023,6 +12183,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -12082,6 +12244,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -12129,6 +12293,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -12154,6 +12319,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -12178,6 +12344,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -12187,6 +12354,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o: src/rpc_impl/rpc_reset
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -12860,6 +13028,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -12927,8 +13096,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -12937,6 +13109,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -12996,6 +13170,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -13043,6 +13219,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -13068,6 +13245,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -13092,6 +13270,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -13101,6 +13280,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o: src/rpc_impl/rpc_resp.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -13774,6 +13954,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -13841,8 +14022,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -13851,6 +14035,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -13910,6 +14096,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -13957,6 +14145,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -13982,6 +14171,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -14006,6 +14196,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -14015,6 +14206,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o: src/rpc_impl/rpc_rfr.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -14688,6 +14880,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -14755,8 +14948,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -14765,6 +14961,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -14824,6 +15022,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -14871,6 +15071,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -14896,6 +15097,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -14920,6 +15122,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -14929,6 +15132,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o: src/rpc_impl/rpc_rx.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -15588,6 +15792,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -15595,7 +15800,9 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/bits/algorithmfwd.h \
   /usr/include/c++/11/bits/stl_heap.h \
@@ -15621,6 +15828,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/exception \
   /usr/include/c++/11/bits/exception_ptr.h \
   /usr/include/c++/11/bits/cxxabi_init_exception.h \
@@ -15679,6 +15887,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -15723,6 +15933,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/tuple \
@@ -15790,6 +16002,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -15815,6 +16028,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -15839,6 +16053,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -15848,6 +16063,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o: src/rpc_impl/rpc_sm_api.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -16516,6 +16732,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
@@ -16583,8 +16800,11 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h \
@@ -16593,6 +16813,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -16652,6 +16874,8 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
@@ -16699,6 +16923,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -16724,6 +16949,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -16748,6 +16974,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -16757,6 +16984,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o: src/rpc_impl/rpc_sm_helper
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -17426,6 +17654,8 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -17449,6 +17679,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -17456,10 +17687,14 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -17494,6 +17729,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -17578,6 +17814,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -17603,6 +17840,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -17627,6 +17865,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -17636,6 +17875,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o: src/transport_imp
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -18265,6 +18505,8 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -18288,6 +18530,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -18295,10 +18538,14 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -18333,6 +18580,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -18417,6 +18665,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -18442,6 +18691,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -18466,6 +18716,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -18475,6 +18726,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o: src/transport_impl/d
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -19103,6 +19355,8 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -19126,6 +19380,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -19133,10 +19388,14 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -19171,6 +19430,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -19255,6 +19515,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -19280,6 +19541,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -19304,6 +19566,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -19313,6 +19576,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o: src/transport_i
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -19960,6 +20224,8 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -19983,6 +20249,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -19990,10 +20257,14 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -20028,6 +20299,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -20112,6 +20384,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -20137,6 +20410,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -20161,6 +20435,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -20170,6 +20445,7 @@ CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o: src/tr
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -20815,6 +21091,8 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -20838,6 +21116,7 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -20845,10 +21124,14 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -20883,6 +21166,7 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -20967,6 +21251,7 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -20992,6 +21277,7 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -21016,6 +21302,7 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -21025,6 +21312,7 @@ CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o: src/transport_impl/transp
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -21426,6 +21714,8 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/exception \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -21467,6 +21757,7 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/cstdint \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
   /usr/include/stdint.h \
@@ -21538,8 +21829,11 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/c++/11/cstdio \
   /usr/include/c++/11/cerrno \
@@ -21556,6 +21850,8 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/c++/11/stdlib.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/tuple \
@@ -21617,6 +21913,7 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/version.h \
@@ -21642,6 +21939,7 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/poll.h \
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll2.h \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -21666,6 +21964,7 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
@@ -21675,6 +21974,7 @@ CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o: src/util/huge_alloc.cc \
   /usr/include/x86_64-linux-gnu/asm/sockios.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/sys/uio.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
@@ -22077,6 +22377,8 @@ CMakeFiles/erpc.dir/src/util/numautils.cc.o: src/util/numautils.cc \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/std_thread.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -22104,6 +22406,7 @@ CMakeFiles/erpc.dir/src/util/numautils.cc.o: src/util/numautils.cc \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/tuple \
   /usr/include/c++/11/utility \
   /usr/include/c++/11/bits/stl_relops.h \
@@ -22205,11 +22508,16 @@ CMakeFiles/erpc.dir/src/util/numautils.cc.o: src/util/numautils.cc \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/system_error \
   /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
@@ -22306,6 +22614,8 @@ CMakeFiles/erpc.dir/src/util/tls_registry.cc.o: src/util/tls_registry.cc \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
@@ -22329,6 +22639,7 @@ CMakeFiles/erpc.dir/src/util/tls_registry.cc.o: src/util/tls_registry.cc \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -22336,10 +22647,14 @@ CMakeFiles/erpc.dir/src/util/tls_registry.cc.o: src/util/tls_registry.cc \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
   /usr/include/string.h \
   /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/cerrno \
   /usr/include/errno.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -22401,6 +22716,7 @@ CMakeFiles/erpc.dir/src/util/tls_registry.cc.o: src/util/tls_registry.cc \
   /usr/include/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/c++/11/stdexcept \
   /usr/include/c++/11/string \
   /usr/include/c++/11/bits/char_traits.h \
@@ -22665,8 +22981,6 @@ src/rpc_impl/rpc_pkt_loss.cc:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512fintrin.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx2intrin.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avxvnniintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avxintrin.h:
@@ -22770,8 +23084,6 @@ src/rpc_impl/rpc_sm_helpers.cc:
 /home/qijing/dpdk/build/install/usr/local/include/rte_per_lcore.h:
 
 /home/qijing/dpdk/build/install/usr/local/include/rte_errno.h:
-
-/usr/include/x86_64-linux-gnu/sys/queue.h:
 
 /home/qijing/dpdk/build/install/usr/local/include/rte_config.h:
 
@@ -22963,15 +23275,27 @@ third_party/asio/include/asio/detail/completion_handler.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
 
-third_party/asio/include/asio/ip/multicast.hpp:
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
 
-third_party/asio/include/asio/detail/socket_option.hpp:
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
 
-third_party/asio/include/asio/ip/impl/network_v6.ipp:
+src/util/latency.h:
 
-/usr/include/c++/11/bits/ios_base.h:
+/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
+
+third_party/asio/include/asio/ip/unicast.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
+
+src/rpc_impl/rpc_cr.cc:
+
+/usr/include/c++/11/csignal:
+
+/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
+
+third_party/asio/include/asio/detail/string_view.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
@@ -22999,6 +23323,10 @@ third_party/asio/include/asio/detail/work_dispatcher.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
+
+src/msg_buffer.h:
+
 third_party/asio/include/asio/handler_continuation_hook.hpp:
 
 /usr/include/c++/11/bits/stl_heap.h:
@@ -23007,11 +23335,11 @@ third_party/asio/include/asio/handler_continuation_hook.hpp:
 
 /usr/include/c++/11/bits/stl_deque.h:
 
+src/rpc_constants.h:
+
 /usr/include/c++/11/set:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
-
-src/rpc_constants.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/f16cintrin.h:
 
@@ -23021,9 +23349,9 @@ src/heartbeat_mgr.h:
 
 /usr/include/c++/11/bits/stl_bvector.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
@@ -23067,16 +23395,6 @@ third_party/asio/include/asio/ip/impl/network_v4.ipp:
 
 third_party/asio/include/asio/detail/impl/scheduler.ipp:
 
-/usr/include/c++/11/bits/locale_facets.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/c++/11/bits/this_thread_sleep.h:
-
-/home/qijing/dpdk/build/install/usr/local/include/rte_mbuf_ptype.h:
-
-third_party/asio/include/asio/execution.hpp:
-
 third_party/asio/include/asio/is_executor.hpp:
 
 /usr/include/linux/types.h:
@@ -23084,10 +23402,6 @@ third_party/asio/include/asio/is_executor.hpp:
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectvlintrin.h:
 
 /usr/include/c++/11/bits/streambuf_iterator.h:
-
-/usr/include/c++/11/cwctype:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h:
 
 src/cc/timely_sweep_params.h:
 
@@ -23108,6 +23422,14 @@ src/cc/timely_sweep_params.h:
 /usr/include/c++/11/bits/locale_classes.h:
 
 third_party/asio/include/asio/detail/reactor_fwd.hpp:
+
+third_party/asio/include/asio/ip/multicast.hpp:
+
+third_party/asio/include/asio/detail/socket_option.hpp:
+
+third_party/asio/include/asio/ip/impl/network_v6.ipp:
+
+/usr/include/c++/11/bits/ios_base.h:
 
 /usr/include/c++/11/istream:
 
@@ -23162,6 +23484,10 @@ src/util/numautils.cc:
 /usr/include/c++/11/bits/localefwd.h:
 
 /usr/include/c++/11/stdexcept:
+
+/usr/include/x86_64-linux-gnu/sys/queue.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
 
 /usr/include/c++/11/iosfwd:
 
@@ -23225,16 +23551,6 @@ third_party/asio/include/asio/traits/execute_member.hpp:
 
 third_party/asio/include/asio/execution/detail/bulk_sender.hpp:
 
-third_party/asio/include/asio/detail/array_fwd.hpp:
-
-/usr/include/c++/11/cstring:
-
-/home/qijing/dpdk/build/install/usr/local/include/rte_ppp.h:
-
-/usr/include/c++/11/numeric:
-
-/usr/include/x86_64-linux-gnu/asm/sockios.h:
-
 third_party/asio/include/asio/ts/buffer.hpp:
 
 /usr/include/c++/11/ratio:
@@ -23243,13 +23559,37 @@ src/util/fixed_vector.h:
 
 /usr/include/c++/11/thread:
 
+/usr/include/c++/11/limits:
+
+/usr/include/c++/11/cmath:
+
+third_party/asio/include/asio/execution/detail/submit_receiver.hpp:
+
+src/util/udp_client.h:
+
+/usr/include/c++/11/functional:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
+
+/usr/include/linux/errno.h:
+
+third_party/asio/include/asio/detail/posix_global.hpp:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/asm-generic/errno.h:
+
 /home/qijing/dpdk/build/install/usr/local/include/rte_thash_x86_gfni.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
-/usr/include/asm-generic/errno.h:
-
 third_party/asio/include/asio/execution/execute.hpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/enqcmdintrin.h:
+
+third_party/asio/include/asio/steady_timer.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/c++/11/bits/unordered_map.h:
 
@@ -23258,8 +23598,6 @@ third_party/asio/include/asio/detail/noncopyable.hpp:
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
 third_party/asio/include/asio/associator.hpp:
-
-/usr/include/x86_64-linux-gnu/asm/ioctls.h:
 
 /usr/include/features.h:
 
@@ -23274,6 +23612,24 @@ third_party/asio/include/asio/execution/executor.hpp:
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/c++/11/bits/invoke.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
+
+/home/qijing/dpdk/build/install/usr/local/include/rte_mbuf_ptype.h:
+
+third_party/asio/include/asio/execution.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
+
+third_party/asio/include/asio/detail/wrapped_handler.hpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/pkuintrin.h:
+
+/usr/include/x86_64-linux-gnu/sys/timerfd.h:
 
 /home/qijing/dpdk/build/install/usr/local/include/rte_os.h:
 
@@ -23333,10 +23689,6 @@ third_party/asio/include/asio/detail/timer_queue_set.hpp:
 
 /usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
 
-third_party/asio/include/asio/detail/service_registry.hpp:
-
-third_party/asio/include/asio/detail/conditionally_enabled_mutex.hpp:
-
 third_party/asio/include/asio/detail/operation.hpp:
 
 third_party/asio/include/asio/detail/cstddef.hpp:
@@ -23381,23 +23733,21 @@ third_party/asio/include/asio/read.hpp:
 
 /usr/include/limits.h:
 
-/usr/include/c++/11/limits:
-
-/usr/include/c++/11/cmath:
-
-third_party/asio/include/asio/execution/detail/submit_receiver.hpp:
-
 third_party/asio/include/asio/detail/chrono_time_traits.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
+/usr/include/x86_64-linux-gnu/bits/fcntl2.h:
+
 /usr/include/c++/11/bits/functional_hash.h:
 
 /home/qijing/dpdk/build/install/usr/local/include/rte_ring.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 third_party/asio/include/asio/detail/reactor_op.hpp:
 
@@ -23457,29 +23807,31 @@ third_party/asio/include/asio/execution/impl/bad_executor.ipp:
 
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/enqcmdintrin.h:
-
-third_party/asio/include/asio/steady_timer.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
-
 third_party/asio/include/asio/ip/impl/host_name.ipp:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 third_party/asio/include/asio/impl/execution_context.hpp:
 
-third_party/asio/include/asio/impl/error_code.ipp:
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
 
-/usr/include/c++/11/ext/type_traits.h:
+/usr/include/x86_64-linux-gnu/asm/errno.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
-/usr/include/linux/errno.h:
+/home/qijing/dpdk/build/install/usr/local/include/rte_tcp.h:
 
-src/util/udp_client.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h:
 
-/usr/include/c++/11/functional:
+/home/qijing/dpdk/build/install/usr/local/include/rte_devargs.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/include/poll.h:
+
+/usr/include/c++/11/ext/alloc_traits.h:
+
+third_party/asio/include/asio/ip/impl/address.hpp:
 
 /usr/include/c++/11/array:
 
@@ -23525,6 +23877,14 @@ src/nexus.h:
 
 third_party/asio/include/asio/detail/handler_tracking.hpp:
 
+/usr/include/c++/11/cwctype:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h:
+
+third_party/asio/include/asio/detail/conditionally_enabled_mutex.hpp:
+
+third_party/asio/include/asio/detail/service_registry.hpp:
+
 /usr/include/wchar.h:
 
 /usr/include/x86_64-linux-gnu/bits/statx-generic.h:
@@ -23539,15 +23899,25 @@ third_party/asio/include/asio/execution/any_executor.hpp:
 
 src/nexus_impl/nexus.cc:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/fmaintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512erintrin.h:
+
+third_party/asio/include/asio/traits/set_done_free.hpp:
+
+/usr/include/c++/11/cwchar:
+
 third_party/asio/include/asio/detail/resolver_service_base.hpp:
 
 /usr/include/c++/11/streambuf:
 
 src/transport_impl/dpdk/dpdk_externs.h:
 
+third_party/asio/include/asio/detail/signal_blocker.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
-third_party/asio/include/asio/detail/signal_blocker.hpp:
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
 /usr/include/c++/11/bits/functexcept.h:
 
@@ -23561,10 +23931,6 @@ src/tweakme.h:
 
 /usr/include/c++/11/bits/postypes.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
-
-/usr/include/linux/falloc.h:
-
 /usr/include/x86_64-linux-gnu/bits/in.h:
 
 /usr/include/c++/11/bits/shared_ptr.h:
@@ -23572,14 +23938,6 @@ src/tweakme.h:
 /usr/include/c++/11/bits/codecvt.h:
 
 third_party/asio/include/asio/detail/scheduler_operation.hpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/fmaintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512erintrin.h:
-
-third_party/asio/include/asio/traits/set_done_free.hpp:
-
-/usr/include/c++/11/cwchar:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/amxint8intrin.h:
 
@@ -23596,6 +23954,16 @@ third_party/asio/include/asio/traits/set_done_free.hpp:
 third_party/asio/include/asio/ip/basic_resolver.hpp:
 
 third_party/asio/include/asio/detail/posix_event.hpp:
+
+third_party/asio/include/asio/detail/array_fwd.hpp:
+
+/usr/include/c++/11/cstring:
+
+/home/qijing/dpdk/build/install/usr/local/include/rte_ppp.h:
+
+/usr/include/c++/11/numeric:
+
+/usr/include/x86_64-linux-gnu/asm/sockios.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
@@ -23681,6 +24049,10 @@ third_party/asio/include/asio/detail/std_fenced_block.hpp:
 
 third_party/asio/include/asio/traits/schedule_member.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
+
+/usr/include/c++/11/memory:
+
 src/transport_impl/eth_common.h:
 
 third_party/asio/include/asio/detail/null_event.hpp:
@@ -23689,33 +24061,9 @@ third_party/asio/include/asio/detail/null_event.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
-third_party/asio/include/asio/ip/unicast.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
-
 /usr/include/c++/11/queue:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
-/home/qijing/dpdk/build/install/usr/local/include/rte_tcp.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h:
-
-/home/qijing/dpdk/build/install/usr/local/include/rte_devargs.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
-/usr/include/poll.h:
-
-/usr/include/x86_64-linux-gnu/bits/fcntl.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/c++/11/debug/assertions.h:
-
-third_party/asio/include/asio/detail/local_free_on_block_exit.hpp:
 
 /usr/include/c++/11/stdlib.h:
 
@@ -23781,6 +24129,10 @@ third_party/asio/include/asio/detail/epoll_reactor.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
+/usr/include/c++/11/bits/locale_facets.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
 /usr/include/x86_64-linux-gnu/sys/ipc.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
@@ -23801,6 +24153,12 @@ src/transport_impl/raw/raw_transport.cc:
 
 third_party/asio/include/asio/detail/recycling_allocator.hpp:
 
+/usr/include/libintl.h:
+
+/usr/include/c++/11/bits/char_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
 third_party/asio/include/asio/ip/bad_address_cast.hpp:
 
 src/cc/timing_wheel.h:
@@ -23815,19 +24173,31 @@ third_party/asio/include/asio/traits/submit_free.hpp:
 
 /usr/include/strings.h:
 
+/usr/include/linux/falloc.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx2intrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/x86_64-linux-gnu/sys/eventfd.h:
+
 /usr/include/c++/11/bits/alloc_traits.h:
 
 /usr/include/errno.h:
 
-/usr/include/libintl.h:
+/usr/include/c++/11/ext/type_traits.h:
 
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+third_party/asio/include/asio/impl/error_code.ipp:
 
-/usr/include/c++/11/bits/char_traits.h:
+/usr/include/c++/11/debug/assertions.h:
 
-third_party/asio/include/asio/detail/posix_global.hpp:
+third_party/asio/include/asio/detail/local_free_on_block_exit.hpp:
 
-/usr/include/asm-generic/errno-base.h:
+/usr/include/x86_64-linux-gnu/asm/ioctls.h:
 
 /usr/include/asm-generic/ioctls.h:
 
@@ -23849,6 +24219,14 @@ third_party/asio/include/asio/detail/reactive_null_buffers_op.hpp:
 
 third_party/asio/include/asio/async_result.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/poll2.h:
+
+third_party/asio/include/asio/detail/resolve_endpoint_op.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+third_party/asio/include/asio/execution/bulk_execute.hpp:
+
 third_party/asio/include/asio/detail/reactive_socket_send_op.hpp:
 
 /usr/include/x86_64-linux-gnu/sys/stat.h:
@@ -23863,9 +24241,9 @@ third_party/asio/include/asio/execution/invocable_archetype.hpp:
 
 src/util/fixed_queue.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
 /usr/include/signal.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_stat.h:
 
@@ -23951,6 +24329,14 @@ third_party/asio/include/asio/detail/keyword_tss_ptr.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/netdb.h:
 
+/home/qijing/dpdk/build/install/usr/local/include/rte_ethdev_core.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
+
+/usr/include/c++/11/tuple:
+
+/usr/include/net/if.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
 third_party/asio/include/asio/detail/handler_work.hpp:
@@ -23964,12 +24350,6 @@ third_party/asio/include/asio/impl/error.ipp:
 third_party/asio/include/asio/ip/detail/impl/endpoint.ipp:
 
 /usr/include/x86_64-linux-gnu/bits/local_lim.h:
-
-third_party/asio/include/asio/detail/resolve_endpoint_op.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
-
-third_party/asio/include/asio/execution/bulk_execute.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
@@ -23988,8 +24368,6 @@ third_party/asio/include/asio/system_error.hpp:
 third_party/asio/include/asio/ip/impl/address_v4.ipp:
 
 third_party/asio/include/asio/detail/bind_handler.hpp:
-
-/usr/include/c++/11/memory:
 
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
 
@@ -24023,8 +24401,6 @@ third_party/asio/include/asio/detail/impl/posix_event.ipp:
 
 third_party/asio/include/asio/detail/impl/socket_ops.ipp:
 
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
-
 third_party/asio/include/asio/detail/winsock_init.hpp:
 
 third_party/asio/include/asio/detail/assert.hpp:
@@ -24042,10 +24418,6 @@ third_party/asio/include/asio/detail/impl/posix_thread.ipp:
 /home/qijing/dpdk/build/install/usr/local/include/generic/rte_rwlock.h:
 
 third_party/asio/include/asio/ip/impl/address_v6.hpp:
-
-/usr/include/c++/11/ext/alloc_traits.h:
-
-third_party/asio/include/asio/ip/impl/address.hpp:
 
 third_party/asio/include/asio/detail/op_queue.hpp:
 
@@ -24077,19 +24449,23 @@ third_party/asio/include/asio/detail/scheduler_thread_info.hpp:
 
 third_party/asio/include/asio/ip/resolver_base.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
 third_party/asio/include/asio/ip/basic_resolver_entry.hpp:
 
 third_party/asio/include/asio/traits/set_value_member.hpp:
+
+third_party/asio/include/asio/post.hpp:
+
+third_party/asio/include/asio/detail/posix_signal_blocker.hpp:
+
+third_party/asio/include/asio/execution/detail/as_operation.hpp:
 
 third_party/asio/include/asio/basic_stream_socket.hpp:
 
 third_party/asio/include/asio/traits/prefer_member.hpp:
 
 third_party/asio/include/asio/ip/basic_resolver_iterator.hpp:
-
-src/util/latency.h:
-
-/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
 
 /usr/include/c++/11/bits/stream_iterator.h:
 
@@ -24138,10 +24514,6 @@ third_party/asio/include/asio/detail/posix_mutex.hpp:
 /usr/include/c++/11/bits/stl_multiset.h:
 
 third_party/asio/include/asio/traits/set_error_member.hpp:
-
-src/rpc_impl/rpc_cr.cc:
-
-/usr/include/c++/11/csignal:
 
 third_party/asio/include/asio/detail/variadic_templates.hpp:
 
@@ -24201,6 +24573,8 @@ third_party/asio/include/asio/traits/static_query.hpp:
 
 third_party/asio/include/asio/detail/executor_function.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
 third_party/asio/include/asio/execution/submit.hpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx5124fmapsintrin.h:
@@ -24222,6 +24596,8 @@ third_party/asio/include/asio/multiple_exceptions.hpp:
 third_party/asio/include/asio/execution/blocking.hpp:
 
 third_party/asio/include/asio/associated_allocator.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/socket2.h:
 
 third_party/asio/include/asio/detail/functional.hpp:
 
@@ -24297,14 +24673,6 @@ third_party/asio/include/asio/execution/prefer_only.hpp:
 
 third_party/asio/include/asio/execution/relationship.hpp:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
-
-third_party/asio/include/asio/detail/wrapped_handler.hpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/pkuintrin.h:
-
-/usr/include/x86_64-linux-gnu/sys/timerfd.h:
-
 third_party/asio/include/asio/detail/handler_cont_helpers.hpp:
 
 third_party/asio/include/asio/error_code.hpp:
@@ -24337,10 +24705,6 @@ third_party/asio/include/asio/detail/eventfd_select_interrupter.hpp:
 
 third_party/asio/include/asio/detail/impl/eventfd_select_interrupter.ipp:
 
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/x86_64-linux-gnu/sys/eventfd.h:
-
 /usr/include/x86_64-linux-gnu/bits/eventfd.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigstksz.h:
@@ -24356,27 +24720,3 @@ third_party/asio/include/asio/detail/impl/timer_queue_set.ipp:
 /usr/include/x86_64-linux-gnu/bits/timerfd.h:
 
 third_party/asio/include/asio/detail/impl/epoll_reactor.ipp:
-
-third_party/asio/include/asio/post.hpp:
-
-third_party/asio/include/asio/execution/detail/as_operation.hpp:
-
-third_party/asio/include/asio/detail/posix_signal_blocker.hpp:
-
-third_party/asio/include/asio/detail/string_view.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
-
-/home/qijing/dpdk/build/install/usr/local/include/rte_ethdev_core.h:
-
-/usr/include/c++/11/tuple:
-
-/usr/include/net/if.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
-
-src/msg_buffer.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:

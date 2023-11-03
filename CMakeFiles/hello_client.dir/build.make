@@ -93,7 +93,7 @@ hello_client_EXTERNAL_OBJECTS =
 build/hello_client: CMakeFiles/hello_client.dir/hello_world/client.cc.o
 build/hello_client: CMakeFiles/hello_client.dir/build.make
 build/hello_client: build/liberpc.a
-build/hello_client: third_party/gflags/libgflags_nothreads_debug.a
+build/hello_client: third_party/gflags/libgflags_nothreads.a
 build/hello_client: third_party/HdrHistogram_c/src/libhdr_histogram_static.a
 build/hello_client: /usr/lib/x86_64-linux-gnu/libz.so
 build/hello_client: CMakeFiles/hello_client.dir/link.txt

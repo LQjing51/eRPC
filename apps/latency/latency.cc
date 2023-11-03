@@ -14,8 +14,8 @@
 static constexpr size_t kAppEvLoopMs = 1000;  // Duration of event loop
 static constexpr bool kAppVerbose = false;    // Print debug info on datapath
 static constexpr size_t kAppReqType = 1;      // eRPC request type
-static constexpr size_t kAppStartReqSize = 64;
-static constexpr size_t kAppEndReqSize = 1024;
+static constexpr size_t kAppStartReqSize = 1<<5;
+static constexpr size_t kAppEndReqSize = 1<<20;
 
 // Precision factor for latency measurement
 static constexpr double kAppLatFac = erpc::kIsAzure ? 1.0 : 10.0;
@@ -73,6 +73,7 @@ void server_func(erpc::Nexus *nexus) {
   erpc::Rpc<erpc::CTransport> rpc(nexus, static_cast<void *>(&c), 0 /* tid */,
                                   basic_sm_handler, phy_port);
   rpc.set_pre_resp_msgbuf_size(FLAGS_resp_size);
+  printf("Latency: Server_func, resp_size = %lu\n", FLAGS_resp_size);
   c.rpc_ = &rpc;
 
   while (true) {

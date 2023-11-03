@@ -10,7 +10,7 @@ namespace erpc {
 // make when calling create_session(), which cannot check for such errors.
 template <class TTr>
 void Rpc<TTr>::handle_connect_req_st(const SmPkt &sm_pkt) {
-  ERPC_INFO("in handle_connect_req_st\n");
+  // ERPC_INFO("in handle_connect_req_st\n");
   assert(in_dispatch());
   assert(sm_pkt.pkt_type_ == SmPktType::kConnectReq &&
          sm_pkt.server_.rpc_id_ == rpc_id_);

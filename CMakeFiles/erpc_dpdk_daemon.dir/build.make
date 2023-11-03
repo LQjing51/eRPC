@@ -124,7 +124,7 @@ build/erpc_dpdk_daemon: CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/
 build/erpc_dpdk_daemon: CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_externs.cc.o
 build/erpc_dpdk_daemon: CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_init.cc.o
 build/erpc_dpdk_daemon: CMakeFiles/erpc_dpdk_daemon.dir/build.make
-build/erpc_dpdk_daemon: third_party/gflags/libgflags_nothreads_debug.a
+build/erpc_dpdk_daemon: third_party/gflags/libgflags_nothreads.a
 build/erpc_dpdk_daemon: third_party/HdrHistogram_c/src/libhdr_histogram_static.a
 build/erpc_dpdk_daemon: /usr/lib/x86_64-linux-gnu/libz.so
 build/erpc_dpdk_daemon: CMakeFiles/erpc_dpdk_daemon.dir/link.txt

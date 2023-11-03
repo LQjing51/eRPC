@@ -604,7 +604,7 @@ build/latency: CMakeFiles/latency.dir/src/util/huge_alloc.cc.o
 build/latency: CMakeFiles/latency.dir/src/util/numautils.cc.o
 build/latency: CMakeFiles/latency.dir/src/util/tls_registry.cc.o
 build/latency: CMakeFiles/latency.dir/build.make
-build/latency: third_party/gflags/libgflags_nothreads_debug.a
+build/latency: third_party/gflags/libgflags_nothreads.a
 build/latency: third_party/HdrHistogram_c/src/libhdr_histogram_static.a
 build/latency: /usr/lib/x86_64-linux-gnu/libz.so
 build/latency: CMakeFiles/latency.dir/link.txt

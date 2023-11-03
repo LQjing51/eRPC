@@ -322,10 +322,10 @@ INSTALL_GTEST:BOOL=ON
 LOG_LELVE:UNINITIALIZED=cc
 
 //Logging level (none/error/warn/info/reorder/trace/cc)
-LOG_LEVEL:STRING=cc
+LOG_LEVEL:STRING=2
 
 //Compile for performance
-PERF:BOOL=OFF
+PERF:BOOL=on
 
 //Profile-guided optimization (generate/use/none)
 PGO:STRING=none
