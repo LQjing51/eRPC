@@ -13,7 +13,7 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
       (std::min)(credits, sslot->tx_msgbuf_->num_pkts_ - ci.num_tx_);
   int bypass = can_bypass_wheel(sslot);
 
-  ERPC_INFO("in kick_req_st: %lu %d\n", sending, bypass);
+  // ERPC_INFO("in kick_req_st: %lu %d\n", sending, bypass);
 
   for (size_t x = 0; x < sending; x++) {
     if (bypass) {

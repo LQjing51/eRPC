@@ -40,7 +40,7 @@ void Rpc<TTr>::process_wheel_st() {
 
     auto &ci = sslot->client_info_;
     if (pkt_num < sslot->tx_msgbuf_->num_pkts_) {
-      ERPC_INFO("in process_wheel_st\n");
+      // ERPC_INFO("in process_wheel_st\n");
       enqueue_pkt_tx_burst_st(sslot, pkt_num /* pkt_idx */, &ci.tx_ts_[crd_i]);
     } else {
       MsgBuffer *resp_msgbuf = ci.resp_msgbuf_;

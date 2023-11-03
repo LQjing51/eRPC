@@ -2,6 +2,7 @@
 
 #include <gflags/gflags.h>
 #include <signal.h>
+#include <sys/time.h>
 
 #include <cstring>
 
@@ -14,8 +15,8 @@
 static constexpr size_t kAppEvLoopMs = 1000;  // Duration of event loop
 static constexpr bool kAppVerbose = false;    // Print debug info on datapath
 static constexpr size_t kAppReqType = 1;      // eRPC request type
-static constexpr size_t kAppStartReqSize = 64;
-static constexpr size_t kAppEndReqSize = 1024;
+static constexpr size_t kAppStartReqSize = 1<<5;
+static constexpr size_t kAppEndReqSize = 1<<20;
 
 // Precision factor for latency measurement
 static constexpr double kAppLatFac = erpc::kIsAzure ? 1.0 : 10.0;
@@ -38,6 +39,7 @@ class ClientContext : public BasicAppContext {
 
  public:
   size_t start_tsc_;
+  // double start_tsc_;
   size_t req_size_;  // Between kAppStartReqSize and kAppEndReqSize
   erpc::MsgBuffer req_msgbuf_, resp_msgbuf_;
   hdr_histogram *latency_hist_;
@@ -110,6 +112,11 @@ inline void send_req(ClientContext &c) {
     c.rpc_->resize_msg_buffer(&c.resp_msgbuf_, FLAGS_resp_size);
   }
 
+  // struct timeval cur_time;
+  // gettimeofday(&cur_time, NULL);
+  // c.start_tsc_ = cur_time.tv_sec * 1000000.0 + cur_time.tv_usec;
+
+  //randomly choose a server process, as num_server_processes is 1，the only result is 0
   c.start_tsc_ = erpc::rdtsc();
   const size_t server_id = c.fastrand_.next_u32() % FLAGS_num_server_processes;
   c.rpc_->enqueue_request(c.session_num_vec_[server_id], kAppReqType,
@@ -130,13 +137,17 @@ void app_cont_func(void *_context, void *) {
            c->resp_msgbuf_.get_data_size());
   }
 
-  const double req_lat_us =
+  // struct timeval cur_time;
+  // gettimeofday(&cur_time, NULL);
+
+  const double req_lat_us = //(cur_time.tv_sec * 1000000.0 + cur_time.tv_usec - c->start_tsc_);
       erpc::to_usec(erpc::rdtsc() - c->start_tsc_, c->rpc_->get_freq_ghz());
 
   hdr_record_value(c->latency_hist_,
                    static_cast<int64_t>(req_lat_us * kAppLatFac));
   c->latency_samples_++;
-
+  // after receive a response, send one req again
+  // in client func, multiply the req size every minute
   send_req(*c);
 }
 
@@ -194,12 +205,12 @@ void client_func(erpc::Nexus *nexus) {
     fflush(stdout);
 
     // Warmup for the first two seconds. Also, reset percentiles every minute.
-    const size_t seconds = i / 1000;
-    if (seconds < 2 || (seconds % 60 == 0)) {
+    // const size_t seconds = i / 1000;
+    // if (seconds < 2 || (seconds % 60 == 0)) {
       hdr_reset(c.latency_hist_);
       c.latency_samples_ = 0;
       c.latency_samples_prev_ = 0;
-    }
+    // }
 
     c.latency_samples_prev_ = c.latency_samples_;
     c.double_req_size_ = true;
@@ -208,6 +219,8 @@ void client_func(erpc::Nexus *nexus) {
 
 int main(int argc, char **argv) {
   signal(SIGINT, ctrl_c_handler);
+  // argv[1]:process id argv[2]:nume node
+  // num_processes: eRPC processes in the cluster
   gflags::ParseCommandLineFlags(&argc, &argv, true);
   erpc::rt_assert(FLAGS_numa_node <= 1, "Invalid NUMA node");
   printf("Latency: Starting latency test. Response size = %zu bytes\n",
@@ -217,10 +230,12 @@ int main(int argc, char **argv) {
                     FLAGS_numa_node, 0);
   nexus.register_req_func(kAppReqType, req_handler);
 
+  //process id == 1, choose client_func
   auto t = std::thread(
       FLAGS_process_id < FLAGS_num_server_processes ? server_func : client_func,
       &nexus);
 
+  //process id == 1, affinity_core = 1
   const size_t num_socket_cores =
       erpc::get_lcores_for_numa_node(FLAGS_numa_node).size();
   const size_t affinity_core = FLAGS_process_id % num_socket_cores;

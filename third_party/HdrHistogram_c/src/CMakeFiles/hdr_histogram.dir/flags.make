@@ -6,5 +6,5 @@ C_DEFINES = -D_GNU_SOURCE -Dhdr_histogram_EXPORTS
 
 C_INCLUDES = -I/home/qijing/eRPC/third_party/HdrHistogram_c/src
 
-C_FLAGS = -g -fPIC -Wall -Wno-unknown-pragmas -Wextra -Wshadow -Winit-self -Wpedantic -Wmissing-prototypes -std=c99
+C_FLAGS = -O2 -g -DNDEBUG -fPIC -Wall -Wno-unknown-pragmas -Wextra -Wshadow -Winit-self -Wpedantic -Wmissing-prototypes -std=c99
 

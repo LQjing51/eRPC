@@ -198,7 +198,6 @@ void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     if (sslot->tx_msgbuf_ != nullptr) {
       // The response is available, so resend it
       ERPC_REORDER("%s: Re-sending response.\n", issue_msg);
-      ERPC_INFO("in process_large_req_one_st\n");
       enqueue_pkt_tx_burst_st(sslot, 0, nullptr);  // Packet index = 0
       drain_tx_batch_and_dma_queue();
     } else {

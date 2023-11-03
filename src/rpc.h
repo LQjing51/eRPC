@@ -714,14 +714,6 @@ class Rpc {
 
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
-    // ERPC_INFO("---------------------------------------------------------\n");
-    // uint8_t* buf = (*(item.routing_info_)).buf_;
-    // for(int i = 0; i*6 < 48; i++){
-    //   ERPC_INFO("%u %u %u %u %u %u\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-    //   ERPC_INFO("%hx %hx %hx %hx %hx %hx\n\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-    // }
-    // ERPC_INFO("---------------------------------------------------------\n");
-    
     item.msg_buffer_ = const_cast<MsgBuffer *>(tx_msgbuf);
     item.pkt_idx_ = pkt_idx;
     if (kCcRTT) item.tx_ts_ = tx_ts;
@@ -732,7 +724,7 @@ class Rpc {
     }
 
     // ERPC_TRACE
-    ERPC_INFO("enqueue_pkt_tx_burst_st: Rpc %u, lsn %u (%s): TX %s. Slot %s.%s\n", rpc_id_,
+    ERPC_TRACE("enqueue_pkt_tx_burst_st: Rpc %u, lsn %u (%s): TX %s. Slot %s.%s\n", rpc_id_,
                sslot->session_->local_session_num_,
                sslot->session_->get_remote_hostname().c_str(),
                tx_msgbuf->get_pkthdr_str(pkt_idx).c_str(),
@@ -779,7 +771,7 @@ class Rpc {
         sslot->session_->cc_getupdate_tx_tsc(ref_tsc, pktsz);
 
     // ERPC_CC
-    ERPC_INFO("enqueue_wheel_req_st: Rpc %u: lsn/req/pkt %u/%zu/%zu, REQ wheeled for %.3f us.\n",
+    ERPC_CC("enqueue_wheel_req_st: Rpc %u: lsn/req/pkt %u/%zu/%zu, REQ wheeled for %.3f us.\n",
             rpc_id_, sslot->session_->local_session_num_, sslot->cur_req_num_,
             pkt_num, to_usec(desired_tx_tsc - creation_tsc_, freq_ghz_));
 
@@ -808,7 +800,7 @@ class Rpc {
 
   /// Transmit packets in the TX batch
   inline void do_tx_burst_st() {
-    ERPC_INFO("in do_tx_burst_st\n");
+    // ERPC_INFO("in do_tx_burst_st\n");
     assert(in_dispatch());
     assert(tx_batch_i_ > 0);
 

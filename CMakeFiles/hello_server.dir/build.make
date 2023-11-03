@@ -93,7 +93,7 @@ hello_server_EXTERNAL_OBJECTS =
 build/hello_server: CMakeFiles/hello_server.dir/hello_world/server.cc.o
 build/hello_server: CMakeFiles/hello_server.dir/build.make
 build/hello_server: build/liberpc.a
-build/hello_server: third_party/gflags/libgflags_nothreads_debug.a
+build/hello_server: third_party/gflags/libgflags_nothreads.a
 build/hello_server: third_party/HdrHistogram_c/src/libhdr_histogram_static.a
 build/hello_server: /usr/lib/x86_64-linux-gnu/libz.so
 build/hello_server: CMakeFiles/hello_server.dir/link.txt

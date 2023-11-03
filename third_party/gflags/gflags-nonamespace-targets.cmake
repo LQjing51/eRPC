@@ -49,11 +49,11 @@ set_target_properties(gflags_nothreads_static PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "/home/qijing/eRPC/third_party/gflags/include"
 )
 
-# Import target "gflags_nothreads_static" for configuration "Debug"
-set_property(TARGET gflags_nothreads_static APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+# Import target "gflags_nothreads_static" for configuration "RelWithDebInfo"
+set_property(TARGET gflags_nothreads_static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
 set_target_properties(gflags_nothreads_static PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "/home/qijing/eRPC/third_party/gflags/libgflags_nothreads_debug.a"
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO "CXX"
+  IMPORTED_LOCATION_RELWITHDEBINFO "/home/qijing/eRPC/third_party/gflags/libgflags_nothreads.a"
   )
 
 # This file does not depend on other imported targets which have

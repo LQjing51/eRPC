@@ -25,8 +25,6 @@ static void format_pkthdr(pkthdr_t *pkthdr,
   ipv4_hdr->tot_len_ = htons(pkt_size - sizeof(eth_hdr_t));
   ipv4_hdr->check_ = get_ipv4_checksum(ipv4_hdr);
 
-  // ERPC_INFO("ipv4 hdr: %s\n", ipv4_hdr->to_string().c_str());
-
   udp_hdr_t *udp_hdr = pkthdr->get_udp_hdr();
   assert(udp_hdr->check_ == 0);
   udp_hdr->len_ = htons(pkt_size - sizeof(eth_hdr_t) - sizeof(ipv4_hdr_t));
@@ -35,7 +33,7 @@ static void format_pkthdr(pkthdr_t *pkthdr,
 void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
                              size_t num_pkts) {
 
-  ERPC_INFO("in DpdkTransport::tx_burst\n");
+  // ERPC_INFO("in DpdkTransport::tx_burst\n");
   rte_mbuf *tx_mbufs[kPostlist];
 
   for (size_t i = 0; i < num_pkts; i++) {
@@ -51,11 +49,6 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       pkthdr = msg_buffer->get_pkthdr_0();
       const size_t pkt_size = msg_buffer->get_pkt_size<kMaxDataPerPkt>(0);
       format_pkthdr(pkthdr, item, pkt_size);
-
-      // const uint8_t* buf = &(pkthdr->headroom_[0]);
-      // auto* eth_hdr = reinterpret_cast<const eth_hdr_t*>(buf);
-      // auto* ipv4_hdr = reinterpret_cast<const ipv4_hdr_t*>(&eth_hdr[1]);
-      // memcpy(ipv4_hdr->dst_ip_,,
 
       tx_mbufs[i]->nb_segs = 1;
       tx_mbufs[i]->pkt_len = pkt_size;
@@ -78,14 +71,14 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
                pkt_size - sizeof(pkthdr_t));
     }
 
-    ERPC_INFO(
+    ERPC_TRACE(
         "Transport: TX (idx = %zu, drop = %u). pkthdr = %s. Frame  = %s.\n", i,
         item.drop_, pkthdr->to_string().c_str(),
         frame_header_to_string(&pkthdr->headroom_[0]).c_str());
   }
 
   size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, num_pkts);
-  ERPC_INFO("in DpdkTransport::tx_burst : num_pkts = %lu, nb_tx_new = %lu\n", num_pkts, nb_tx_new);
+  // ERPC_INFO("in DpdkTransport::tx_burst : num_pkts = %lu, nb_tx_new = %lu\n", num_pkts, nb_tx_new);
   if (unlikely(nb_tx_new != num_pkts)) {
     size_t retry_count = 0;
     while (nb_tx_new != num_pkts) {

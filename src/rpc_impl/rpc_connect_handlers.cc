@@ -31,7 +31,6 @@ void Rpc<TTr>::handle_connect_req_st(const SmPkt &sm_pkt) {
     } else {
       SmPkt resp_sm_pkt = sm_construct_resp(sm_pkt, SmErrType::kNoError);
       resp_sm_pkt.server_ = session->server_;  // Re-send server endpoint info
-
       ERPC_INFO("%s: Duplicate request. Re-sending response.\n", issue_msg);
       sm_pkt_udp_tx_st(resp_sm_pkt);
       return;
