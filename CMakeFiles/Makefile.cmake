@@ -102,7 +102,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/erpc.dir/DependInfo.cmake"
   "CMakeFiles/erpc_dpdk_daemon.dir/DependInfo.cmake"
-  "CMakeFiles/latency.dir/DependInfo.cmake"
+  "CMakeFiles/large_rpc_tput.dir/DependInfo.cmake"
   "CMakeFiles/hello_server.dir/DependInfo.cmake"
   "CMakeFiles/hello_client.dir/DependInfo.cmake"
   "third_party/HdrHistogram_c/src/CMakeFiles/hdr_histogram.dir/DependInfo.cmake"

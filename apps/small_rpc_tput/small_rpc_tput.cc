@@ -394,11 +394,12 @@ int main(int argc, char **argv) {
   signal(SIGINT, ctrl_c_handler);
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
-  erpc::rt_assert(FLAGS_batch_size <= kAppMaxBatchSize, "Invalid batch size");
-  erpc::rt_assert(FLAGS_concurrency <= kAppMaxConcurrency, "Invalid cncrrncy.");
+  erpc::rt_assert(FLAGS_batch_size <= kAppMaxBatchSize, "Invalid batch size");//1
+  erpc::rt_assert(FLAGS_concurrency <= kAppMaxConcurrency, "Invalid cncrrncy.");//60
   erpc::rt_assert(FLAGS_numa_node <= 1, "Invalid NUMA node");
 
   // We create a bit fewer sessions
+  // num_processes = 2, num_threads = 4
   const size_t num_sessions = 2 * FLAGS_num_processes * FLAGS_num_threads;
   erpc::rt_assert(num_sessions * erpc::kSessionCredits <=
                       erpc::Transport::kNumRxRingEntries,

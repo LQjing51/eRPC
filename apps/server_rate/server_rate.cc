@@ -81,6 +81,7 @@ inline void send_req(ClientContext &c, size_t ws_i) {
                          app_cont_func, reinterpret_cast<void *>(ws_i));
 }
 
+//req i's response will be put on resp_msgbuf[i]
 void app_cont_func(void *_context, void *_ws_i) {
   auto *c = static_cast<ClientContext *>(_context);
   const auto ws_i = reinterpret_cast<size_t>(_ws_i);
@@ -101,6 +102,7 @@ void create_sessions(ClientContext &c) {
            FLAGS_num_server_threads, server_uri.c_str());
   }
 
+  //remote rpc id = the num of remote thread
   for (size_t i = 0; i < FLAGS_num_server_threads; i++) {
     int session_num = c.rpc_->create_session(server_uri, i);
     erpc::rt_assert(session_num >= 0, "Failed to create session");
@@ -133,9 +135,12 @@ void client_func(erpc::Nexus *nexus, size_t thread_id) {
     printf("thread_id: median_us 5th_us 99th_us 999th_us Mops\n");
   }
 
+  //window_size = max pending req per client thread / available msgbuf num
+  //one client thread -> [server_thread_num] sessions -> send [window_size] packets one time
   for (size_t i = 0; i < FLAGS_window_size; i++) {
     c.req_msgbuf[i] = rpc.alloc_msg_buffer_or_die(FLAGS_req_size);
     c.resp_msgbuf[i] = rpc.alloc_msg_buffer_or_die(FLAGS_resp_size);
+    //send this req using randomly chosen sessions(i.e. randomly server thread) 
     send_req(c, i);
   }
 
@@ -160,17 +165,20 @@ int main(int argc, char **argv) {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
   erpc::rt_assert(FLAGS_numa_node <= 1, "Invalid NUMA node");
-  erpc::rt_assert(FLAGS_resp_size <= erpc::CTransport::kMTU, "Resp too large");
-  erpc::rt_assert(FLAGS_window_size <= kAppMaxWindowSize, "Window too large");
+  erpc::rt_assert(FLAGS_resp_size <= erpc::CTransport::kMTU, "Resp too large");//resp size = 32, req size = 32
+  erpc::rt_assert(FLAGS_window_size <= kAppMaxWindowSize, "Window too large");//windows size = 8
 
   erpc::Nexus nexus(erpc::get_uri_for_process(FLAGS_process_id),
                     FLAGS_numa_node, 0);
   nexus.register_req_func(kAppReqType, req_handler);
 
+  //server_threads = 4
+  //client_threads = 16
   size_t num_threads = FLAGS_process_id == 0 ? FLAGS_num_server_threads
                                              : FLAGS_num_client_threads;
   std::vector<std::thread> threads(num_threads);
 
+  //thread i bind to core i
   for (size_t i = 0; i < num_threads; i++) {
     threads[i] = std::thread(FLAGS_process_id == 0 ? server_func : client_func,
                              &nexus, i);

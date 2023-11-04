@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DERPC_DPDK=true -DERPC_LOG_LEVEL=2 -DERPC_TESTING=false
 
-CXX_INCLUDES = -I/home/qijing/eRPC/third_party/googletest/googletest/include -I/home/qijing/eRPC/third_party/googletest/googletest -I/home/qijing/eRPC/src -isystem /home/qijing/eRPC/third_party/asio/include -isystem /home/qijing/eRPC/third_party -isystem /home/qijing/build/install/usr/local/include
+CXX_INCLUDES = -I/home/qijing/eRPC/third_party/googletest/googletest/include -I/home/qijing/eRPC/third_party/googletest/googletest -I/home/qijing/eRPC/src -isystem /home/qijing/eRPC/third_party/asio/include -isystem /home/qijing/eRPC/third_party -isystem /home/qijing/dpdk/build/install/usr/local/include
 
 CXX_FLAGS =  -std=c++11 -march=native -Wall -Wextra -Werror -pedantic -Wsign-conversion -Wold-style-cast -Wno-unused-function -Wno-nested-anon-types -Wno-keyword-macro -Wno-deprecated-declarations -O2 -g -DNDEBUG -std=gnu++11
 

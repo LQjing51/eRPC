@@ -604,7 +604,7 @@ build/large_rpc_tput: CMakeFiles/large_rpc_tput.dir/src/util/huge_alloc.cc.o
 build/large_rpc_tput: CMakeFiles/large_rpc_tput.dir/src/util/numautils.cc.o
 build/large_rpc_tput: CMakeFiles/large_rpc_tput.dir/src/util/tls_registry.cc.o
 build/large_rpc_tput: CMakeFiles/large_rpc_tput.dir/build.make
-build/large_rpc_tput: third_party/gflags/libgflags_nothreads_debug.a
+build/large_rpc_tput: third_party/gflags/libgflags_nothreads.a
 build/large_rpc_tput: third_party/HdrHistogram_c/src/libhdr_histogram_static.a
 build/large_rpc_tput: /usr/lib/x86_64-linux-gnu/libz.so
 build/large_rpc_tput: CMakeFiles/large_rpc_tput.dir/link.txt
