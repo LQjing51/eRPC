@@ -296,6 +296,9 @@ CPACK_SOURCE_TZ:BOOL=ON
 //Enable to build ZIP source packages
 CPACK_SOURCE_ZIP:BOOL=OFF
 
+//No help, variable specified on the command line.
+ERPC_LOG_LEVEL:UNINITIALIZED=2
+
 //Build tests and examples
 HDR_HISTOGRAM_BUILD_PROGRAMS:BOOL=OFF
 

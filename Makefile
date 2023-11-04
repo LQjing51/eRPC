@@ -218,17 +218,17 @@ erpc_dpdk_daemon/fast:
 .PHONY : erpc_dpdk_daemon/fast
 
 #=============================================================================
-# Target rules for targets named latency
+# Target rules for targets named large_rpc_tput
 
 # Build rule for target.
-latency: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 latency
-.PHONY : latency
+large_rpc_tput: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 large_rpc_tput
+.PHONY : large_rpc_tput
 
 # fast build rule for target.
-latency/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/build
-.PHONY : latency/fast
+large_rpc_tput/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/build
+.PHONY : large_rpc_tput/fast
 
 #=============================================================================
 # Target rules for targets named hello_server
@@ -347,29 +347,29 @@ gflags_nothreads_static/fast:
 	$(MAKE) $(MAKESILENT) -f third_party/gflags/CMakeFiles/gflags_nothreads_static.dir/build.make third_party/gflags/CMakeFiles/gflags_nothreads_static.dir/build
 .PHONY : gflags_nothreads_static/fast
 
-apps/latency/latency.o: apps/latency/latency.cc.o
-.PHONY : apps/latency/latency.o
+apps/large_rpc_tput/large_rpc_tput.o: apps/large_rpc_tput/large_rpc_tput.cc.o
+.PHONY : apps/large_rpc_tput/large_rpc_tput.o
 
 # target to build an object file
-apps/latency/latency.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/apps/latency/latency.cc.o
-.PHONY : apps/latency/latency.cc.o
+apps/large_rpc_tput/large_rpc_tput.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/apps/large_rpc_tput/large_rpc_tput.cc.o
+.PHONY : apps/large_rpc_tput/large_rpc_tput.cc.o
 
-apps/latency/latency.i: apps/latency/latency.cc.i
-.PHONY : apps/latency/latency.i
+apps/large_rpc_tput/large_rpc_tput.i: apps/large_rpc_tput/large_rpc_tput.cc.i
+.PHONY : apps/large_rpc_tput/large_rpc_tput.i
 
 # target to preprocess a source file
-apps/latency/latency.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/apps/latency/latency.cc.i
-.PHONY : apps/latency/latency.cc.i
+apps/large_rpc_tput/large_rpc_tput.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/apps/large_rpc_tput/large_rpc_tput.cc.i
+.PHONY : apps/large_rpc_tput/large_rpc_tput.cc.i
 
-apps/latency/latency.s: apps/latency/latency.cc.s
-.PHONY : apps/latency/latency.s
+apps/large_rpc_tput/large_rpc_tput.s: apps/large_rpc_tput/large_rpc_tput.cc.s
+.PHONY : apps/large_rpc_tput/large_rpc_tput.s
 
 # target to generate assembly for a file
-apps/latency/latency.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/apps/latency/latency.cc.s
-.PHONY : apps/latency/latency.cc.s
+apps/large_rpc_tput/large_rpc_tput.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/apps/large_rpc_tput/large_rpc_tput.cc.s
+.PHONY : apps/large_rpc_tput/large_rpc_tput.cc.s
 
 hello_world/client.o: hello_world/client.cc.o
 .PHONY : hello_world/client.o
@@ -425,7 +425,7 @@ src/nexus_impl/nexus.o: src/nexus_impl/nexus.cc.o
 # target to build an object file
 src/nexus_impl/nexus.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus.cc.o
 .PHONY : src/nexus_impl/nexus.cc.o
 
 src/nexus_impl/nexus.i: src/nexus_impl/nexus.cc.i
@@ -434,7 +434,7 @@ src/nexus_impl/nexus.i: src/nexus_impl/nexus.cc.i
 # target to preprocess a source file
 src/nexus_impl/nexus.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus.cc.i
 .PHONY : src/nexus_impl/nexus.cc.i
 
 src/nexus_impl/nexus.s: src/nexus_impl/nexus.cc.s
@@ -443,7 +443,7 @@ src/nexus_impl/nexus.s: src/nexus_impl/nexus.cc.s
 # target to generate assembly for a file
 src/nexus_impl/nexus.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus.cc.s
 .PHONY : src/nexus_impl/nexus.cc.s
 
 src/nexus_impl/nexus_bg_thread.o: src/nexus_impl/nexus_bg_thread.cc.o
@@ -452,7 +452,7 @@ src/nexus_impl/nexus_bg_thread.o: src/nexus_impl/nexus_bg_thread.cc.o
 # target to build an object file
 src/nexus_impl/nexus_bg_thread.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus_bg_thread.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus_bg_thread.cc.o
 .PHONY : src/nexus_impl/nexus_bg_thread.cc.o
 
 src/nexus_impl/nexus_bg_thread.i: src/nexus_impl/nexus_bg_thread.cc.i
@@ -461,7 +461,7 @@ src/nexus_impl/nexus_bg_thread.i: src/nexus_impl/nexus_bg_thread.cc.i
 # target to preprocess a source file
 src/nexus_impl/nexus_bg_thread.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus_bg_thread.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus_bg_thread.cc.i
 .PHONY : src/nexus_impl/nexus_bg_thread.cc.i
 
 src/nexus_impl/nexus_bg_thread.s: src/nexus_impl/nexus_bg_thread.cc.s
@@ -470,7 +470,7 @@ src/nexus_impl/nexus_bg_thread.s: src/nexus_impl/nexus_bg_thread.cc.s
 # target to generate assembly for a file
 src/nexus_impl/nexus_bg_thread.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus_bg_thread.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus_bg_thread.cc.s
 .PHONY : src/nexus_impl/nexus_bg_thread.cc.s
 
 src/nexus_impl/nexus_sm_thread.o: src/nexus_impl/nexus_sm_thread.cc.o
@@ -479,7 +479,7 @@ src/nexus_impl/nexus_sm_thread.o: src/nexus_impl/nexus_sm_thread.cc.o
 # target to build an object file
 src/nexus_impl/nexus_sm_thread.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus_sm_thread.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus_sm_thread.cc.o
 .PHONY : src/nexus_impl/nexus_sm_thread.cc.o
 
 src/nexus_impl/nexus_sm_thread.i: src/nexus_impl/nexus_sm_thread.cc.i
@@ -488,7 +488,7 @@ src/nexus_impl/nexus_sm_thread.i: src/nexus_impl/nexus_sm_thread.cc.i
 # target to preprocess a source file
 src/nexus_impl/nexus_sm_thread.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus_sm_thread.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus_sm_thread.cc.i
 .PHONY : src/nexus_impl/nexus_sm_thread.cc.i
 
 src/nexus_impl/nexus_sm_thread.s: src/nexus_impl/nexus_sm_thread.cc.s
@@ -497,7 +497,7 @@ src/nexus_impl/nexus_sm_thread.s: src/nexus_impl/nexus_sm_thread.cc.s
 # target to generate assembly for a file
 src/nexus_impl/nexus_sm_thread.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/nexus_impl/nexus_sm_thread.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/nexus_impl/nexus_sm_thread.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/nexus_impl/nexus_sm_thread.cc.s
 .PHONY : src/nexus_impl/nexus_sm_thread.cc.s
 
 src/rpc_impl/rpc.o: src/rpc_impl/rpc.cc.o
@@ -506,7 +506,7 @@ src/rpc_impl/rpc.o: src/rpc_impl/rpc.cc.o
 # target to build an object file
 src/rpc_impl/rpc.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc.cc.o
 .PHONY : src/rpc_impl/rpc.cc.o
 
 src/rpc_impl/rpc.i: src/rpc_impl/rpc.cc.i
@@ -515,7 +515,7 @@ src/rpc_impl/rpc.i: src/rpc_impl/rpc.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc.cc.i
 .PHONY : src/rpc_impl/rpc.cc.i
 
 src/rpc_impl/rpc.s: src/rpc_impl/rpc.cc.s
@@ -524,7 +524,7 @@ src/rpc_impl/rpc.s: src/rpc_impl/rpc.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc.cc.s
 .PHONY : src/rpc_impl/rpc.cc.s
 
 src/rpc_impl/rpc_connect_handlers.o: src/rpc_impl/rpc_connect_handlers.cc.o
@@ -533,7 +533,7 @@ src/rpc_impl/rpc_connect_handlers.o: src/rpc_impl/rpc_connect_handlers.cc.o
 # target to build an object file
 src/rpc_impl/rpc_connect_handlers.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_connect_handlers.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_connect_handlers.cc.o
 .PHONY : src/rpc_impl/rpc_connect_handlers.cc.o
 
 src/rpc_impl/rpc_connect_handlers.i: src/rpc_impl/rpc_connect_handlers.cc.i
@@ -542,7 +542,7 @@ src/rpc_impl/rpc_connect_handlers.i: src/rpc_impl/rpc_connect_handlers.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_connect_handlers.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_connect_handlers.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_connect_handlers.cc.i
 .PHONY : src/rpc_impl/rpc_connect_handlers.cc.i
 
 src/rpc_impl/rpc_connect_handlers.s: src/rpc_impl/rpc_connect_handlers.cc.s
@@ -551,7 +551,7 @@ src/rpc_impl/rpc_connect_handlers.s: src/rpc_impl/rpc_connect_handlers.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_connect_handlers.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_connect_handlers.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_connect_handlers.cc.s
 .PHONY : src/rpc_impl/rpc_connect_handlers.cc.s
 
 src/rpc_impl/rpc_cr.o: src/rpc_impl/rpc_cr.cc.o
@@ -560,7 +560,7 @@ src/rpc_impl/rpc_cr.o: src/rpc_impl/rpc_cr.cc.o
 # target to build an object file
 src/rpc_impl/rpc_cr.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_cr.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_cr.cc.o
 .PHONY : src/rpc_impl/rpc_cr.cc.o
 
 src/rpc_impl/rpc_cr.i: src/rpc_impl/rpc_cr.cc.i
@@ -569,7 +569,7 @@ src/rpc_impl/rpc_cr.i: src/rpc_impl/rpc_cr.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_cr.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_cr.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_cr.cc.i
 .PHONY : src/rpc_impl/rpc_cr.cc.i
 
 src/rpc_impl/rpc_cr.s: src/rpc_impl/rpc_cr.cc.s
@@ -578,7 +578,7 @@ src/rpc_impl/rpc_cr.s: src/rpc_impl/rpc_cr.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_cr.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_cr.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_cr.cc.s
 .PHONY : src/rpc_impl/rpc_cr.cc.s
 
 src/rpc_impl/rpc_disconnect_handlers.o: src/rpc_impl/rpc_disconnect_handlers.cc.o
@@ -587,7 +587,7 @@ src/rpc_impl/rpc_disconnect_handlers.o: src/rpc_impl/rpc_disconnect_handlers.cc.
 # target to build an object file
 src/rpc_impl/rpc_disconnect_handlers.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o
 .PHONY : src/rpc_impl/rpc_disconnect_handlers.cc.o
 
 src/rpc_impl/rpc_disconnect_handlers.i: src/rpc_impl/rpc_disconnect_handlers.cc.i
@@ -596,7 +596,7 @@ src/rpc_impl/rpc_disconnect_handlers.i: src/rpc_impl/rpc_disconnect_handlers.cc.
 # target to preprocess a source file
 src/rpc_impl/rpc_disconnect_handlers.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_disconnect_handlers.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_disconnect_handlers.cc.i
 .PHONY : src/rpc_impl/rpc_disconnect_handlers.cc.i
 
 src/rpc_impl/rpc_disconnect_handlers.s: src/rpc_impl/rpc_disconnect_handlers.cc.s
@@ -605,7 +605,7 @@ src/rpc_impl/rpc_disconnect_handlers.s: src/rpc_impl/rpc_disconnect_handlers.cc.
 # target to generate assembly for a file
 src/rpc_impl/rpc_disconnect_handlers.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_disconnect_handlers.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_disconnect_handlers.cc.s
 .PHONY : src/rpc_impl/rpc_disconnect_handlers.cc.s
 
 src/rpc_impl/rpc_ev_loop.o: src/rpc_impl/rpc_ev_loop.cc.o
@@ -614,7 +614,7 @@ src/rpc_impl/rpc_ev_loop.o: src/rpc_impl/rpc_ev_loop.cc.o
 # target to build an object file
 src/rpc_impl/rpc_ev_loop.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_ev_loop.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_ev_loop.cc.o
 .PHONY : src/rpc_impl/rpc_ev_loop.cc.o
 
 src/rpc_impl/rpc_ev_loop.i: src/rpc_impl/rpc_ev_loop.cc.i
@@ -623,7 +623,7 @@ src/rpc_impl/rpc_ev_loop.i: src/rpc_impl/rpc_ev_loop.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_ev_loop.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_ev_loop.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_ev_loop.cc.i
 .PHONY : src/rpc_impl/rpc_ev_loop.cc.i
 
 src/rpc_impl/rpc_ev_loop.s: src/rpc_impl/rpc_ev_loop.cc.s
@@ -632,7 +632,7 @@ src/rpc_impl/rpc_ev_loop.s: src/rpc_impl/rpc_ev_loop.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_ev_loop.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_ev_loop.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_ev_loop.cc.s
 .PHONY : src/rpc_impl/rpc_ev_loop.cc.s
 
 src/rpc_impl/rpc_fault_inject.o: src/rpc_impl/rpc_fault_inject.cc.o
@@ -641,7 +641,7 @@ src/rpc_impl/rpc_fault_inject.o: src/rpc_impl/rpc_fault_inject.cc.o
 # target to build an object file
 src/rpc_impl/rpc_fault_inject.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_fault_inject.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_fault_inject.cc.o
 .PHONY : src/rpc_impl/rpc_fault_inject.cc.o
 
 src/rpc_impl/rpc_fault_inject.i: src/rpc_impl/rpc_fault_inject.cc.i
@@ -650,7 +650,7 @@ src/rpc_impl/rpc_fault_inject.i: src/rpc_impl/rpc_fault_inject.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_fault_inject.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_fault_inject.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_fault_inject.cc.i
 .PHONY : src/rpc_impl/rpc_fault_inject.cc.i
 
 src/rpc_impl/rpc_fault_inject.s: src/rpc_impl/rpc_fault_inject.cc.s
@@ -659,7 +659,7 @@ src/rpc_impl/rpc_fault_inject.s: src/rpc_impl/rpc_fault_inject.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_fault_inject.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_fault_inject.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_fault_inject.cc.s
 .PHONY : src/rpc_impl/rpc_fault_inject.cc.s
 
 src/rpc_impl/rpc_kick.o: src/rpc_impl/rpc_kick.cc.o
@@ -668,7 +668,7 @@ src/rpc_impl/rpc_kick.o: src/rpc_impl/rpc_kick.cc.o
 # target to build an object file
 src/rpc_impl/rpc_kick.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_kick.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_kick.cc.o
 .PHONY : src/rpc_impl/rpc_kick.cc.o
 
 src/rpc_impl/rpc_kick.i: src/rpc_impl/rpc_kick.cc.i
@@ -677,7 +677,7 @@ src/rpc_impl/rpc_kick.i: src/rpc_impl/rpc_kick.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_kick.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_kick.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_kick.cc.i
 .PHONY : src/rpc_impl/rpc_kick.cc.i
 
 src/rpc_impl/rpc_kick.s: src/rpc_impl/rpc_kick.cc.s
@@ -686,7 +686,7 @@ src/rpc_impl/rpc_kick.s: src/rpc_impl/rpc_kick.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_kick.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_kick.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_kick.cc.s
 .PHONY : src/rpc_impl/rpc_kick.cc.s
 
 src/rpc_impl/rpc_pkt_loss.o: src/rpc_impl/rpc_pkt_loss.cc.o
@@ -695,7 +695,7 @@ src/rpc_impl/rpc_pkt_loss.o: src/rpc_impl/rpc_pkt_loss.cc.o
 # target to build an object file
 src/rpc_impl/rpc_pkt_loss.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_pkt_loss.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_pkt_loss.cc.o
 .PHONY : src/rpc_impl/rpc_pkt_loss.cc.o
 
 src/rpc_impl/rpc_pkt_loss.i: src/rpc_impl/rpc_pkt_loss.cc.i
@@ -704,7 +704,7 @@ src/rpc_impl/rpc_pkt_loss.i: src/rpc_impl/rpc_pkt_loss.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_pkt_loss.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_pkt_loss.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_pkt_loss.cc.i
 .PHONY : src/rpc_impl/rpc_pkt_loss.cc.i
 
 src/rpc_impl/rpc_pkt_loss.s: src/rpc_impl/rpc_pkt_loss.cc.s
@@ -713,7 +713,7 @@ src/rpc_impl/rpc_pkt_loss.s: src/rpc_impl/rpc_pkt_loss.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_pkt_loss.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_pkt_loss.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_pkt_loss.cc.s
 .PHONY : src/rpc_impl/rpc_pkt_loss.cc.s
 
 src/rpc_impl/rpc_queues.o: src/rpc_impl/rpc_queues.cc.o
@@ -722,7 +722,7 @@ src/rpc_impl/rpc_queues.o: src/rpc_impl/rpc_queues.cc.o
 # target to build an object file
 src/rpc_impl/rpc_queues.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_queues.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_queues.cc.o
 .PHONY : src/rpc_impl/rpc_queues.cc.o
 
 src/rpc_impl/rpc_queues.i: src/rpc_impl/rpc_queues.cc.i
@@ -731,7 +731,7 @@ src/rpc_impl/rpc_queues.i: src/rpc_impl/rpc_queues.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_queues.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_queues.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_queues.cc.i
 .PHONY : src/rpc_impl/rpc_queues.cc.i
 
 src/rpc_impl/rpc_queues.s: src/rpc_impl/rpc_queues.cc.s
@@ -740,7 +740,7 @@ src/rpc_impl/rpc_queues.s: src/rpc_impl/rpc_queues.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_queues.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_queues.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_queues.cc.s
 .PHONY : src/rpc_impl/rpc_queues.cc.s
 
 src/rpc_impl/rpc_req.o: src/rpc_impl/rpc_req.cc.o
@@ -749,7 +749,7 @@ src/rpc_impl/rpc_req.o: src/rpc_impl/rpc_req.cc.o
 # target to build an object file
 src/rpc_impl/rpc_req.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_req.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_req.cc.o
 .PHONY : src/rpc_impl/rpc_req.cc.o
 
 src/rpc_impl/rpc_req.i: src/rpc_impl/rpc_req.cc.i
@@ -758,7 +758,7 @@ src/rpc_impl/rpc_req.i: src/rpc_impl/rpc_req.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_req.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_req.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_req.cc.i
 .PHONY : src/rpc_impl/rpc_req.cc.i
 
 src/rpc_impl/rpc_req.s: src/rpc_impl/rpc_req.cc.s
@@ -767,7 +767,7 @@ src/rpc_impl/rpc_req.s: src/rpc_impl/rpc_req.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_req.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_req.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_req.cc.s
 .PHONY : src/rpc_impl/rpc_req.cc.s
 
 src/rpc_impl/rpc_reset_handlers.o: src/rpc_impl/rpc_reset_handlers.cc.o
@@ -776,7 +776,7 @@ src/rpc_impl/rpc_reset_handlers.o: src/rpc_impl/rpc_reset_handlers.cc.o
 # target to build an object file
 src/rpc_impl/rpc_reset_handlers.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_reset_handlers.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_reset_handlers.cc.o
 .PHONY : src/rpc_impl/rpc_reset_handlers.cc.o
 
 src/rpc_impl/rpc_reset_handlers.i: src/rpc_impl/rpc_reset_handlers.cc.i
@@ -785,7 +785,7 @@ src/rpc_impl/rpc_reset_handlers.i: src/rpc_impl/rpc_reset_handlers.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_reset_handlers.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_reset_handlers.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_reset_handlers.cc.i
 .PHONY : src/rpc_impl/rpc_reset_handlers.cc.i
 
 src/rpc_impl/rpc_reset_handlers.s: src/rpc_impl/rpc_reset_handlers.cc.s
@@ -794,7 +794,7 @@ src/rpc_impl/rpc_reset_handlers.s: src/rpc_impl/rpc_reset_handlers.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_reset_handlers.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_reset_handlers.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_reset_handlers.cc.s
 .PHONY : src/rpc_impl/rpc_reset_handlers.cc.s
 
 src/rpc_impl/rpc_resp.o: src/rpc_impl/rpc_resp.cc.o
@@ -803,7 +803,7 @@ src/rpc_impl/rpc_resp.o: src/rpc_impl/rpc_resp.cc.o
 # target to build an object file
 src/rpc_impl/rpc_resp.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_resp.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_resp.cc.o
 .PHONY : src/rpc_impl/rpc_resp.cc.o
 
 src/rpc_impl/rpc_resp.i: src/rpc_impl/rpc_resp.cc.i
@@ -812,7 +812,7 @@ src/rpc_impl/rpc_resp.i: src/rpc_impl/rpc_resp.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_resp.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_resp.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_resp.cc.i
 .PHONY : src/rpc_impl/rpc_resp.cc.i
 
 src/rpc_impl/rpc_resp.s: src/rpc_impl/rpc_resp.cc.s
@@ -821,7 +821,7 @@ src/rpc_impl/rpc_resp.s: src/rpc_impl/rpc_resp.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_resp.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_resp.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_resp.cc.s
 .PHONY : src/rpc_impl/rpc_resp.cc.s
 
 src/rpc_impl/rpc_rfr.o: src/rpc_impl/rpc_rfr.cc.o
@@ -830,7 +830,7 @@ src/rpc_impl/rpc_rfr.o: src/rpc_impl/rpc_rfr.cc.o
 # target to build an object file
 src/rpc_impl/rpc_rfr.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_rfr.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_rfr.cc.o
 .PHONY : src/rpc_impl/rpc_rfr.cc.o
 
 src/rpc_impl/rpc_rfr.i: src/rpc_impl/rpc_rfr.cc.i
@@ -839,7 +839,7 @@ src/rpc_impl/rpc_rfr.i: src/rpc_impl/rpc_rfr.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_rfr.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_rfr.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_rfr.cc.i
 .PHONY : src/rpc_impl/rpc_rfr.cc.i
 
 src/rpc_impl/rpc_rfr.s: src/rpc_impl/rpc_rfr.cc.s
@@ -848,7 +848,7 @@ src/rpc_impl/rpc_rfr.s: src/rpc_impl/rpc_rfr.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_rfr.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_rfr.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_rfr.cc.s
 .PHONY : src/rpc_impl/rpc_rfr.cc.s
 
 src/rpc_impl/rpc_rx.o: src/rpc_impl/rpc_rx.cc.o
@@ -857,7 +857,7 @@ src/rpc_impl/rpc_rx.o: src/rpc_impl/rpc_rx.cc.o
 # target to build an object file
 src/rpc_impl/rpc_rx.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_rx.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_rx.cc.o
 .PHONY : src/rpc_impl/rpc_rx.cc.o
 
 src/rpc_impl/rpc_rx.i: src/rpc_impl/rpc_rx.cc.i
@@ -866,7 +866,7 @@ src/rpc_impl/rpc_rx.i: src/rpc_impl/rpc_rx.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_rx.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_rx.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_rx.cc.i
 .PHONY : src/rpc_impl/rpc_rx.cc.i
 
 src/rpc_impl/rpc_rx.s: src/rpc_impl/rpc_rx.cc.s
@@ -875,7 +875,7 @@ src/rpc_impl/rpc_rx.s: src/rpc_impl/rpc_rx.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_rx.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_rx.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_rx.cc.s
 .PHONY : src/rpc_impl/rpc_rx.cc.s
 
 src/rpc_impl/rpc_sm_api.o: src/rpc_impl/rpc_sm_api.cc.o
@@ -884,7 +884,7 @@ src/rpc_impl/rpc_sm_api.o: src/rpc_impl/rpc_sm_api.cc.o
 # target to build an object file
 src/rpc_impl/rpc_sm_api.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_sm_api.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_sm_api.cc.o
 .PHONY : src/rpc_impl/rpc_sm_api.cc.o
 
 src/rpc_impl/rpc_sm_api.i: src/rpc_impl/rpc_sm_api.cc.i
@@ -893,7 +893,7 @@ src/rpc_impl/rpc_sm_api.i: src/rpc_impl/rpc_sm_api.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_sm_api.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_sm_api.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_sm_api.cc.i
 .PHONY : src/rpc_impl/rpc_sm_api.cc.i
 
 src/rpc_impl/rpc_sm_api.s: src/rpc_impl/rpc_sm_api.cc.s
@@ -902,7 +902,7 @@ src/rpc_impl/rpc_sm_api.s: src/rpc_impl/rpc_sm_api.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_sm_api.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_sm_api.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_sm_api.cc.s
 .PHONY : src/rpc_impl/rpc_sm_api.cc.s
 
 src/rpc_impl/rpc_sm_helpers.o: src/rpc_impl/rpc_sm_helpers.cc.o
@@ -911,7 +911,7 @@ src/rpc_impl/rpc_sm_helpers.o: src/rpc_impl/rpc_sm_helpers.cc.o
 # target to build an object file
 src/rpc_impl/rpc_sm_helpers.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_sm_helpers.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_sm_helpers.cc.o
 .PHONY : src/rpc_impl/rpc_sm_helpers.cc.o
 
 src/rpc_impl/rpc_sm_helpers.i: src/rpc_impl/rpc_sm_helpers.cc.i
@@ -920,7 +920,7 @@ src/rpc_impl/rpc_sm_helpers.i: src/rpc_impl/rpc_sm_helpers.cc.i
 # target to preprocess a source file
 src/rpc_impl/rpc_sm_helpers.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_sm_helpers.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_sm_helpers.cc.i
 .PHONY : src/rpc_impl/rpc_sm_helpers.cc.i
 
 src/rpc_impl/rpc_sm_helpers.s: src/rpc_impl/rpc_sm_helpers.cc.s
@@ -929,7 +929,7 @@ src/rpc_impl/rpc_sm_helpers.s: src/rpc_impl/rpc_sm_helpers.cc.s
 # target to generate assembly for a file
 src/rpc_impl/rpc_sm_helpers.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/rpc_impl/rpc_sm_helpers.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/rpc_impl/rpc_sm_helpers.cc.s
 .PHONY : src/rpc_impl/rpc_sm_helpers.cc.s
 
 src/transport_impl/dpdk/dpdk_daemon.o: src/transport_impl/dpdk/dpdk_daemon.cc.o
@@ -963,7 +963,7 @@ src/transport_impl/dpdk/dpdk_externs.o: src/transport_impl/dpdk/dpdk_externs.cc.
 src/transport_impl/dpdk/dpdk_externs.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc_dpdk_daemon.dir/build.make CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_externs.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_externs.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_externs.cc.o
 .PHONY : src/transport_impl/dpdk/dpdk_externs.cc.o
 
 src/transport_impl/dpdk/dpdk_externs.i: src/transport_impl/dpdk/dpdk_externs.cc.i
@@ -973,7 +973,7 @@ src/transport_impl/dpdk/dpdk_externs.i: src/transport_impl/dpdk/dpdk_externs.cc.
 src/transport_impl/dpdk/dpdk_externs.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc_dpdk_daemon.dir/build.make CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_externs.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_externs.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_externs.cc.i
 .PHONY : src/transport_impl/dpdk/dpdk_externs.cc.i
 
 src/transport_impl/dpdk/dpdk_externs.s: src/transport_impl/dpdk/dpdk_externs.cc.s
@@ -983,7 +983,7 @@ src/transport_impl/dpdk/dpdk_externs.s: src/transport_impl/dpdk/dpdk_externs.cc.
 src/transport_impl/dpdk/dpdk_externs.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc_dpdk_daemon.dir/build.make CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_externs.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_externs.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_externs.cc.s
 .PHONY : src/transport_impl/dpdk/dpdk_externs.cc.s
 
 src/transport_impl/dpdk/dpdk_init.o: src/transport_impl/dpdk/dpdk_init.cc.o
@@ -993,7 +993,7 @@ src/transport_impl/dpdk/dpdk_init.o: src/transport_impl/dpdk/dpdk_init.cc.o
 src/transport_impl/dpdk/dpdk_init.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc_dpdk_daemon.dir/build.make CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_init.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_init.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_init.cc.o
 .PHONY : src/transport_impl/dpdk/dpdk_init.cc.o
 
 src/transport_impl/dpdk/dpdk_init.i: src/transport_impl/dpdk/dpdk_init.cc.i
@@ -1003,7 +1003,7 @@ src/transport_impl/dpdk/dpdk_init.i: src/transport_impl/dpdk/dpdk_init.cc.i
 src/transport_impl/dpdk/dpdk_init.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc_dpdk_daemon.dir/build.make CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_init.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_init.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_init.cc.i
 .PHONY : src/transport_impl/dpdk/dpdk_init.cc.i
 
 src/transport_impl/dpdk/dpdk_init.s: src/transport_impl/dpdk/dpdk_init.cc.s
@@ -1013,7 +1013,7 @@ src/transport_impl/dpdk/dpdk_init.s: src/transport_impl/dpdk/dpdk_init.cc.s
 src/transport_impl/dpdk/dpdk_init.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_init.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc_dpdk_daemon.dir/build.make CMakeFiles/erpc_dpdk_daemon.dir/src/transport_impl/dpdk/dpdk_init.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_init.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_init.cc.s
 .PHONY : src/transport_impl/dpdk/dpdk_init.cc.s
 
 src/transport_impl/dpdk/dpdk_transport.o: src/transport_impl/dpdk/dpdk_transport.cc.o
@@ -1022,7 +1022,7 @@ src/transport_impl/dpdk/dpdk_transport.o: src/transport_impl/dpdk/dpdk_transport
 # target to build an object file
 src/transport_impl/dpdk/dpdk_transport.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_transport.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_transport.cc.o
 .PHONY : src/transport_impl/dpdk/dpdk_transport.cc.o
 
 src/transport_impl/dpdk/dpdk_transport.i: src/transport_impl/dpdk/dpdk_transport.cc.i
@@ -1031,7 +1031,7 @@ src/transport_impl/dpdk/dpdk_transport.i: src/transport_impl/dpdk/dpdk_transport
 # target to preprocess a source file
 src/transport_impl/dpdk/dpdk_transport.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_transport.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_transport.cc.i
 .PHONY : src/transport_impl/dpdk/dpdk_transport.cc.i
 
 src/transport_impl/dpdk/dpdk_transport.s: src/transport_impl/dpdk/dpdk_transport.cc.s
@@ -1040,7 +1040,7 @@ src/transport_impl/dpdk/dpdk_transport.s: src/transport_impl/dpdk/dpdk_transport
 # target to generate assembly for a file
 src/transport_impl/dpdk/dpdk_transport.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_transport.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_transport.cc.s
 .PHONY : src/transport_impl/dpdk/dpdk_transport.cc.s
 
 src/transport_impl/dpdk/dpdk_transport_datapath.o: src/transport_impl/dpdk/dpdk_transport_datapath.cc.o
@@ -1049,7 +1049,7 @@ src/transport_impl/dpdk/dpdk_transport_datapath.o: src/transport_impl/dpdk/dpdk_
 # target to build an object file
 src/transport_impl/dpdk/dpdk_transport_datapath.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.o
 .PHONY : src/transport_impl/dpdk/dpdk_transport_datapath.cc.o
 
 src/transport_impl/dpdk/dpdk_transport_datapath.i: src/transport_impl/dpdk/dpdk_transport_datapath.cc.i
@@ -1058,7 +1058,7 @@ src/transport_impl/dpdk/dpdk_transport_datapath.i: src/transport_impl/dpdk/dpdk_
 # target to preprocess a source file
 src/transport_impl/dpdk/dpdk_transport_datapath.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.i
 .PHONY : src/transport_impl/dpdk/dpdk_transport_datapath.cc.i
 
 src/transport_impl/dpdk/dpdk_transport_datapath.s: src/transport_impl/dpdk/dpdk_transport_datapath.cc.s
@@ -1067,7 +1067,7 @@ src/transport_impl/dpdk/dpdk_transport_datapath.s: src/transport_impl/dpdk/dpdk_
 # target to generate assembly for a file
 src/transport_impl/dpdk/dpdk_transport_datapath.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/dpdk/dpdk_transport_datapath.cc.s
 .PHONY : src/transport_impl/dpdk/dpdk_transport_datapath.cc.s
 
 src/transport_impl/fake/fake_transport.o: src/transport_impl/fake/fake_transport.cc.o
@@ -1076,7 +1076,7 @@ src/transport_impl/fake/fake_transport.o: src/transport_impl/fake/fake_transport
 # target to build an object file
 src/transport_impl/fake/fake_transport.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/fake/fake_transport.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/fake/fake_transport.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/fake/fake_transport.cc.o
 .PHONY : src/transport_impl/fake/fake_transport.cc.o
 
 src/transport_impl/fake/fake_transport.i: src/transport_impl/fake/fake_transport.cc.i
@@ -1085,7 +1085,7 @@ src/transport_impl/fake/fake_transport.i: src/transport_impl/fake/fake_transport
 # target to preprocess a source file
 src/transport_impl/fake/fake_transport.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/fake/fake_transport.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/fake/fake_transport.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/fake/fake_transport.cc.i
 .PHONY : src/transport_impl/fake/fake_transport.cc.i
 
 src/transport_impl/fake/fake_transport.s: src/transport_impl/fake/fake_transport.cc.s
@@ -1094,7 +1094,7 @@ src/transport_impl/fake/fake_transport.s: src/transport_impl/fake/fake_transport
 # target to generate assembly for a file
 src/transport_impl/fake/fake_transport.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/fake/fake_transport.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/fake/fake_transport.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/fake/fake_transport.cc.s
 .PHONY : src/transport_impl/fake/fake_transport.cc.s
 
 src/transport_impl/infiniband/ib_transport.o: src/transport_impl/infiniband/ib_transport.cc.o
@@ -1103,7 +1103,7 @@ src/transport_impl/infiniband/ib_transport.o: src/transport_impl/infiniband/ib_t
 # target to build an object file
 src/transport_impl/infiniband/ib_transport.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/infiniband/ib_transport.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/infiniband/ib_transport.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/infiniband/ib_transport.cc.o
 .PHONY : src/transport_impl/infiniband/ib_transport.cc.o
 
 src/transport_impl/infiniband/ib_transport.i: src/transport_impl/infiniband/ib_transport.cc.i
@@ -1112,7 +1112,7 @@ src/transport_impl/infiniband/ib_transport.i: src/transport_impl/infiniband/ib_t
 # target to preprocess a source file
 src/transport_impl/infiniband/ib_transport.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/infiniband/ib_transport.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/infiniband/ib_transport.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/infiniband/ib_transport.cc.i
 .PHONY : src/transport_impl/infiniband/ib_transport.cc.i
 
 src/transport_impl/infiniband/ib_transport.s: src/transport_impl/infiniband/ib_transport.cc.s
@@ -1121,7 +1121,7 @@ src/transport_impl/infiniband/ib_transport.s: src/transport_impl/infiniband/ib_t
 # target to generate assembly for a file
 src/transport_impl/infiniband/ib_transport.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/infiniband/ib_transport.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/infiniband/ib_transport.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/infiniband/ib_transport.cc.s
 .PHONY : src/transport_impl/infiniband/ib_transport.cc.s
 
 src/transport_impl/infiniband/ib_transport_datapath.o: src/transport_impl/infiniband/ib_transport_datapath.cc.o
@@ -1130,7 +1130,7 @@ src/transport_impl/infiniband/ib_transport_datapath.o: src/transport_impl/infini
 # target to build an object file
 src/transport_impl/infiniband/ib_transport_datapath.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.o
 .PHONY : src/transport_impl/infiniband/ib_transport_datapath.cc.o
 
 src/transport_impl/infiniband/ib_transport_datapath.i: src/transport_impl/infiniband/ib_transport_datapath.cc.i
@@ -1139,7 +1139,7 @@ src/transport_impl/infiniband/ib_transport_datapath.i: src/transport_impl/infini
 # target to preprocess a source file
 src/transport_impl/infiniband/ib_transport_datapath.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.i
 .PHONY : src/transport_impl/infiniband/ib_transport_datapath.cc.i
 
 src/transport_impl/infiniband/ib_transport_datapath.s: src/transport_impl/infiniband/ib_transport_datapath.cc.s
@@ -1148,7 +1148,7 @@ src/transport_impl/infiniband/ib_transport_datapath.s: src/transport_impl/infini
 # target to generate assembly for a file
 src/transport_impl/infiniband/ib_transport_datapath.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/infiniband/ib_transport_datapath.cc.s
 .PHONY : src/transport_impl/infiniband/ib_transport_datapath.cc.s
 
 src/transport_impl/raw/raw_transport.o: src/transport_impl/raw/raw_transport.cc.o
@@ -1157,7 +1157,7 @@ src/transport_impl/raw/raw_transport.o: src/transport_impl/raw/raw_transport.cc.
 # target to build an object file
 src/transport_impl/raw/raw_transport.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/raw/raw_transport.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/raw/raw_transport.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/raw/raw_transport.cc.o
 .PHONY : src/transport_impl/raw/raw_transport.cc.o
 
 src/transport_impl/raw/raw_transport.i: src/transport_impl/raw/raw_transport.cc.i
@@ -1166,7 +1166,7 @@ src/transport_impl/raw/raw_transport.i: src/transport_impl/raw/raw_transport.cc.
 # target to preprocess a source file
 src/transport_impl/raw/raw_transport.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/raw/raw_transport.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/raw/raw_transport.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/raw/raw_transport.cc.i
 .PHONY : src/transport_impl/raw/raw_transport.cc.i
 
 src/transport_impl/raw/raw_transport.s: src/transport_impl/raw/raw_transport.cc.s
@@ -1175,7 +1175,7 @@ src/transport_impl/raw/raw_transport.s: src/transport_impl/raw/raw_transport.cc.
 # target to generate assembly for a file
 src/transport_impl/raw/raw_transport.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/raw/raw_transport.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/raw/raw_transport.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/raw/raw_transport.cc.s
 .PHONY : src/transport_impl/raw/raw_transport.cc.s
 
 src/transport_impl/raw/raw_transport_datapath.o: src/transport_impl/raw/raw_transport_datapath.cc.o
@@ -1184,7 +1184,7 @@ src/transport_impl/raw/raw_transport_datapath.o: src/transport_impl/raw/raw_tran
 # target to build an object file
 src/transport_impl/raw/raw_transport_datapath.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/raw/raw_transport_datapath.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/raw/raw_transport_datapath.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/raw/raw_transport_datapath.cc.o
 .PHONY : src/transport_impl/raw/raw_transport_datapath.cc.o
 
 src/transport_impl/raw/raw_transport_datapath.i: src/transport_impl/raw/raw_transport_datapath.cc.i
@@ -1193,7 +1193,7 @@ src/transport_impl/raw/raw_transport_datapath.i: src/transport_impl/raw/raw_tran
 # target to preprocess a source file
 src/transport_impl/raw/raw_transport_datapath.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/raw/raw_transport_datapath.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/raw/raw_transport_datapath.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/raw/raw_transport_datapath.cc.i
 .PHONY : src/transport_impl/raw/raw_transport_datapath.cc.i
 
 src/transport_impl/raw/raw_transport_datapath.s: src/transport_impl/raw/raw_transport_datapath.cc.s
@@ -1202,7 +1202,7 @@ src/transport_impl/raw/raw_transport_datapath.s: src/transport_impl/raw/raw_tran
 # target to generate assembly for a file
 src/transport_impl/raw/raw_transport_datapath.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/raw/raw_transport_datapath.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/raw/raw_transport_datapath.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/raw/raw_transport_datapath.cc.s
 .PHONY : src/transport_impl/raw/raw_transport_datapath.cc.s
 
 src/transport_impl/transport.o: src/transport_impl/transport.cc.o
@@ -1211,7 +1211,7 @@ src/transport_impl/transport.o: src/transport_impl/transport.cc.o
 # target to build an object file
 src/transport_impl/transport.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/transport.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/transport.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/transport.cc.o
 .PHONY : src/transport_impl/transport.cc.o
 
 src/transport_impl/transport.i: src/transport_impl/transport.cc.i
@@ -1220,7 +1220,7 @@ src/transport_impl/transport.i: src/transport_impl/transport.cc.i
 # target to preprocess a source file
 src/transport_impl/transport.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/transport.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/transport.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/transport.cc.i
 .PHONY : src/transport_impl/transport.cc.i
 
 src/transport_impl/transport.s: src/transport_impl/transport.cc.s
@@ -1229,7 +1229,7 @@ src/transport_impl/transport.s: src/transport_impl/transport.cc.s
 # target to generate assembly for a file
 src/transport_impl/transport.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/transport_impl/transport.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/transport_impl/transport.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/transport_impl/transport.cc.s
 .PHONY : src/transport_impl/transport.cc.s
 
 src/util/huge_alloc.o: src/util/huge_alloc.cc.o
@@ -1238,7 +1238,7 @@ src/util/huge_alloc.o: src/util/huge_alloc.cc.o
 # target to build an object file
 src/util/huge_alloc.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/huge_alloc.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/huge_alloc.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/huge_alloc.cc.o
 .PHONY : src/util/huge_alloc.cc.o
 
 src/util/huge_alloc.i: src/util/huge_alloc.cc.i
@@ -1247,7 +1247,7 @@ src/util/huge_alloc.i: src/util/huge_alloc.cc.i
 # target to preprocess a source file
 src/util/huge_alloc.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/huge_alloc.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/huge_alloc.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/huge_alloc.cc.i
 .PHONY : src/util/huge_alloc.cc.i
 
 src/util/huge_alloc.s: src/util/huge_alloc.cc.s
@@ -1256,7 +1256,7 @@ src/util/huge_alloc.s: src/util/huge_alloc.cc.s
 # target to generate assembly for a file
 src/util/huge_alloc.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/huge_alloc.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/huge_alloc.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/huge_alloc.cc.s
 .PHONY : src/util/huge_alloc.cc.s
 
 src/util/numautils.o: src/util/numautils.cc.o
@@ -1265,7 +1265,7 @@ src/util/numautils.o: src/util/numautils.cc.o
 # target to build an object file
 src/util/numautils.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/numautils.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/numautils.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/numautils.cc.o
 .PHONY : src/util/numautils.cc.o
 
 src/util/numautils.i: src/util/numautils.cc.i
@@ -1274,7 +1274,7 @@ src/util/numautils.i: src/util/numautils.cc.i
 # target to preprocess a source file
 src/util/numautils.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/numautils.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/numautils.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/numautils.cc.i
 .PHONY : src/util/numautils.cc.i
 
 src/util/numautils.s: src/util/numautils.cc.s
@@ -1283,7 +1283,7 @@ src/util/numautils.s: src/util/numautils.cc.s
 # target to generate assembly for a file
 src/util/numautils.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/numautils.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/numautils.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/numautils.cc.s
 .PHONY : src/util/numautils.cc.s
 
 src/util/tls_registry.o: src/util/tls_registry.cc.o
@@ -1292,7 +1292,7 @@ src/util/tls_registry.o: src/util/tls_registry.cc.o
 # target to build an object file
 src/util/tls_registry.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/tls_registry.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/tls_registry.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/tls_registry.cc.o
 .PHONY : src/util/tls_registry.cc.o
 
 src/util/tls_registry.i: src/util/tls_registry.cc.i
@@ -1301,7 +1301,7 @@ src/util/tls_registry.i: src/util/tls_registry.cc.i
 # target to preprocess a source file
 src/util/tls_registry.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/tls_registry.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/tls_registry.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/tls_registry.cc.i
 .PHONY : src/util/tls_registry.cc.i
 
 src/util/tls_registry.s: src/util/tls_registry.cc.s
@@ -1310,7 +1310,7 @@ src/util/tls_registry.s: src/util/tls_registry.cc.s
 # target to generate assembly for a file
 src/util/tls_registry.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/erpc.dir/build.make CMakeFiles/erpc.dir/src/util/tls_registry.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/src/util/tls_registry.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/src/util/tls_registry.cc.s
 .PHONY : src/util/tls_registry.cc.s
 
 # Help Target
@@ -1339,10 +1339,10 @@ help:
 	@echo "... hdr_histogram_static"
 	@echo "... hello_client"
 	@echo "... hello_server"
-	@echo "... latency"
-	@echo "... apps/latency/latency.o"
-	@echo "... apps/latency/latency.i"
-	@echo "... apps/latency/latency.s"
+	@echo "... large_rpc_tput"
+	@echo "... apps/large_rpc_tput/large_rpc_tput.o"
+	@echo "... apps/large_rpc_tput/large_rpc_tput.i"
+	@echo "... apps/large_rpc_tput/large_rpc_tput.s"
 	@echo "... hello_world/client.o"
 	@echo "... hello_world/client.i"
 	@echo "... hello_world/client.s"

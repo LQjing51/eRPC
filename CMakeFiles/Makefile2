@@ -65,7 +65,7 @@ CMAKE_BINARY_DIR = /home/qijing/eRPC
 # The main recursive "all" target.
 all: CMakeFiles/erpc.dir/all
 all: CMakeFiles/erpc_dpdk_daemon.dir/all
-all: CMakeFiles/latency.dir/all
+all: CMakeFiles/large_rpc_tput.dir/all
 all: CMakeFiles/hello_server.dir/all
 all: CMakeFiles/hello_client.dir/all
 all: third_party/HdrHistogram_c/all
@@ -82,7 +82,7 @@ preinstall: third_party/gflags/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/erpc.dir/clean
 clean: CMakeFiles/erpc_dpdk_daemon.dir/clean
-clean: CMakeFiles/latency.dir/clean
+clean: CMakeFiles/large_rpc_tput.dir/clean
 clean: CMakeFiles/hello_server.dir/clean
 clean: CMakeFiles/hello_client.dir/clean
 clean: third_party/HdrHistogram_c/clean
@@ -242,31 +242,31 @@ CMakeFiles/erpc_dpdk_daemon.dir/clean:
 .PHONY : CMakeFiles/erpc_dpdk_daemon.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/latency.dir
+# Target rules for target CMakeFiles/large_rpc_tput.dir
 
 # All Build rule for target.
-CMakeFiles/latency.dir/all: third_party/HdrHistogram_c/src/CMakeFiles/hdr_histogram_static.dir/all
-CMakeFiles/latency.dir/all: third_party/gflags/CMakeFiles/gflags_nothreads_static.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/qijing/eRPC/CMakeFiles --progress-num=67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target latency"
-.PHONY : CMakeFiles/latency.dir/all
+CMakeFiles/large_rpc_tput.dir/all: third_party/HdrHistogram_c/src/CMakeFiles/hdr_histogram_static.dir/all
+CMakeFiles/large_rpc_tput.dir/all: third_party/gflags/CMakeFiles/gflags_nothreads_static.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/qijing/eRPC/CMakeFiles --progress-num=67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target large_rpc_tput"
+.PHONY : CMakeFiles/large_rpc_tput.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/latency.dir/rule: cmake_check_build_system
+CMakeFiles/large_rpc_tput.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/qijing/eRPC/CMakeFiles 46
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/latency.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/large_rpc_tput.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/qijing/eRPC/CMakeFiles 0
-.PHONY : CMakeFiles/latency.dir/rule
+.PHONY : CMakeFiles/large_rpc_tput.dir/rule
 
 # Convenience name for target.
-latency: CMakeFiles/latency.dir/rule
-.PHONY : latency
+large_rpc_tput: CMakeFiles/large_rpc_tput.dir/rule
+.PHONY : large_rpc_tput
 
 # clean rule for target.
-CMakeFiles/latency.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/latency.dir/build.make CMakeFiles/latency.dir/clean
-.PHONY : CMakeFiles/latency.dir/clean
+CMakeFiles/large_rpc_tput.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/large_rpc_tput.dir/build.make CMakeFiles/large_rpc_tput.dir/clean
+.PHONY : CMakeFiles/large_rpc_tput.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/hello_server.dir
