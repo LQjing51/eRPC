@@ -2,7 +2,7 @@
 
 #include <gflags/gflags.h>
 #include <signal.h>
-
+#include <sys/time.h>
 #include <cstring>
 
 #include "../apps_common.h"
@@ -14,8 +14,8 @@
 static constexpr size_t kAppEvLoopMs = 1000;  // Duration of event loop
 static constexpr bool kAppVerbose = false;    // Print debug info on datapath
 static constexpr size_t kAppReqType = 1;      // eRPC request type
-static constexpr size_t kAppStartReqSize = 1<<5;
-static constexpr size_t kAppEndReqSize = 1<<20;
+static constexpr size_t kAppStartReqSize = 7900000;
+static constexpr size_t kAppEndReqSize = 7900000;
 
 // Precision factor for latency measurement
 static constexpr double kAppLatFac = erpc::kIsAzure ? 1.0 : 10.0;
@@ -37,7 +37,11 @@ class ClientContext : public BasicAppContext {
   static constexpr int64_t kLatencyPrecision = 2;  // Two significant digits
 
  public:
+  #ifdef lqj_debug
+  long long start_tsc_;
+  #else
   size_t start_tsc_;
+  #endif
   size_t req_size_;  // Between kAppStartReqSize and kAppEndReqSize
   erpc::MsgBuffer req_msgbuf_, resp_msgbuf_;
   hdr_histogram *latency_hist_;
@@ -59,6 +63,12 @@ class ClientContext : public BasicAppContext {
 
 void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   auto *c = static_cast<ServerContext *>(_context);
+  #ifdef lqj_debug
+    struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    long long received_time = cur_time.tv_sec * 1000000.0 + cur_time.tv_usec;
+    printf("receive time: %lld\n", (received_time)%100000);
+  #endif
   erpc::Rpc<erpc::CTransport>::resize_msg_buffer(&req_handle->pre_resp_msgbuf_,
                                                  FLAGS_resp_size);
   c->rpc_->enqueue_response(req_handle, &req_handle->pre_resp_msgbuf_);
@@ -110,8 +120,15 @@ inline void send_req(ClientContext &c) {
     c.rpc_->resize_msg_buffer(&c.req_msgbuf_, c.req_size_);
     c.rpc_->resize_msg_buffer(&c.resp_msgbuf_, FLAGS_resp_size);
   }
-
-  c.start_tsc_ = erpc::rdtsc();
+  #ifdef lqj_debug
+    struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    c.start_tsc_ = cur_time.tv_sec * 1000000.0 + cur_time.tv_usec;
+    // lqj_start_tsc = c.start_tsc_;
+    printf("send time: %lld\n", (c.start_tsc_)%100000);
+  #else
+    c.start_tsc_ = erpc::rdtsc();
+  #endif
   const size_t server_id = c.fastrand_.next_u32() % FLAGS_num_server_processes;
   c.rpc_->enqueue_request(c.session_num_vec_[server_id], kAppReqType,
                           &c.req_msgbuf_, &c.resp_msgbuf_, app_cont_func,
@@ -130,9 +147,16 @@ void app_cont_func(void *_context, void *) {
     printf("Latency: Received response of size %zu bytes\n",
            c->resp_msgbuf_.get_data_size());
   }
-
-  const double req_lat_us =
-      erpc::to_usec(erpc::rdtsc() - c->start_tsc_, c->rpc_->get_freq_ghz());
+  #ifdef lqj_debug
+    struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    // lqj_start_tsc = 0;
+    // const double send_lat_us = str2double(c->resp_msgbuf_.buf_);
+    const double req_lat_us = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec - c->start_tsc_);
+    printf("receive a response: total_latency = %.1f\n", req_lat_us);
+  #else
+    const double req_lat_us = erpc::to_usec(erpc::rdtsc() - c->start_tsc_, c->rpc_->get_freq_ghz());
+  #endif
 
   hdr_record_value(c->latency_hist_,
                    static_cast<int64_t>(req_lat_us * kAppLatFac));
@@ -167,6 +191,11 @@ void client_func(erpc::Nexus *nexus) {
       "total_time]\n");
 
   send_req(c);
+
+  #ifdef lqj_debug
+  rpc.run_event_loop(30);
+  #else
+
   for (size_t i = 0; i < FLAGS_test_ms; i += 1000) {
     rpc.run_event_loop(kAppEvLoopMs);  // 1 second
     if (ctrl_c_pressed == 1) break;
@@ -205,6 +234,7 @@ void client_func(erpc::Nexus *nexus) {
     c.latency_samples_prev_ = c.latency_samples_;
     c.double_req_size_ = true;
   }
+  #endif
 }
 
 int main(int argc, char **argv) {

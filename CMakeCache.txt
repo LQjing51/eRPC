@@ -325,7 +325,7 @@ INSTALL_GTEST:BOOL=ON
 LOG_LELVE:UNINITIALIZED=cc
 
 //Logging level (none/error/warn/info/reorder/trace/cc)
-LOG_LEVEL:STRING=2
+LOG_LEVEL:STRING=warn
 
 //Compile for performance
 PERF:BOOL=on
@@ -338,6 +338,9 @@ PMEM_LIB:FILEPATH=PMEM_LIB-NOTFOUND
 
 //Use RoCE if TRANSPORT is infiniband
 ROCE:BOOL=OFF
+
+//No help, variable specified on the command line.
+TRANPORT:UNINITIALIZED=dpdk
 
 //Datapath transport (infiniband/raw/dpdk/fake)
 TRANSPORT:STRING=dpdk

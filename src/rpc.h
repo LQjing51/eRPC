@@ -20,6 +20,9 @@
 #include "util/timer.h"
 #include "util/udp_client.h"
 
+#include <sys/time.h>
+#define lqj_debug 1
+
 namespace erpc {
 
 /**

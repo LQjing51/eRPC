@@ -927,6 +927,7 @@ CMakeFiles/erpc.dir/src/nexus_impl/nexus.cc.o
  /usr/include/c++/11/bits/stl_multiset.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
  /home/qijing/eRPC/src/util/numautils.h
 
 CMakeFiles/erpc.dir/src/nexus_impl/nexus_bg_thread.cc.o
@@ -3692,6 +3693,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_connect_handlers.cc
@@ -4619,6 +4621,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_connect_handlers.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_cr.cc
@@ -5546,6 +5549,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_cr.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_disconnect_handlers.cc
@@ -6473,6 +6477,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_disconnect_handlers.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_ev_loop.cc
@@ -7400,6 +7405,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_ev_loop.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_fault_inject.cc
@@ -8327,6 +8333,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_fault_inject.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_kick.cc
@@ -9254,6 +9261,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_kick.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_pkt_loss.cc
@@ -10181,6 +10189,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_pkt_loss.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_queues.cc
@@ -11108,6 +11117,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_queues.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_req.cc
@@ -12035,6 +12045,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_req.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_reset_handlers.cc
@@ -12962,6 +12973,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_reset_handlers.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_resp.cc
@@ -13889,6 +13901,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_resp.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_rfr.cc
@@ -14816,6 +14829,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rfr.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_rx.cc
@@ -15743,6 +15757,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_rx.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_sm_api.cc
@@ -16670,6 +16685,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_api.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o
  /home/qijing/eRPC/src/rpc_impl/rpc_sm_helpers.cc
@@ -17597,6 +17613,7 @@ CMakeFiles/erpc.dir/src/rpc_impl/rpc_sm_helpers.cc.o
  /home/qijing/eRPC/src/util/tls_registry.h
  /home/qijing/eRPC/src/req_handle.h
  /home/qijing/eRPC/src/util/fixed_queue.h
+ /usr/include/x86_64-linux-gnu/sys/time.h
 
 CMakeFiles/erpc.dir/src/transport_impl/dpdk/dpdk_externs.cc.o
  /home/qijing/eRPC/src/transport_impl/dpdk/dpdk_externs.cc

@@ -210,7 +210,7 @@ CMakeFiles/latency.dir/apps/latency/latency.cc.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /usr/include/c++/11/cstring \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/c++/11/cstring \
  /home/qijing/eRPC/apps/latency/../apps_common.h /usr/include/c++/11/set \
  /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/ext/aligned_buffer.h \

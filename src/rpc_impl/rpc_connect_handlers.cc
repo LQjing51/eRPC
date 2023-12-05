@@ -33,21 +33,6 @@ void Rpc<TTr>::handle_connect_req_st(const SmPkt &sm_pkt) {
       SmPkt resp_sm_pkt = sm_construct_resp(sm_pkt, SmErrType::kNoError);
       resp_sm_pkt.server_ = session->server_;  // Re-send server endpoint info
 
-      // ERPC_INFO("----------------------Duplicate request. before modify-----------------------------------\n");
-      // uint8_t* buf = resp_sm_pkt.server_.routing_info_.buf_;
-      // for(int i = 0; i*6 < 48; i++){
-      //   ERPC_INFO("%u %u %u %u %u %u\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-      //   ERPC_INFO("%hx %hx %hx %hx %hx %hx\n\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-      // }
-      // ERPC_INFO("----------------------Duplicate request. after modify----------------------\n");
-      // uint8_t switch_mac_addr[6]={0x50,0x6b,0x4b,0x9c,0xc9,0x48};
-      // memcpy(buf, switch_mac_addr, 6);
-      // for(int i = 0; i*6 < 48; i++){
-      //   ERPC_INFO("%u %u %u %u %u %u\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-      //   ERPC_INFO("%hx %hx %hx %hx %hx %hx\n\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-      // }
-
-
       ERPC_INFO("%s: Duplicate request. Re-sending response.\n", issue_msg);
       sm_pkt_udp_tx_st(resp_sm_pkt);
       return;
@@ -133,22 +118,9 @@ void Rpc<TTr>::handle_connect_req_st(const SmPkt &sm_pkt) {
   // Add server endpoint info created above to resp. No need to add client info.
   SmPkt resp_sm_pkt = sm_construct_resp(sm_pkt, SmErrType::kNoError);
   resp_sm_pkt.server_ = session->server_;
-
-  // ERPC_INFO("----------------------before modify-----------------------------------\n");
-  // uint8_t* buf = resp_sm_pkt.server_.routing_info_.buf_;
-  // for(int i = 0; i*6 < 48; i++){
-  //   ERPC_INFO("%u %u %u %u %u %u\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-  //   ERPC_INFO("%hx %hx %hx %hx %hx %hx\n\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-  // }
-  // ERPC_INFO("----------------------after modify----------------------\n");
-  // uint8_t switch_mac_addr[6]={0x50,0x6b,0x4b,0x9c,0xc9,0x48};
-  // memcpy(buf, switch_mac_addr, 6);
-  // for(int i = 0; i*6 < 48; i++){
-  //   ERPC_INFO("%u %u %u %u %u %u\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-  //   ERPC_INFO("%hx %hx %hx %hx %hx %hx\n\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-  // }
   
   ERPC_INFO("%s: None. Sending response.\n", issue_msg);
+  
   sm_pkt_udp_tx_st(resp_sm_pkt);
   return;
 }

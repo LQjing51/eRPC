@@ -232,10 +232,32 @@ void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     enqueue_cr_st(sslot, pkthdr);
   }
 
-  copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
+  // #ifdef lqj_debug
+  // if(pkthdr->pkt_num_ == 0){
+  //   struct timeval cur_time;
+  //   gettimeofday(&cur_time, NULL);
+  //   long long recv_begin_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+  //   printf("%ld begin to receive packets for this req: %lld\n", get_etid(), recv_begin_time % 10000);
+  // }
+  // #endif
 
+  if (pkthdr->pkt_num_ == 0){
+    // printf("in process_large_req_one_st: copy data to msgbuf\n");
+    copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
+  }
+  // copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
+ 
   // Invoke the request handler iff we have all the request packets
   if (sslot->server_info_.num_rx_ != req_msgbuf.num_pkts_) return;
+
+  // #ifdef lqj_debug
+  //   // now received all packets for this req
+  //   struct timeval cur_time;
+  //   gettimeofday(&cur_time, NULL);
+  //   long long recv_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+  //   printf("%ld finish receiving packets: %lld\n",get_etid(), recv_finish_time % 10000);
+  //   printf("%ld recv packets: %lu\n",get_etid(), req_msgbuf.num_pkts_);
+  // #endif
 
   const ReqFunc &req_func = req_func_arr_[pkthdr->req_type_];
 
