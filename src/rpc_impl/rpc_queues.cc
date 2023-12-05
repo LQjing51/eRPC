@@ -8,6 +8,9 @@ void Rpc<TTr>::process_credit_stall_queue_st() {
   size_t write_index = 0;  // Re-add incomplete sslots at this index
 
   for (SSlot *sslot : stallq_) {
+    #ifdef lqj_debug
+    printf("in process credit stall: has stall packet\n");
+    #endif
     if (sslot->session_->client_info_.credits_ > 0) {
       // sslots in stall queue have packets to send
       req_pkts_pending(sslot) ? kick_req_st(sslot) : kick_rfr_st(sslot);
@@ -40,7 +43,9 @@ void Rpc<TTr>::process_wheel_st() {
 
     auto &ci = sslot->client_info_;
     if (pkt_num < sslot->tx_msgbuf_->num_pkts_) {
-      // ERPC_INFO("in process_wheel_st\n");
+      #ifdef lqj_debug
+      printf("in process_wheel_st\n");
+      #endif
       enqueue_pkt_tx_burst_st(sslot, pkt_num /* pkt_idx */, &ci.tx_ts_[crd_i]);
     } else {
       MsgBuffer *resp_msgbuf = ci.resp_msgbuf_;

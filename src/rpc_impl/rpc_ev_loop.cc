@@ -4,7 +4,6 @@ namespace erpc {
 
 template <class TTr>
 void Rpc<TTr>::run_event_loop_do_one_st() {
-  // ERPC_INFO("in run_event_loop_do_one_st\n");
   assert(in_dispatch());
   dpath_stat_inc(dpath_stats_.ev_loop_calls_, 1);
 
@@ -20,7 +19,9 @@ void Rpc<TTr>::run_event_loop_do_one_st() {
   if (kCcPacing) process_wheel_st();  // TX
 
   // Drain all packets
-  if (tx_batch_i_ > 0) do_tx_burst_st();
+  if (tx_batch_i_ > 0) {
+    do_tx_burst_st();
+  }
 
   if (unlikely(multi_threaded_)) {
     // Process the background queues

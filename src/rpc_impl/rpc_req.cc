@@ -18,7 +18,6 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
     bg_queues_.enqueue_request_.unlocked_push(req_args);
     return;
   }
-
   // If we're here, we're in the dispatch thread
   Session *session = session_vec_[static_cast<size_t>(session_num)];
   assert(session->is_connected());  // User is notified before we disconnect
@@ -26,12 +25,14 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
 
   // If a free sslot is unavailable, save to session backlog
   if (unlikely(session->client_info_.sslot_free_vec_.size() == 0)) {
+    #ifdef lqj_debug
+    printf("in enqueue request: no available ssot\n");
+    #endif
     session->client_info_.enq_req_backlog_.emplace(session_num, req_type,
                                                    req_msgbuf, resp_msgbuf,
                                                    cont_func, tag, cont_etid);
     return;
   }
-
   // Fill in the sslot info
   size_t sslot_i = session->client_info_.sslot_free_vec_.pop_back();
   SSlot &sslot = session->sslot_arr_[sslot_i];
@@ -45,7 +46,6 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
   ci.tag_ = tag;
   ci.progress_tsc_ = ev_loop_tsc_;
   add_to_active_rpc_list(sslot);
-
   ci.num_rx_ = 0;
   ci.num_tx_ = 0;
   ci.cont_etid_ = cont_etid;
@@ -59,7 +59,6 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
   pkthdr_0->pkt_num_ = 0;
   pkthdr_0->req_num_ = sslot.cur_req_num_;
 
-
   // Fill in any non-zeroth packet headers, using pkthdr_0 as the base.
   if (unlikely(req_msgbuf->num_pkts_ > 1)) {
     for (size_t i = 1; i < req_msgbuf->num_pkts_; i++) {
@@ -68,12 +67,21 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
       pkthdr_i->pkt_num_ = i;
     }
   }
-
+  #ifdef lqj_debug
+  struct timeval cur_time;
+  gettimeofday(&cur_time, NULL);
+  long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+  printf("%ld enqueue request finish time: %lld\n", get_etid(), send_finish_time % 10000);
+  #endif
   if (likely(session->client_info_.credits_ > 0)) {
     kick_req_st(&sslot);
   } else {
+    #ifdef lqj_debug
+    printf("in enqueue request: no credits, push to stallq\n");
+    #endif
     stallq_.push_back(&sslot);
   }
+
 }
 
 template <class TTr>

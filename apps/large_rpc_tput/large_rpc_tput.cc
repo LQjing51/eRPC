@@ -38,6 +38,14 @@ void send_req(AppContext *c, size_t msgbuf_idx) {
   erpc::MsgBuffer &req_msgbuf = c->req_msgbuf[msgbuf_idx];
   assert(req_msgbuf.get_data_size() == FLAGS_req_size);
 
+  #ifdef lqj_debug
+    struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    long long start_time = cur_time.tv_sec * 1000000.0 + cur_time.tv_usec;
+    c->req_time[msgbuf_idx] = start_time;
+    printf("%ld send time: %lld\n",c->thread_id_, start_time%100000);
+  #endif
+
   if (kAppVerbose) {
     printf("large_rpc_tput: Thread %zu sending request using msgbuf_idx %zu.\n",
            c->thread_id_, msgbuf_idx);
@@ -47,8 +55,9 @@ void send_req(AppContext *c, size_t msgbuf_idx) {
   c->rpc_->enqueue_request(c->session_num_vec_[0], kAppReqType, &req_msgbuf,
                            &c->resp_msgbuf[msgbuf_idx], app_cont_func,
                            reinterpret_cast<void *>(msgbuf_idx));
-
+  
   c->stat_tx_bytes_tot += FLAGS_req_size;
+  
 }
 
 void req_handler(erpc::ReqHandle *req_handle, void *_context) {
@@ -82,11 +91,19 @@ void app_cont_func(void *_context, void *_tag) {
     printf("large_rpc_tput: Received response for msgbuf %zu.\n", msgbuf_idx);
   }
 
+
   // Measure latency. 1 us granularity is sufficient for large RPC latency.
   double usec = erpc::to_usec(erpc::rdtsc() - c->req_ts[msgbuf_idx],
                               c->rpc_->get_freq_ghz());
   c->lat_vec.push_back(usec);
 
+  #ifdef lqj_debug
+    struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    long long req_lat_us = cur_time.tv_sec * 1000000.0 + cur_time.tv_usec - c->req_time[msgbuf_idx];
+    printf("%ld receive a response: total_latency = %lld\n",c->thread_id_ ,req_lat_us);
+    c->req_time[msgbuf_idx] = 0;
+  #endif
   // Check the response
   erpc::rt_assert(resp_msgbuf.get_data_size() == FLAGS_resp_size,
                   "Invalid response size");
@@ -144,19 +161,21 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   } else {
     printf("large_rpc_tput: Thread %zu: No sessions created.\n", thread_id);
   }
-
   // All threads allocate MsgBuffers, but they may not send requests
   alloc_req_resp_msg_buffers(&c);
-
   size_t console_ref_tsc = erpc::rdtsc();
 
+  printf("before send_req\n");
   // Any thread that creates a session sends requests
   if (c.session_num_vec_.size() > 0) {
     for (size_t msgbuf_idx = 0; msgbuf_idx < FLAGS_concurrency; msgbuf_idx++) {
       send_req(&c, msgbuf_idx);
     }
   }
-
+  printf("after send_req\n");
+  #ifdef lqj_debug
+  rpc.run_event_loop(30);
+  #else
   c.tput_t0.reset();
   for (size_t i = 0; i < FLAGS_test_ms; i += kAppEvLoopMs) {
     rpc.run_event_loop(kAppEvLoopMs);
@@ -220,6 +239,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
 
     c.tput_t0.reset();
   }
+  #endif
 
   erpc::TimingWheel *wheel = rpc.get_wheel();
   if (wheel != nullptr && !wheel->record_vec_.empty()) {
@@ -260,8 +280,8 @@ void setup_profile() {
 int main(int argc, char **argv) {
   signal(SIGINT, ctrl_c_handler);
   gflags::ParseCommandLineFlags(&argc, &argv, true);
-  erpc::rt_assert(FLAGS_concurrency <= kAppMaxConcurrency, "Invalid conc");
-  erpc::rt_assert(FLAGS_profile == "incast" || FLAGS_profile == "victim",
+  erpc::rt_assert(FLAGS_concurrency <= kAppMaxConcurrency, "Invalid conc");// concurrency = 1
+  erpc::rt_assert(FLAGS_profile == "incast" || FLAGS_profile == "victim", // profile = incast
                   "Invalid profile");
   erpc::rt_assert(FLAGS_process_id < FLAGS_num_processes, "Invalid process ID");
 
@@ -278,6 +298,7 @@ int main(int argc, char **argv) {
                     FLAGS_numa_node, 0);
   nexus.register_req_func(kAppReqType, req_handler);
 
+  //client's process id = 1, so num_threads = FLAGS_num_proc_other_threads
   size_t num_threads = FLAGS_process_id == 0 ? FLAGS_num_proc_0_threads
                                              : FLAGS_num_proc_other_threads;
   std::vector<std::thread> threads(num_threads);

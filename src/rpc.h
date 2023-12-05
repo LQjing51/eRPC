@@ -20,6 +20,10 @@
 #include "util/timer.h"
 #include "util/udp_client.h"
 
+#include <sys/time.h>
+// #define lqj_debug 1
+
+
 namespace erpc {
 
 /**
@@ -620,6 +624,9 @@ class Rpc {
   /// Complete transmission for all packets in the Rpc's TX batch and the
   /// transport's DMA queue
   void drain_tx_batch_and_dma_queue() {
+    #ifdef lqj_debug
+    printf("in drain_tx_batch_and_dma_queue, %lu\n", tx_batch_i_);
+    #endif
     if (tx_batch_i_ > 0) do_tx_burst_st();
     transport_->tx_flush();
   }
@@ -723,7 +730,6 @@ class Rpc {
       testing_.pkthdr_tx_queue_.push(*tx_msgbuf->get_pkthdr_n(pkt_idx));
     }
 
-    // ERPC_TRACE
     ERPC_TRACE("enqueue_pkt_tx_burst_st: Rpc %u, lsn %u (%s): TX %s. Slot %s.%s\n", rpc_id_,
                sslot->session_->local_session_num_,
                sslot->session_->get_remote_hostname().c_str(),
@@ -731,7 +737,17 @@ class Rpc {
                sslot->progress_str().c_str(), item.drop_ ? " Drop." : "");
 
     tx_batch_i_++;
-    if (tx_batch_i_ == TTr::kPostlist) do_tx_burst_st();
+
+    // #ifdef lqj_debug
+    // struct timeval cur_time;
+    // gettimeofday(&cur_time, NULL);
+    // long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+    // printf("enqueue_pkt_tx_burst_st finish time: %lld\n", send_finish_time % 10000);
+    // #endif
+
+    if (tx_batch_i_ == TTr::kPostlist) {
+      do_tx_burst_st();
+    }
   }
 
   /// Enqueue a control packet for tx_burst. ctrl_msgbuf can be reused after
@@ -758,7 +774,12 @@ class Rpc {
                sslot->progress_str().c_str(), item.drop_ ? " Drop." : "");
 
     tx_batch_i_++;
-    if (tx_batch_i_ == TTr::kPostlist) do_tx_burst_st();
+    if (tx_batch_i_ == TTr::kPostlist) {
+      #ifdef lqj_debug
+      printf("in enqueue_hdr_tx_burst_st, %lu\n", tx_batch_i_);
+      #endif
+      do_tx_burst_st();
+    }
   }
 
   /// Enqueue a request packet to the timing wheel
@@ -800,7 +821,6 @@ class Rpc {
 
   /// Transmit packets in the TX batch
   inline void do_tx_burst_st() {
-    // ERPC_INFO("in do_tx_burst_st\n");
     assert(in_dispatch());
     assert(tx_batch_i_ > 0);
 
@@ -818,7 +838,12 @@ class Rpc {
         }
       }
     }
-
+    #ifdef lqj_debug
+    struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+    printf("%ld do_tx_burst_st finish time: %lld\n",get_etid(), send_finish_time % 10000);
+    #endif
     transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
     tx_batch_i_ = 0;
   }

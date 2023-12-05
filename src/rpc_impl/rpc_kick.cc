@@ -1,4 +1,5 @@
 #include "rpc.h"
+#include <sys/time.h>
 
 namespace erpc {
 
@@ -12,14 +13,22 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
   size_t sending =
       (std::min)(credits, sslot->tx_msgbuf_->num_pkts_ - ci.num_tx_);
   int bypass = can_bypass_wheel(sslot);
-
-  // ERPC_INFO("in kick_req_st: %lu %d\n", sending, bypass);
+  
+  // #ifdef lqj_debug
+  // struct timeval cur_time;
+  // gettimeofday(&cur_time, NULL);
+  // long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+  // printf("kick_req_st finish time: %lld\n", send_finish_time % 10000);
+  // #endif
 
   for (size_t x = 0; x < sending; x++) {
     if (bypass) {
       enqueue_pkt_tx_burst_st(sslot, ci.num_tx_ /* pkt_idx */,
                               &ci.tx_ts_[ci.num_tx_ % kSessionCredits]);
     } else {
+      #ifdef lqj_debug
+      printf("kick_req_st: no bypass, enqueue wheel\n");
+      #endif
       enqueue_wheel_req_st(sslot, ci.num_tx_);
     }
 

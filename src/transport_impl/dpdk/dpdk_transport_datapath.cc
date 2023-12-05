@@ -2,9 +2,10 @@
 
 #include "dpdk_transport.h"
 #include "util/huge_alloc.h"
+#include <sys/time.h>
+#include "rpc.h"
 
 namespace erpc {
-
 static void format_pkthdr(pkthdr_t *pkthdr,
                           const Transport::tx_burst_item_t &item,
                           const size_t pkt_size) {
@@ -33,9 +34,10 @@ static void format_pkthdr(pkthdr_t *pkthdr,
 void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
                              size_t num_pkts) {
 
-  // ERPC_INFO("in DpdkTransport::tx_burst\n");
   rte_mbuf *tx_mbufs[kPostlist];
-
+  #ifdef lqj_debug
+  int thread_num = -1;
+  #endif
   for (size_t i = 0; i < num_pkts; i++) {
     const tx_burst_item_t &item = tx_burst_arr[i];
     const MsgBuffer *msg_buffer = item.msg_buffer_;
@@ -53,7 +55,9 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       tx_mbufs[i]->nb_segs = 1;
       tx_mbufs[i]->pkt_len = pkt_size;
       tx_mbufs[i]->data_len = pkt_size;
-      memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
+      // memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
+      memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, sizeof(pkthdr_t)+1);
+      
     } else {
       // This is not the first packet, we also need only one seg.
       pkthdr = msg_buffer->get_pkthdr_n(item.pkt_idx_);
@@ -66,20 +70,38 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       tx_mbufs[i]->data_len = pkt_size;
       memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr,
                sizeof(pkthdr_t));
-      memcpy(rte_pktmbuf_mtod_offset(tx_mbufs[i], uint8_t *, sizeof(pkthdr_t)),
-               &msg_buffer->buf_[item.pkt_idx_ * kMaxDataPerPkt],
-               pkt_size - sizeof(pkthdr_t));
+      // memcpy(rte_pktmbuf_mtod_offset(tx_mbufs[i], uint8_t *, sizeof(pkthdr_t)),
+      //          &msg_buffer->buf_[item.pkt_idx_ * kMaxDataPerPkt],
+      //          pkt_size - sizeof(pkthdr_t));
     }
 
     ERPC_TRACE(
         "Transport: TX (idx = %zu, drop = %u). pkthdr = %s. Frame  = %s.\n", i,
         item.drop_, pkthdr->to_string().c_str(),
         frame_header_to_string(&pkthdr->headroom_[0]).c_str());
+    
+    #ifdef lqj_debug
+    if(thread_num == -1){
+      auto* eth_hdr = reinterpret_cast<const eth_hdr_t*>(&pkthdr->headroom_[0]);
+      auto* ipv4_hdr = reinterpret_cast<const ipv4_hdr_t*>(&eth_hdr[1]);
+      auto* udp_hdr = reinterpret_cast<const udp_hdr_t*>(&ipv4_hdr[1]);
+      thread_num = ntohs(udp_hdr->dst_port_) - 10000;
+    }
+    #endif
   }
 
+  #ifdef lqj_debug
+    struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+    printf("%d erpc send one round time: %lld\n", thread_num, send_finish_time % 10000);
+  #endif
+  
   size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, num_pkts);
-  // ERPC_INFO("in DpdkTransport::tx_burst : num_pkts = %lu, nb_tx_new = %lu\n", num_pkts, nb_tx_new);
   if (unlikely(nb_tx_new != num_pkts)) {
+    #ifdef lqj_debug
+    printf("nb_tx_new != num_pkts\n");
+    #endif
     size_t retry_count = 0;
     while (nb_tx_new != num_pkts) {
       nb_tx_new += rte_eth_tx_burst(phy_port_, qp_id_, &tx_mbufs[nb_tx_new],
@@ -91,6 +113,13 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       }
     }
   }
+  #ifdef lqj_debug
+    // struct timeval cur_time;
+    gettimeofday(&cur_time, NULL);
+    send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
+    printf("%d dpdk send one round time: %lld\n",thread_num, send_finish_time % 10000);
+    printf("%d send packets: %lu\n",thread_num, num_pkts);
+  #endif
 }
 
 void DpdkTransport::tx_flush() {
