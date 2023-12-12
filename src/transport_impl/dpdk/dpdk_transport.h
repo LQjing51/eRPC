@@ -282,6 +282,10 @@ class DpdkTransport : public Transport {
   static void setup_phy_port(uint16_t phy_port, size_t numa_node,
                              DpdkProcType proc_type);
 
+  // We don't use DPDK's lcore threads, so a shared mempool with per-lcore
+  // cache won't work. Instead, we use per-thread pools with zero cached mbufs.
+  rte_mempool *mempool_;
+  
  private:
   /**
    * @brief Resolve fields in \p resolve using \p phy_port
@@ -312,10 +316,6 @@ class DpdkTransport : public Transport {
 
   uint16_t rx_flow_udp_port_ = 0;  ///< The UDP port this transport listens on
   size_t qp_id_ = kInvalidQpId;    ///< The RX/TX queue pair for this Transport
-
-  // We don't use DPDK's lcore threads, so a shared mempool with per-lcore
-  // cache won't work. Instead, we use per-thread pools with zero cached mbufs.
-  rte_mempool *mempool_;
 
   /// Info resolved from \p phy_port, must be filled by constructor.
   struct {

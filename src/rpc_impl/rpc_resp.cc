@@ -66,7 +66,6 @@ void Rpc<TTr>::enqueue_response(ReqHandle *req_handle, MsgBuffer *resp_msgbuf) {
   assert(sslot->server_info_.req_type_ != kInvalidReqType);
   sslot->server_info_.req_type_ = kInvalidReqType;
 
-  // ERPC_INFO("in enqueue_response\n");
   enqueue_pkt_tx_burst_st(sslot, 0, nullptr);  // 0 = packet index, not pkt_num
 }
 

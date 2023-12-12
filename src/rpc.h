@@ -22,6 +22,7 @@
 
 #include <sys/time.h>
 // #define lqj_debug 1
+#define ZeroCopyTX 1
 
 
 namespace erpc {
@@ -980,6 +981,9 @@ class Rpc {
   /// happens when the server RPC thread has not started.
   bool retry_connect_on_invalid_rpc_id_ = false;
 
+  // Transport
+  TTr *transport_ = nullptr;  ///< The unreliable transport
+
  private:
   // Constructor args
   Nexus *nexus_;
@@ -1010,9 +1014,6 @@ class Rpc {
   /// Disconnected sessions are denoted by null pointers. This grows as sessions
   /// are repeatedly connected and disconnected, but 8 bytes per session is OK.
   std::vector<Session *> session_vec_;
-
-  // Transport
-  TTr *transport_ = nullptr;  ///< The unreliable transport
 
   /// Current number of ring buffers available to use for sessions
   size_t ring_entries_available_ = TTr::kNumRxRingEntries;

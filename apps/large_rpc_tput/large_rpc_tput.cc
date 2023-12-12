@@ -55,7 +55,7 @@ void send_req(AppContext *c, size_t msgbuf_idx) {
   c->rpc_->enqueue_request(c->session_num_vec_[0], kAppReqType, &req_msgbuf,
                            &c->resp_msgbuf[msgbuf_idx], app_cont_func,
                            reinterpret_cast<void *>(msgbuf_idx));
-  
+
   c->stat_tx_bytes_tot += FLAGS_req_size;
   
 }
@@ -121,6 +121,10 @@ void app_cont_func(void *_context, void *_tag) {
 
   c->stat_rx_bytes_tot += FLAGS_resp_size;
 
+  #ifdef ZeroCopyTX
+  msgbuf_to_rte_mbuf(c, c->req_msgbuf[msgbuf_idx]);
+  #endif
+
   // Create a new request clocking this response, and put in request queue
   if (kAppClientMemsetReq) {
     memset(c->req_msgbuf[msgbuf_idx].buf_, kAppDataByte, FLAGS_req_size);
@@ -154,7 +158,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   // Create the session. Some threads may not create any sessions, and therefore
   // not run the event loop required for other threads to connect them. This
   // is OK because all threads will run the event loop below.
-  connect_sessions_func(&c);
+  connect_sessions_func(&c);  
 
   if (c.session_num_vec_.size() > 0) {
     printf("large_rpc_tput: Thread %zu: All sessions connected.\n", thread_id);
@@ -165,14 +169,12 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   alloc_req_resp_msg_buffers(&c);
   size_t console_ref_tsc = erpc::rdtsc();
 
-  printf("before send_req\n");
   // Any thread that creates a session sends requests
   if (c.session_num_vec_.size() > 0) {
     for (size_t msgbuf_idx = 0; msgbuf_idx < FLAGS_concurrency; msgbuf_idx++) {
       send_req(&c, msgbuf_idx);
     }
   }
-  printf("after send_req\n");
   #ifdef lqj_debug
   rpc.run_event_loop(30);
   #else

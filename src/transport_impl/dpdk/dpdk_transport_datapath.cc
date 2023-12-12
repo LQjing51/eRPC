@@ -41,8 +41,13 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
   for (size_t i = 0; i < num_pkts; i++) {
     const tx_burst_item_t &item = tx_burst_arr[i];
     const MsgBuffer *msg_buffer = item.msg_buffer_;
+    #ifdef ZeroCopyTX
+      erpc::rt_assert(item.pkt_idx_ == 0 && msg_buffer->num_pkts_ == 1, "ZeroCopyTX but not a single-packet req");
+      tx_mbufs[i] = reinterpret_cast<rte_mbuf*>(msg_buffer->tx_mbuf);
+    #else
+      tx_mbufs[i] = rte_pktmbuf_alloc(mempool_);
+    #endif
 
-    tx_mbufs[i] = rte_pktmbuf_alloc(mempool_);
     assert(tx_mbufs[i] != nullptr);
 
     pkthdr_t *pkthdr;
@@ -55,9 +60,11 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       tx_mbufs[i]->nb_segs = 1;
       tx_mbufs[i]->pkt_len = pkt_size;
       tx_mbufs[i]->data_len = pkt_size;
-      // memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
-      memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, sizeof(pkthdr_t)+1);
-      
+      #ifdef ZeroCopyTX
+      memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
+      #else
+      memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
+      #endif
     } else {
       // This is not the first packet, we also need only one seg.
       pkthdr = msg_buffer->get_pkthdr_n(item.pkt_idx_);
@@ -70,10 +77,14 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       tx_mbufs[i]->data_len = pkt_size;
       memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr,
                sizeof(pkthdr_t));
-      // memcpy(rte_pktmbuf_mtod_offset(tx_mbufs[i], uint8_t *, sizeof(pkthdr_t)),
-      //          &msg_buffer->buf_[item.pkt_idx_ * kMaxDataPerPkt],
-      //          pkt_size - sizeof(pkthdr_t));
+      memcpy(rte_pktmbuf_mtod_offset(tx_mbufs[i], uint8_t *, sizeof(pkthdr_t)),
+               &msg_buffer->buf_[item.pkt_idx_ * kMaxDataPerPkt],
+               pkt_size - sizeof(pkthdr_t));
     }
+    // printf("data_off: %d pkt_len: %d  data_len: %d\n", tx_mbufs[i]->data_off, tx_mbufs[i]->pkt_len, tx_mbufs[i]->data_len);
+    // printf("rte_mbuf header: %s\n", frame_header_to_string(reinterpret_cast<uint8_t*>(tx_mbufs[i]->buf_addr)+tx_mbufs[i]->data_off).c_str());
+    // uint8_t *data = reinterpret_cast<uint8_t*>(tx_mbufs[i]->buf_addr) + tx_mbufs[i]->data_off + sizeof(pkthdr_t);
+    // printf("rte_mbuf data: %d%d%d%d\n",*data, data[1], data[2], data[3]);
 
     ERPC_TRACE(
         "Transport: TX (idx = %zu, drop = %u). pkthdr = %s. Frame  = %s.\n", i,
@@ -100,7 +111,7 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
   size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, num_pkts);
   if (unlikely(nb_tx_new != num_pkts)) {
     #ifdef lqj_debug
-    printf("nb_tx_new != num_pkts\n");
+      printf("nb_tx_new != num_pkts\n");
     #endif
     size_t retry_count = 0;
     while (nb_tx_new != num_pkts) {
@@ -148,6 +159,13 @@ size_t DpdkTransport::rx_burst() {
     assert(dpdk_dtom(rx_ring_[rx_ring_head_]) == rx_pkts[i]);
 
     auto *pkthdr = reinterpret_cast<pkthdr_t *>(rx_ring_[rx_ring_head_]);
+    
+    // uint8_t *data = rx_ring_[rx_ring_head_] + sizeof(pkthdr_t);
+    // printf("rx_burst1: data_off = %d, rx_ring_head_ = %ld\n", rx_pkts[i]->data_off, rx_ring_head_);
+    // printf("rx_burst2: RTE_PKTMBUF_HEADROOM = %d, sizeof(rte_mbuf) = %ld\n", RTE_PKTMBUF_HEADROOM, sizeof(rte_mbuf));
+    // printf("rx_burst3: rx_pkts[i] = %lld,  rx_ring_[rx_ring_head_] = %lld\n",reinterpret_cast<long long>(rx_pkts[i]), reinterpret_cast<long long>(rx_ring_[rx_ring_head_]));
+    // printf("rx_burst4: data = %d %d %d\n", data[0],data[1],data[20]);
+    
     _unused(pkthdr);
     ERPC_TRACE("Transport: RX pkthdr = %s. Frame = %s.\n",
                pkthdr->to_string().c_str(),
