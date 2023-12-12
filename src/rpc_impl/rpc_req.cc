@@ -90,18 +90,18 @@ void Rpc<TTr>::process_small_req_st(SSlot *sslot, pkthdr_t *pkthdr) {
 
     if (pkthdr->req_num_ < sslot->cur_req_num_) {
       // This is a massively-delayed retransmission of an old request
-      ERPC_REORDER("%s: Dropping.\n", issue_msg);
+      ERPC_INFO("%s: Dropping.\n", issue_msg);
       return;
     } else {
       // This is a retransmission for the currently active request
       if (sslot->tx_msgbuf_ != nullptr) {
         // The response is available, so resend this req's corresponding packet
-        ERPC_REORDER("%s: Re-sending response.\n", issue_msg);
+        ERPC_INFO("%s: Re-sending response.\n", issue_msg);
         enqueue_pkt_tx_burst_st(sslot, 0, nullptr);  // Packet index = 0
         drain_tx_batch_and_dma_queue();
         return;
       } else {
-        ERPC_REORDER("%s: Response not available yet. Dropping.\n", issue_msg);
+        ERPC_INFO("%s: Response not available yet. Dropping.\n", issue_msg);
         return;
       }
     }
@@ -154,7 +154,7 @@ void Rpc<TTr>::process_small_req_st(SSlot *sslot, pkthdr_t *pkthdr) {
 template <class TTr>
 void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
   assert(in_dispatch());
-
+  
   // Handle reordering
   bool is_next_pkt_same_req =  // Is this the next packet in this request?
       (pkthdr->req_num_ == sslot->cur_req_num_) &&
@@ -232,32 +232,14 @@ void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     enqueue_cr_st(sslot, pkthdr);
   }
 
-  // #ifdef lqj_debug
-  // if(pkthdr->pkt_num_ == 0){
-  //   struct timeval cur_time;
-  //   gettimeofday(&cur_time, NULL);
-  //   long long recv_begin_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-  //   printf("%ld begin to receive packets for this req: %lld\n", get_etid(), recv_begin_time % 10000);
+  // if (pkthdr->pkt_num_ == 0){
+  //   // printf("in process_large_req_one_st: copy data to msgbuf\n");
+  //   copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
   // }
-  // #endif
-
-  if (pkthdr->pkt_num_ == 0){
-    // printf("in process_large_req_one_st: copy data to msgbuf\n");
-    copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
-  }
-  // copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
+  copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
  
   // Invoke the request handler iff we have all the request packets
   if (sslot->server_info_.num_rx_ != req_msgbuf.num_pkts_) return;
-
-  // #ifdef lqj_debug
-  //   // now received all packets for this req
-  //   struct timeval cur_time;
-  //   gettimeofday(&cur_time, NULL);
-  //   long long recv_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-  //   printf("%ld finish receiving packets: %lld\n",get_etid(), recv_finish_time % 10000);
-  //   printf("%ld recv packets: %lu\n",get_etid(), req_msgbuf.num_pkts_);
-  // #endif
 
   const ReqFunc &req_func = req_func_arr_[pkthdr->req_type_];
 
