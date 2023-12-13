@@ -7,6 +7,8 @@ void Rpc<TTr>::process_comps_st() {
   assert(in_dispatch());
   const size_t num_pkts = transport_->rx_burst();
   if (num_pkts == 0) return;
+  
+  // printf("comps1: num_pkts = %ld\n", num_pkts);
 
   // Measure RX burst size
   dpath_stat_inc(dpath_stats_.rx_burst_calls_, 1);
@@ -16,6 +18,10 @@ void Rpc<TTr>::process_comps_st() {
   const size_t &batch_rx_tsc = ev_loop_tsc_;
 
   for (size_t i = 0; i < num_pkts; i++) {
+    // printf("comps2: rx_ring_head_ = %ld, rx_ring_[rx_ring_head_] = %lld\n", rx_ring_head_, reinterpret_cast<long long>(rx_ring_[rx_ring_head_]));
+    // uint8_t* data = reinterpret_cast<uint8_t*>(rx_ring_[rx_ring_head_]) + sizeof(pkthdr_t);
+    // printf("comps2: data = %d %d %d\n", data[0], data[1], data[20]);
+
     auto *pkthdr = reinterpret_cast<pkthdr_t *>(rx_ring_[rx_ring_head_]);
     rx_ring_head_ = (rx_ring_head_ + 1) % Transport::kNumRxRingEntries;
 
@@ -55,9 +61,9 @@ void Rpc<TTr>::process_comps_st() {
     }
 
     // If we are here, we have a valid packet for a connected session
-    ERPC_TRACE(
-        "Rpc %u, lsn %u (%s): RX %s.\n", rpc_id_, session->local_session_num_,
-        session->get_remote_hostname().c_str(), pkthdr->to_string().c_str());
+    // printf(
+    //   "comps3: Rpc %u, lsn %u (%s): RX %s. Frame %s.\n", rpc_id_, session->local_session_num_,
+    //   session->get_remote_hostname().c_str(), pkthdr->to_string().c_str(),  frame_header_to_string(&pkthdr->headroom_[0]).c_str());
 
     const size_t sslot_i = pkthdr->req_num_ % kSessionReqWindow;  // Bit shift
     SSlot *sslot = &session->sslot_arr_[sslot_i];

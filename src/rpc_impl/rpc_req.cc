@@ -87,7 +87,7 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
 template <class TTr>
 void Rpc<TTr>::process_small_req_st(SSlot *sslot, pkthdr_t *pkthdr) {
   assert(in_dispatch());
-
+  
   // Handle reordering
   if (unlikely(pkthdr->req_num_ <= sslot->cur_req_num_)) {
     char issue_msg[kMaxIssueMsgLen];
@@ -100,19 +100,18 @@ void Rpc<TTr>::process_small_req_st(SSlot *sslot, pkthdr_t *pkthdr) {
 
     if (pkthdr->req_num_ < sslot->cur_req_num_) {
       // This is a massively-delayed retransmission of an old request
-      ERPC_REORDER("%s: Dropping.\n", issue_msg);
+      ERPC_INFO("%s: Dropping.\n", issue_msg);
       return;
     } else {
       // This is a retransmission for the currently active request
       if (sslot->tx_msgbuf_ != nullptr) {
         // The response is available, so resend this req's corresponding packet
-        ERPC_REORDER("%s: Re-sending response.\n", issue_msg);
-        ERPC_INFO("process_small_req_st\n");
+        ERPC_INFO("small_req: %s: Re-sending response.\n", issue_msg);
         enqueue_pkt_tx_burst_st(sslot, 0, nullptr);  // Packet index = 0
         drain_tx_batch_and_dma_queue();
         return;
       } else {
-        ERPC_REORDER("%s: Response not available yet. Dropping.\n", issue_msg);
+        ERPC_INFO("%s: Response not available yet. Dropping.\n", issue_msg);
         return;
       }
     }
@@ -188,7 +187,7 @@ void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     // Only past packets belonging to this request are not dropped
     if (pkthdr->req_num_ != sslot->cur_req_num_ ||
         pkthdr->pkt_num_ > sslot->server_info_.num_rx_) {
-      ERPC_REORDER("%s: Dropping.\n", issue_msg);
+      ERPC_INFO("%s: Dropping.\n", issue_msg);
       return;
     }
 
@@ -197,7 +196,7 @@ void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     // req_msgbuf could be buried if we have received the entire request and
     // queued the response, so directly compute number of packets in request.
     if (pkthdr->pkt_num_ != data_size_to_num_pkts(pkthdr->msg_size_) - 1) {
-      ERPC_REORDER("%s: Re-sending credit return.\n", issue_msg);
+      ERPC_INFO("%s: Re-sending credit return.\n", issue_msg);
       enqueue_cr_st(sslot, pkthdr);  // Header only, so tx_flush uneeded
       return;
     }
@@ -205,12 +204,12 @@ void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     // This is the last request packet, so re-send response if it's available
     if (sslot->tx_msgbuf_ != nullptr) {
       // The response is available, so resend it
-      ERPC_REORDER("%s: Re-sending response.\n", issue_msg);
+      ERPC_INFO("%s: Re-sending response.\n", issue_msg);
       enqueue_pkt_tx_burst_st(sslot, 0, nullptr);  // Packet index = 0
       drain_tx_batch_and_dma_queue();
     } else {
       // The response is not available yet, client will have to timeout again
-      ERPC_REORDER("%s: Dropping because response not available yet.\n",
+      ERPC_INFO("%s: Dropping because response not available yet.\n",
                    issue_msg);
     }
     return;
