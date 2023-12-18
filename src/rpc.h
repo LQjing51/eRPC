@@ -22,7 +22,7 @@
 
 #include <sys/time.h>
 #define lqj_debug 1
-
+// #define server_count 1
 namespace erpc {
 
 /**
@@ -963,6 +963,7 @@ class Rpc {
   /// Retry session connection if the remote RPC ID was invalid. This usually
   /// happens when the server RPC thread has not started.
   bool retry_connect_on_invalid_rpc_id_ = false;
+  std::vector<Session *> session_vec_;
 
  private:
   // Constructor args
@@ -993,7 +994,7 @@ class Rpc {
   /// The append-only list of session pointers, indexed by session number.
   /// Disconnected sessions are denoted by null pointers. This grows as sessions
   /// are repeatedly connected and disconnected, but 8 bytes per session is OK.
-  std::vector<Session *> session_vec_;
+  // std::vector<Session *> session_vec_;
 
   // Transport
   TTr *transport_ = nullptr;  ///< The unreliable transport
