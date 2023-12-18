@@ -56,6 +56,7 @@ void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   const erpc::MsgBuffer *req_msgbuf = req_handle->get_req_msgbuf();
   #ifdef server_count
   assert(req_msgbuf->get_data_size() == FLAGS_req_size);
+  _unused(req_msgbuf);
   c->stat_rx_bytes_tot += FLAGS_req_size;
   #else
 
@@ -188,6 +189,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     c.stat_tx_bytes_tot = 0;
     while(c.stat_rx_bytes_tot == 0){
       rpc.run_event_loop(1);
+      if (unlikely(ctrl_c_pressed == 1)) break;
     }
     c.tput_t0.reset();
 

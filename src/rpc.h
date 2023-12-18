@@ -22,7 +22,7 @@
 
 #include <sys/time.h>
 #define lqj_debug 1
-// #define server_count 1
+#define server_count 1
 namespace erpc {
 
 /**
