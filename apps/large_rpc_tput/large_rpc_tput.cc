@@ -51,7 +51,7 @@ void send_req(AppContext *c, size_t msgbuf_idx) {
            c->thread_id_, msgbuf_idx);
   }
 
-  c->req_ts[msgbuf_idx] = erpc::rdtsc();
+  // c->req_ts[msgbuf_idx] = erpc::rdtsc();
   c->rpc_->enqueue_request(c->session_num_vec_[0], kAppReqType, &req_msgbuf,
                            &c->resp_msgbuf[msgbuf_idx], app_cont_func,
                            reinterpret_cast<void *>(msgbuf_idx));
@@ -85,7 +85,20 @@ void req_handler(erpc::ReqHandle *req_handle, void *_context) {
 void app_cont_func(void *_context, void *_tag) {
   auto *c = static_cast<AppContext *>(_context);
   auto msgbuf_idx = reinterpret_cast<size_t>(_tag);
+  #ifdef KeepSend
+    #ifdef ZeroCopyTX
+    msgbuf_to_rte_mbuf(c, c->req_msgbuf[msgbuf_idx]);
+    #endif
+    
+    // Create a new request clocking this response, and put in request queue
+    if (kAppClientMemsetReq) {
+      memset(c->req_msgbuf[msgbuf_idx].buf_, kAppDataByte, FLAGS_req_size);
+    } else {
+      c->req_msgbuf[msgbuf_idx].buf_[0] = kAppDataByte;
+    }
 
+    send_req(c, msgbuf_idx);
+  #elif
   const erpc::MsgBuffer &resp_msgbuf = c->resp_msgbuf[msgbuf_idx];
   if (kAppVerbose) {
     printf("large_rpc_tput: Received response for msgbuf %zu.\n", msgbuf_idx);
@@ -133,6 +146,7 @@ void app_cont_func(void *_context, void *_tag) {
   }
 
   send_req(c, msgbuf_idx);
+  #endif
 }
 
 // The function executed by each thread in the cluster
@@ -185,59 +199,64 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     if (c.session_num_vec_.size() == 0) continue;  // No stats to print
 
     const double ns = c.tput_t0.get_ns();
-    erpc::Timely *timely_0 = c.rpc_->get_timely(0);
+    // erpc::Timely *timely_0 = c.rpc_->get_timely(0);
 
     // Publish stats
     auto &stats = c.app_stats[c.thread_id_];
     stats.rx_gbps = c.stat_rx_bytes_tot * 8 / ns;
     stats.tx_gbps = c.stat_tx_bytes_tot * 8 / ns;
-    stats.re_tx = c.rpc_->get_num_re_tx(c.session_num_vec_[0]);
-    stats.rtt_50_us = timely_0->get_rtt_perc(0.50);
-    stats.rtt_99_us = timely_0->get_rtt_perc(0.99);
+    // stats.re_tx = c.rpc_->get_num_re_tx(c.session_num_vec_[0]);
+    // stats.rtt_50_us = timely_0->get_rtt_perc(0.50);
+    // stats.rtt_99_us = timely_0->get_rtt_perc(0.99);
 
-    if (c.lat_vec.size() > 0) {
-      std::sort(c.lat_vec.begin(), c.lat_vec.end());
-      stats.rpc_50_us = c.lat_vec[c.lat_vec.size() * 0.50];
-      stats.rpc_99_us = c.lat_vec[c.lat_vec.size() * 0.99];
-      stats.rpc_999_us = c.lat_vec[c.lat_vec.size() * 0.999];
-    } else {
-      // Even if no RPCs completed, we need retransmission counter
-      stats.rpc_50_us = kAppEvLoopMs * 1000;
-      stats.rpc_99_us = kAppEvLoopMs * 1000;
-      stats.rpc_999_us = kAppEvLoopMs * 1000;
-    }
-
+    // if (c.lat_vec.size() > 0) {
+    //   std::sort(c.lat_vec.begin(), c.lat_vec.end());
+    //   stats.rpc_50_us = c.lat_vec[c.lat_vec.size() * 0.50];
+    //   stats.rpc_99_us = c.lat_vec[c.lat_vec.size() * 0.99];
+    //   stats.rpc_999_us = c.lat_vec[c.lat_vec.size() * 0.999];
+    // } else {
+    //   // Even if no RPCs completed, we need retransmission counter
+    //   stats.rpc_50_us = kAppEvLoopMs * 1000;
+    //   stats.rpc_99_us = kAppEvLoopMs * 1000;
+    //   stats.rpc_999_us = kAppEvLoopMs * 1000;
+    // }
     printf(
         "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
-        "Gbps (IOPS). Retransmissions %zu. Packet RTTs: {%.1f, %.1f} us. "
-        "RPC latency {%.1f 50th, %.1f 99th, %.1f 99.9th}. Timely rate %.1f "
-        "Gbps. Credits %zu (best = 32).\n",
+        "Gbps (IOPS).\n",
         c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot / FLAGS_resp_size,
-        stats.tx_gbps, c.stat_tx_bytes_tot / FLAGS_req_size, stats.re_tx,
-        stats.rtt_50_us, stats.rtt_99_us, stats.rpc_50_us, stats.rpc_99_us,
-        stats.rpc_999_us, timely_0->get_rate_gbps(), erpc::kSessionCredits);
+        stats.tx_gbps, c.stat_tx_bytes_tot / FLAGS_req_size);
+
+    // printf(
+    //     "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
+    //     "Gbps (IOPS). Retransmissions %zu. Packet RTTs: {%.1f, %.1f} us. "
+    //     "RPC latency {%.1f 50th, %.1f 99th, %.1f 99.9th}. Timely rate %.1f "
+    //     "Gbps. Credits %zu (best = 32).\n",
+    //     c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot / FLAGS_resp_size,
+    //     stats.tx_gbps, c.stat_tx_bytes_tot / FLAGS_req_size, stats.re_tx,
+    //     stats.rtt_50_us, stats.rtt_99_us, stats.rpc_50_us, stats.rpc_99_us,
+    //     stats.rpc_999_us, timely_0->get_rate_gbps(), erpc::kSessionCredits);
 
     // Reset stats for next iteration
     c.stat_rx_bytes_tot = 0;
     c.stat_tx_bytes_tot = 0;
-    c.rpc_->reset_num_re_tx(c.session_num_vec_[0]);
-    c.lat_vec.clear();
-    timely_0->reset_rtt_stats();
+    // c.rpc_->reset_num_re_tx(c.session_num_vec_[0]);
+    // c.lat_vec.clear();
+    // timely_0->reset_rtt_stats();
 
-    if (c.thread_id_ == 0) {
-      app_stats_t accum_stats;
-      for (size_t i = 0; i < FLAGS_num_proc_other_threads; i++) {
-        accum_stats += c.app_stats[i];
-      }
+    // if (c.thread_id_ == 0) {
+    //   app_stats_t accum_stats;
+    //   for (size_t i = 0; i < FLAGS_num_proc_other_threads; i++) {
+    //     accum_stats += c.app_stats[i];
+    //   }
 
-      // Compute averages for non-additive stats
-      accum_stats.rtt_50_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rtt_99_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rpc_50_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rpc_99_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rpc_999_us /= FLAGS_num_proc_other_threads;
-      c.tmp_stat_->write(accum_stats.to_string());
-    }
+    //   // Compute averages for non-additive stats
+    //   accum_stats.rtt_50_us /= FLAGS_num_proc_other_threads;
+    //   accum_stats.rtt_99_us /= FLAGS_num_proc_other_threads;
+    //   accum_stats.rpc_50_us /= FLAGS_num_proc_other_threads;
+    //   accum_stats.rpc_99_us /= FLAGS_num_proc_other_threads;
+    //   accum_stats.rpc_999_us /= FLAGS_num_proc_other_threads;
+    //   c.tmp_stat_->write(accum_stats.to_string());
+    // }
 
     c.tput_t0.reset();
   }

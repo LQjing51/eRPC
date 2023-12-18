@@ -23,7 +23,7 @@
 #include <sys/time.h>
 // #define lqj_debug 1
 #define ZeroCopyTX 1
-
+#define KeepSend 1
 
 namespace erpc {
 
@@ -658,6 +658,7 @@ class Rpc {
 
   /// Actually run one iteration of the event loop
   void run_event_loop_do_one_st();
+  void fake_process_resp(SSlot* sslot);
 
   /// Enqueue client packets for a sslot that has at least one credit and
   /// request packets to send. Packets may be added to the timing wheel or the
