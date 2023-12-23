@@ -31,6 +31,8 @@ static constexpr bool kAppClientCheckResp = false;   // Check entire response
 // Profile-specifc session connection function
 std::function<void(AppContext *)> connect_sessions_func = nullptr;
 
+size_t transmission = 1000000000;//1GB
+
 void app_cont_func(void *, void *);  // Forward declaration
 
 // Send a request using this MsgBuffer
@@ -54,10 +56,9 @@ void send_req(AppContext *c, size_t msgbuf_idx) {
 void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   auto *c = static_cast<AppContext *>(_context);
   const erpc::MsgBuffer *req_msgbuf = req_handle->get_req_msgbuf();
-  #ifdef server_count
-  assert(req_msgbuf->get_data_size() == FLAGS_req_size);
-  _unused(req_msgbuf);
-  c->stat_rx_bytes_tot += FLAGS_req_size;
+  #ifdef KeepSend
+  size_t cur_size = req_msgbuf->get_data_size();
+  c->stat_rx_bytes_tot += cur_size;
   #else
 
   uint8_t resp_byte = req_msgbuf->buf_[0];
@@ -81,7 +82,6 @@ void req_handler(erpc::ReqHandle *req_handle, void *_context) {
 }
 
 void app_cont_func(void *_context, void *_tag) {
-  printf("in cont func\n");
   auto *c = static_cast<AppContext *>(_context);
   auto msgbuf_idx = reinterpret_cast<size_t>(_tag);
 
@@ -169,12 +169,18 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     rpc.run_event_loop(1);
   }
   c.tput_t0.reset();
-  for (size_t i = 0; i < FLAGS_test_ms; i += kAppEvLoopMs) {
-    rpc.run_event_loop(kAppEvLoopMs);
+  double ns = 0;
+  for (size_t i = 0; i < FLAGS_test_ms; i += ns/1000000) {
+    while(true){
+      rpc.run_event_loop_do_one_st();
+      if (unlikely(ctrl_c_pressed == 1)) break;
+      if(c.stat_rx_bytes_tot >= transmission) break;
+    }
+
     if (unlikely(ctrl_c_pressed == 1)) break;
-    // if (c.rpc_->session_vec_.size() == 0) continue;  // No stats to print
     
-    const double ns = c.tput_t0.get_ns();
+    ns = c.tput_t0.get_ns();
+
     auto &stats = c.app_stats[c.thread_id_];
     stats.rx_gbps = c.stat_rx_bytes_tot * 8 / ns;
     stats.tx_gbps = c.stat_tx_bytes_tot * 8 / ns;
@@ -182,8 +188,8 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     printf(
     "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
     "Gbps (IOPS).\n",
-    c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot / FLAGS_req_size,
-    stats.tx_gbps, c.stat_tx_bytes_tot / FLAGS_resp_size);
+    c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot,
+    stats.tx_gbps, c.stat_tx_bytes_tot);
 
     c.stat_rx_bytes_tot = 0;
     c.stat_tx_bytes_tot = 0;
@@ -192,63 +198,6 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
       if (unlikely(ctrl_c_pressed == 1)) break;
     }
     c.tput_t0.reset();
-
-    // const double ns = c.tput_t0.get_ns();
-    // erpc::Timely *timely_0 = c.rpc_->get_timely(0);
-
-    // // Publish stats
-    // auto &stats = c.app_stats[c.thread_id_];
-    // stats.rx_gbps = c.stat_rx_bytes_tot * 8 / ns;
-    // stats.tx_gbps = c.stat_tx_bytes_tot * 8 / ns;
-    // stats.re_tx = c.rpc_->get_num_re_tx(c.session_num_vec_[0]);
-    // stats.rtt_50_us = timely_0->get_rtt_perc(0.50);
-    // stats.rtt_99_us = timely_0->get_rtt_perc(0.99);
-
-    // if (c.lat_vec.size() > 0) {
-    //   std::sort(c.lat_vec.begin(), c.lat_vec.end());
-    //   stats.rpc_50_us = c.lat_vec[c.lat_vec.size() * 0.50];
-    //   stats.rpc_99_us = c.lat_vec[c.lat_vec.size() * 0.99];
-    //   stats.rpc_999_us = c.lat_vec[c.lat_vec.size() * 0.999];
-    // } else {
-    //   // Even if no RPCs completed, we need retransmission counter
-    //   stats.rpc_50_us = kAppEvLoopMs * 1000;
-    //   stats.rpc_99_us = kAppEvLoopMs * 1000;
-    //   stats.rpc_999_us = kAppEvLoopMs * 1000;
-    // }
-
-    // printf(
-    //     "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
-    //     "Gbps (IOPS). Retransmissions %zu. Packet RTTs: {%.1f, %.1f} us. "
-    //     "RPC latency {%.1f 50th, %.1f 99th, %.1f 99.9th}. Timely rate %.1f "
-    //     "Gbps. Credits %zu (best = 32).\n",
-    //     c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot / FLAGS_resp_size,
-    //     stats.tx_gbps, c.stat_tx_bytes_tot / FLAGS_req_size, stats.re_tx,
-    //     stats.rtt_50_us, stats.rtt_99_us, stats.rpc_50_us, stats.rpc_99_us,
-    //     stats.rpc_999_us, timely_0->get_rate_gbps(), erpc::kSessionCredits);
-
-    // // Reset stats for next iteration
-    // c.stat_rx_bytes_tot = 0;
-    // c.stat_tx_bytes_tot = 0;
-    // c.rpc_->reset_num_re_tx(c.session_num_vec_[0]);
-    // c.lat_vec.clear();
-    // timely_0->reset_rtt_stats();
-
-    // if (c.thread_id_ == 0) {
-    //   app_stats_t accum_stats;
-    //   for (size_t i = 0; i < FLAGS_num_proc_other_threads; i++) {
-    //     accum_stats += c.app_stats[i];
-    //   }
-
-    //   // Compute averages for non-additive stats
-    //   accum_stats.rtt_50_us /= FLAGS_num_proc_other_threads;
-    //   accum_stats.rtt_99_us /= FLAGS_num_proc_other_threads;
-    //   accum_stats.rpc_50_us /= FLAGS_num_proc_other_threads;
-    //   accum_stats.rpc_99_us /= FLAGS_num_proc_other_threads;
-    //   accum_stats.rpc_999_us /= FLAGS_num_proc_other_threads;
-    //   c.tmp_stat_->write(accum_stats.to_string());
-    // }
-
-    // c.tput_t0.reset();
   }
 
   erpc::TimingWheel *wheel = rpc.get_wheel();

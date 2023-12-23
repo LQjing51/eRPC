@@ -21,8 +21,9 @@
 #include "util/udp_client.h"
 
 #include <sys/time.h>
-#define lqj_debug 1
-#define server_count 1
+// #define lqj_debug 1
+// #define KeepSend 1
+// #define run_flow_distribution 1
 namespace erpc {
 
 /**
@@ -292,7 +293,6 @@ class Rpc {
   inline void run_event_loop(size_t timeout_ms) {
     run_event_loop_timeout_st(timeout_ms);
   }
-
   /**
    * @brief Run one iteration of eRPC's event loop. Users must call this
    * periodically to make progress, since the event loop performs most of eRPC's
@@ -441,6 +441,9 @@ class Rpc {
    * @throw runtime_error if the caller cannot inject faults
    */
   void fault_inject_set_pkt_drop_prob_st(double pkt_drop_prob);
+
+  /// Actually run one iteration of the event loop
+  void run_event_loop_do_one_st();
 
  private:
   int create_session_st(std::string remote_uri, uint8_t rem_rpc_id);
@@ -650,9 +653,6 @@ class Rpc {
 
   /// Implementation of the run_event_loop(timeout) API function
   void run_event_loop_timeout_st(size_t timeout_ms);
-
-  /// Actually run one iteration of the event loop
-  void run_event_loop_do_one_st();
 
   /// Enqueue client packets for a sslot that has at least one credit and
   /// request packets to send. Packets may be added to the timing wheel or the
