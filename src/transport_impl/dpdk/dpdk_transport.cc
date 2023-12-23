@@ -171,7 +171,9 @@ void DpdkTransport::resolve_phy_port() {
   rte_eth_macaddr_get(phy_port_, &mac);
   memcpy(resolve_.mac_addr_, &mac.addr_bytes, sizeof(resolve_.mac_addr_));
 
-  resolve_.ipv4_addr_ = get_port_ipv4_addr(phy_port_);
+  // resolve_.ipv4_addr_ = get_port_ipv4_addr(phy_port_);
+  const char* rdma_ip = "10.0.14.1";
+  resolve_.ipv4_addr_ = ipv4_from_str(rdma_ip);
 
   // Resolve RSS indirection table size
   struct rte_eth_dev_info dev_info;

@@ -25,6 +25,12 @@ namespace erpc {
 static constexpr uint16_t kIPEtherType = 0x800;
 static constexpr uint16_t kIPHdrProtocol = 0x11;
 static constexpr uint16_t kBaseEthUDPPort = 10000;
+static constexpr uint16_t ETH_P_ARP = 0x0806;
+static constexpr uint32_t ETH_ALEN = 6;
+static constexpr uint16_t ARPHRD_ETHER = 1;
+static constexpr uint16_t ETH_P_IP = 0x0800; 
+static constexpr uint16_t ARPOP_REQUEST = 1;
+static constexpr uint16_t ARPOP_REPLY = 2;
 
 static std::string mac_to_string(const uint8_t* mac) {
   std::ostringstream ret;
@@ -65,6 +71,18 @@ struct eth_hdr_t {
     return ret.str();
   }
 } __attribute__((packed));
+
+struct arp_hdr_t {
+  uint16_t arp_hrd;		/* Format of hardware address.  */
+  uint16_t arp_pro;		/* Format of protocol address.  */
+  uint8_t	arp_hln;		/* Length of hardware address.  */
+  uint8_t	arp_pln;		/* Length of protocol address.  */
+  uint16_t arp_op;			/* ARP opcode (command).  */
+	uint8_t	arp_sha[ETH_ALEN];	/* sender hardware address */
+	uint32_t	arp_spa;		/* sender protocol address */
+	uint8_t	arp_tha[ETH_ALEN];	/* target hardware address */
+	uint32_t	arp_tpa;		/* target protocol address */
+} __attribute__ ((packed));
 
 struct ipv4_hdr_t {
   uint8_t ihl_ : 4;

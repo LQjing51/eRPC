@@ -725,6 +725,10 @@ class Rpc {
 
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
+
+    uint8_t* buf = (*(item.routing_info_)).buf_;
+    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
+
     item.msg_buffer_ = const_cast<MsgBuffer *>(tx_msgbuf);
     item.pkt_idx_ = pkt_idx;
     if (kCcRTT) item.tx_ts_ = tx_ts;
@@ -857,6 +861,8 @@ class Rpc {
    * session credits and packet pacing.
    */
   void process_comps_st();
+
+  void handle_arp_packet(uint8_t* pkthdr);
 
   /**
    * @brief Submit a request work item to a random background thread
