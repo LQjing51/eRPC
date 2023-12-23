@@ -20,7 +20,7 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
   // long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
   // printf("kick_req_st finish time: %lld\n", send_finish_time % 10000);
   // #endif
-
+  
   for (size_t x = 0; x < sending; x++) {
     if (bypass) {
       enqueue_pkt_tx_burst_st(sslot, ci.num_tx_ /* pkt_idx */,

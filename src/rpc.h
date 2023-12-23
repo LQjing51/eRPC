@@ -23,7 +23,8 @@
 #include <sys/time.h>
 // #define lqj_debug 1
 #define ZeroCopyTX 1
-#define KeepSend 1
+// #define KeepSend 1
+// #define run_flow_distribution 1
 
 namespace erpc {
 
@@ -444,6 +445,9 @@ class Rpc {
    */
   void fault_inject_set_pkt_drop_prob_st(double pkt_drop_prob);
 
+  /// Actually run one iteration of the event loop
+  void run_event_loop_do_one_st();
+
  private:
   int create_session_st(std::string remote_uri, uint8_t rem_rpc_id);
   int destroy_session_st(int session_num);
@@ -656,8 +660,6 @@ class Rpc {
   /// Implementation of the run_event_loop(timeout) API function
   void run_event_loop_timeout_st(size_t timeout_ms);
 
-  /// Actually run one iteration of the event loop
-  void run_event_loop_do_one_st();
   void fake_process_resp(SSlot* sslot);
 
   /// Enqueue client packets for a sslot that has at least one credit and

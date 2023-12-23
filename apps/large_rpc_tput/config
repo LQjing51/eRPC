@@ -1,9 +1,11 @@
---test_ms 20000
+--test_ms 50000
 --req_size 950
+--small_req_size 32
+--large_req_size 950
 --resp_size 32
 --num_processes 2
---num_proc_0_threads 4
---num_proc_other_threads 4
+--num_proc_0_threads 1
+--num_proc_other_threads 1
 --concurrency 128
 --drop_prob 0.0
 --profile incast
