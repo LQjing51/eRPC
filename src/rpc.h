@@ -756,6 +756,10 @@ class Rpc {
 
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
+    
+    uint8_t* buf = (*(item.routing_info_)).buf_;
+    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
+
     item.msg_buffer_ = ctrl_msgbuf;
     item.pkt_idx_ = 0;
     if (kCcRTT) item.tx_ts_ = tx_ts;
