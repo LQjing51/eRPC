@@ -22,7 +22,7 @@
 
 #include <sys/time.h>
 // #define lqj_debug 1
-#define ZeroCopyTX 1
+// #define ZeroCopyTX 1
 // #define KeepSend 1
 // #define run_flow_distribution 1
 

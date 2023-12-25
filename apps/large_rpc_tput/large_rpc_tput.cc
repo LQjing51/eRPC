@@ -205,11 +205,16 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   c.tput_t0.reset();
   double ns = 0;
   for (size_t i = 0; i < FLAGS_test_ms; i += ns/1000000) {
-    while(true){
-      rpc.run_event_loop_do_one_st();
-      if (unlikely(ctrl_c_pressed == 1)) break;
-      if(c.stat_tx_bytes_tot >= transmission) break;
-    }
+    #ifdef run_flow_distribution
+      while(true){
+        rpc.run_event_loop_do_one_st();
+        if (unlikely(ctrl_c_pressed == 1)) break;
+        if(c.stat_tx_bytes_tot >= transmission) break;
+      }
+    #else
+      rpc.run_event_loop(kAppEvLoopMs);
+    #endif
+    
     if (unlikely(ctrl_c_pressed == 1)) break;
     if (c.session_num_vec_.size() == 0) continue;  // No stats to print
 
