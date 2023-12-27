@@ -21,10 +21,11 @@
 #include "util/udp_client.h"
 
 #include <sys/time.h>
-// #define lqj_debug 1
-#define ZeroCopyTX 1
-// #define KeepSend 1
-// #define run_flow_distribution 1
+// #define KeepSend
+// #define lqj_debug
+// #define TACC
+#define ZeroCopyTX
+// #define run_flow_distribution
 extern std::vector<std::string> debug_buffer;
 namespace erpc {
 
@@ -725,6 +726,12 @@ class Rpc {
 
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
+
+    #ifdef TACC
+    uint8_t* buf = (*(item.routing_info_)).buf_;
+    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
+    #endif
+
     item.msg_buffer_ = const_cast<MsgBuffer *>(tx_msgbuf);
     item.pkt_idx_ = pkt_idx;
     if (kCcRTT) item.tx_ts_ = tx_ts;
@@ -762,6 +769,12 @@ class Rpc {
 
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
+    
+    #ifdef TACC
+    uint8_t* buf = (*(item.routing_info_)).buf_;
+    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
+    #endif
+    
     item.msg_buffer_ = ctrl_msgbuf;
     item.pkt_idx_ = 0;
     if (kCcRTT) item.tx_ts_ = tx_ts;
@@ -876,6 +889,8 @@ class Rpc {
    */
   void process_comps_st();
 
+  void handle_arp_packet(uint8_t* pkthdr);
+
   /**
    * @brief Submit a request work item to a random background thread
    *
@@ -984,6 +999,11 @@ class Rpc {
   // Transport
   TTr *transport_ = nullptr;  ///< The unreliable transport
 
+  /// The append-only list of session pointers, indexed by session number.
+  /// Disconnected sessions are denoted by null pointers. This grows as sessions
+  /// are repeatedly connected and disconnected, but 8 bytes per session is OK.
+  std::vector<Session *> session_vec_;
+
  private:
   // Constructor args
   Nexus *nexus_;
@@ -1009,11 +1029,6 @@ class Rpc {
   TlsRegistry *tls_registry_;  ///< Pointer to the Nexus's thread-local registry
 
   // Sessions
-
-  /// The append-only list of session pointers, indexed by session number.
-  /// Disconnected sessions are denoted by null pointers. This grows as sessions
-  /// are repeatedly connected and disconnected, but 8 bytes per session is OK.
-  std::vector<Session *> session_vec_;
 
   /// Current number of ring buffers available to use for sessions
   size_t ring_entries_available_ = TTr::kNumRxRingEntries;

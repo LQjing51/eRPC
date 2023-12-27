@@ -228,8 +228,8 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     printf(
         "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
         "Gbps (IOPS).\n",
-        c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot,
-        stats.tx_gbps, c.stat_tx_bytes_tot);    
+        c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot/FLAGS_resp_size,
+        stats.tx_gbps, c.stat_tx_bytes_tot/FLAGS_req_size);    
 
     c.stat_rx_bytes_tot = 0;
     c.stat_tx_bytes_tot = 0;
