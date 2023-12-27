@@ -14,20 +14,20 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
       (std::min)(credits, sslot->tx_msgbuf_->num_pkts_ - ci.num_tx_);
   int bypass = can_bypass_wheel(sslot);
   
-  // #ifdef lqj_debug
-  // struct timeval cur_time;
-  // gettimeofday(&cur_time, NULL);
-  // long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-  // printf("kick_req_st finish time: %lld\n", send_finish_time % 10000);
-  // #endif
-  
+  #ifdef lqj_debug
+  size_t tsc = dpath_rdtsc();
+  // printf("kick_req_st %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
+  std::string str = "kick_req_st " + std::to_string(tsc%1000000) + "\n";
+  debug_buffer.push_back(str);
+  #endif
+
   for (size_t x = 0; x < sending; x++) {
     if (bypass) {
       enqueue_pkt_tx_burst_st(sslot, ci.num_tx_ /* pkt_idx */,
                               &ci.tx_ts_[ci.num_tx_ % kSessionCredits]);
     } else {
       #ifdef lqj_debug
-      printf("kick_req_st: no bypass, enqueue wheel\n");
+      printf("warn: in kick_req_st, do not bypass cc, enqueue wheel\n");
       #endif
       enqueue_wheel_req_st(sslot, ci.num_tx_);
     }

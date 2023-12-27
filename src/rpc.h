@@ -22,10 +22,10 @@
 
 #include <sys/time.h>
 // #define lqj_debug 1
-// #define ZeroCopyTX 1
+#define ZeroCopyTX 1
 // #define KeepSend 1
 // #define run_flow_distribution 1
-
+extern std::vector<std::string> debug_buffer;
 namespace erpc {
 
 /**
@@ -630,7 +630,7 @@ class Rpc {
   /// transport's DMA queue
   void drain_tx_batch_and_dma_queue() {
     #ifdef lqj_debug
-    printf("in drain_tx_batch_and_dma_queue, %lu\n", tx_batch_i_);
+    printf("warn: in drain_tx_batch_and_dma_queue, trasmit immediately%lu\n", tx_batch_i_);
     #endif
     if (tx_batch_i_ > 0) do_tx_burst_st();
     transport_->tx_flush();
@@ -742,12 +742,12 @@ class Rpc {
 
     tx_batch_i_++;
 
-    // #ifdef lqj_debug
-    // struct timeval cur_time;
-    // gettimeofday(&cur_time, NULL);
-    // long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-    // printf("enqueue_pkt_tx_burst_st finish time: %lld\n", send_finish_time % 10000);
-    // #endif
+    #ifdef lqj_debug
+    size_t tsc = dpath_rdtsc();
+    // printf("enqueue_pkt_tx_burst_st %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
+    std::string str = "enqueue_pkt_tx_burst_st " + std::to_string(tsc%1000000) + "\n";
+    debug_buffer.push_back(str);
+    #endif
 
     if (tx_batch_i_ == TTr::kPostlist) {
       do_tx_burst_st();
@@ -779,9 +779,6 @@ class Rpc {
 
     tx_batch_i_++;
     if (tx_batch_i_ == TTr::kPostlist) {
-      #ifdef lqj_debug
-      printf("in enqueue_hdr_tx_burst_st, %lu\n", tx_batch_i_);
-      #endif
       do_tx_burst_st();
     }
   }
@@ -843,10 +840,10 @@ class Rpc {
       }
     }
     #ifdef lqj_debug
-    struct timeval cur_time;
-    gettimeofday(&cur_time, NULL);
-    long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-    printf("%ld do_tx_burst_st finish time: %lld\n",get_etid(), send_finish_time % 10000);
+    size_t tsc = dpath_rdtsc();
+    // printf("do_tx_burst_st %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
+    std::string str = "do_tx_burst_st " + std::to_string(tsc%1000000) + "\n";
+    debug_buffer.push_back(str);
     #endif
     transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
     tx_batch_i_ = 0;

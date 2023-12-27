@@ -102,10 +102,10 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
   }
 
   #ifdef lqj_debug
-    struct timeval cur_time;
-    gettimeofday(&cur_time, NULL);
-    long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-    printf("%d erpc send one round time: %lld\n", thread_num, send_finish_time % 10000);
+    size_t tsc = dpath_rdtsc();
+    // printf("%d erpc send one round time: %ld\n",thread_num, tsc%1000000);//static_cast<long long>(to_nsec(tsc, 2.199949))%1000000);
+    std::string str = "erpc send one round time " + std::to_string(tsc%1000000) + "\n";
+    debug_buffer.push_back(str);
   #endif
   
   size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, num_pkts);
@@ -125,11 +125,10 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
     }
   }
   #ifdef lqj_debug
-    // struct timeval cur_time;
-    gettimeofday(&cur_time, NULL);
-    send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-    printf("%d dpdk send one round time: %lld\n",thread_num, send_finish_time % 10000);
-    printf("%d send packets: %lu\n",thread_num, num_pkts);
+    size_t finish_tsc = dpath_rdtsc();
+    // printf("%d dpdk send %lu pkts: %ld\n",thread_num, num_pkts,finish_tsc%1000000);//static_cast<long long>(to_nsec(finish_tsc, 2.199949))%1000000);
+    std::string finish_str = "dpdk send one round time " + std::to_string(finish_tsc%1000000) + "\n";
+    debug_buffer.push_back(finish_str);
   #endif
 }
 

@@ -110,10 +110,10 @@ void app_cont_func(void *_context, void *_tag) {
   }
 
 
-  // Measure latency. 1 us granularity is sufficient for large RPC latency.
-  double usec = erpc::to_usec(erpc::rdtsc() - c->req_ts[msgbuf_idx],
-                              c->rpc_->get_freq_ghz());
-  c->lat_vec.push_back(usec);
+  // // Measure latency. 1 us granularity is sufficient for large RPC latency.
+  // double usec = erpc::to_usec(erpc::rdtsc() - c->req_ts[msgbuf_idx],
+  //                             c->rpc_->get_freq_ghz());
+  // c->lat_vec.push_back(usec);
 
   // Check the response
   erpc::rt_assert(resp_msgbuf.get_data_size() == FLAGS_resp_size,
@@ -200,7 +200,10 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     }
   }
   #ifdef lqj_debug
-  rpc.run_event_loop(30);
+  rpc.run_event_loop(1000);
+  for(auto &item : debug_buffer){
+    printf("%s", item.c_str());
+  }
   #else
   c.tput_t0.reset();
   double ns = 0;
@@ -214,7 +217,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     #else
       rpc.run_event_loop(kAppEvLoopMs);
     #endif
-    
+
     if (unlikely(ctrl_c_pressed == 1)) break;
     if (c.session_num_vec_.size() == 0) continue;  // No stats to print
 

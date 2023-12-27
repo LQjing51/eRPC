@@ -66,12 +66,6 @@ class ClientContext : public BasicAppContext {
 
 void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   auto *c = static_cast<ServerContext *>(_context);
-  #ifdef lqj_debug
-  struct timeval cur_time;
-  gettimeofday(&cur_time, NULL);
-  long long received_time = cur_time.tv_sec * 1000000.0 + cur_time.tv_usec;
-  printf("receive time: %lld\n", (received_time)%100000);
-  #endif
   erpc::Rpc<erpc::CTransport>::resize_msg_buffer(&req_handle->pre_resp_msgbuf_,
                                                  FLAGS_resp_size);
   c->rpc_->enqueue_response(req_handle, &req_handle->pre_resp_msgbuf_);
@@ -122,13 +116,7 @@ inline void send_req(ClientContext &c) {
     c.rpc_->resize_msg_buffer(&c.req_msgbuf_, c.req_size_);
     c.rpc_->resize_msg_buffer(&c.resp_msgbuf_, FLAGS_resp_size);
   }
-  #ifdef lqj_debug
-    struct timeval cur_time;
-    gettimeofday(&cur_time, NULL);
-    c.start_tsc_ = cur_time.tv_sec * 1000000.0 + cur_time.tv_usec;
-    // lqj_start_tsc = c.start_tsc_;
-    printf("send time: %lld\n", (c.start_tsc_)%100000);
-  #else
+
   //randomly choose a server process, as num_server_processes is 1，the only result is 0
   c.start_tsc_ = erpc::rdtsc();
   #endif

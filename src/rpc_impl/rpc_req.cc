@@ -26,7 +26,7 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
   // If a free sslot is unavailable, save to session backlog
   if (unlikely(session->client_info_.sslot_free_vec_.size() == 0)) {
     #ifdef lqj_debug
-    printf("in enqueue request: no available ssot\n");
+    printf("warn: no available ssot, save to session backlog\n");
     #endif
     session->client_info_.enq_req_backlog_.emplace(session_num, req_type,
                                                    req_msgbuf, resp_msgbuf,
@@ -68,16 +68,16 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
     }
   }
   #ifdef lqj_debug
-  struct timeval cur_time;
-  gettimeofday(&cur_time, NULL);
-  long long send_finish_time = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec);
-  printf("%ld enqueue request finish time: %lld\n", get_etid(), send_finish_time % 10000);
+  size_t tsc = dpath_rdtsc();
+  // printf("enqueue request %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
+  std::string str = "enqueue request " + std::to_string(tsc%1000000) + "\n";
+  debug_buffer.push_back(str);
   #endif
   if (likely(session->client_info_.credits_ > 0)) {
     kick_req_st(&sslot);
   } else {
     #ifdef lqj_debug
-    printf("in enqueue request: no credits, push to stallq\n");
+    printf("warn: no credits, push to stallq\n");
     #endif
     stallq_.push_back(&sslot);
   }
