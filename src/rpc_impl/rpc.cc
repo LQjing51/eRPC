@@ -7,6 +7,7 @@
 #include <stdexcept>
 
 #include "rpc.h"
+std::vector<std::string> debug_buffer;
 
 namespace erpc {
 

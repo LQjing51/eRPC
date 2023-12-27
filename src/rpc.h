@@ -21,10 +21,12 @@
 #include "util/udp_client.h"
 
 #include <sys/time.h>
-// #define lqj_debug 1
-// #define KeepSend 1
+// #define KeepSend
+// #define lqj_debug
+// #define TACC
+#define ZeroCopyTX
 // #define run_flow_distribution
-
+extern std::vector<std::string> debug_buffer;
 namespace erpc {
 
 /**
@@ -294,6 +296,7 @@ class Rpc {
   inline void run_event_loop(size_t timeout_ms) {
     run_event_loop_timeout_st(timeout_ms);
   }
+
   /**
    * @brief Run one iteration of eRPC's event loop. Users must call this
    * periodically to make progress, since the event loop performs most of eRPC's
@@ -627,6 +630,9 @@ class Rpc {
   /// Complete transmission for all packets in the Rpc's TX batch and the
   /// transport's DMA queue
   void drain_tx_batch_and_dma_queue() {
+    #ifdef lqj_debug
+    printf("warn: in drain_tx_batch_and_dma_queue, trasmit immediately%lu\n", tx_batch_i_);
+    #endif
     if (tx_batch_i_ > 0) do_tx_burst_st();
     transport_->tx_flush();
   }
@@ -654,6 +660,8 @@ class Rpc {
 
   /// Implementation of the run_event_loop(timeout) API function
   void run_event_loop_timeout_st(size_t timeout_ms);
+
+  void fake_process_resp(SSlot* sslot);
 
   /// Enqueue client packets for a sslot that has at least one credit and
   /// request packets to send. Packets may be added to the timing wheel or the
@@ -718,14 +726,11 @@ class Rpc {
 
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
-    // ERPC_INFO("---------------------------------------------------------\n");
-    // uint8_t* buf = (*(item.routing_info_)).buf_;
-    // for(int i = 0; i*6 < 48; i++){
-    //   ERPC_INFO("%u %u %u %u %u %u\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-    //   ERPC_INFO("%hx %hx %hx %hx %hx %hx\n\n", buf[i*6],buf[i*6+1],buf[i*6+2],buf[i*6+3],buf[i*6+4],buf[i*6+5]);
-    // }
-    // ERPC_INFO("---------------------------------------------------------\n");
-    
+
+    #ifdef TACC
+    uint8_t* buf = (*(item.routing_info_)).buf_;
+    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
+    #endif
 
     item.msg_buffer_ = const_cast<MsgBuffer *>(tx_msgbuf);
     item.pkt_idx_ = pkt_idx;
@@ -736,14 +741,24 @@ class Rpc {
       testing_.pkthdr_tx_queue_.push(*tx_msgbuf->get_pkthdr_n(pkt_idx));
     }
 
-    ERPC_TRACE("Rpc %u, lsn %u (%s): TX %s. Slot %s.%s\n", rpc_id_,
+    ERPC_TRACE("enqueue_pkt_tx_burst_st: Rpc %u, lsn %u (%s): TX %s. Slot %s.%s\n", rpc_id_,
                sslot->session_->local_session_num_,
                sslot->session_->get_remote_hostname().c_str(),
                tx_msgbuf->get_pkthdr_str(pkt_idx).c_str(),
                sslot->progress_str().c_str(), item.drop_ ? " Drop." : "");
 
     tx_batch_i_++;
-    if (tx_batch_i_ == TTr::kPostlist) do_tx_burst_st();
+
+    #ifdef lqj_debug
+    size_t tsc = dpath_rdtsc();
+    // printf("enqueue_pkt_tx_burst_st %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
+    std::string str = "enqueue_pkt_tx_burst_st " + std::to_string(tsc%1000000) + "\n";
+    debug_buffer.push_back(str);
+    #endif
+
+    if (tx_batch_i_ == TTr::kPostlist) {
+      do_tx_burst_st();
+    }
   }
 
   /// Enqueue a control packet for tx_burst. ctrl_msgbuf can be reused after
@@ -754,6 +769,12 @@ class Rpc {
 
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
+    
+    #ifdef TACC
+    uint8_t* buf = (*(item.routing_info_)).buf_;
+    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
+    #endif
+    
     item.msg_buffer_ = ctrl_msgbuf;
     item.pkt_idx_ = 0;
     if (kCcRTT) item.tx_ts_ = tx_ts;
@@ -770,7 +791,9 @@ class Rpc {
                sslot->progress_str().c_str(), item.drop_ ? " Drop." : "");
 
     tx_batch_i_++;
-    if (tx_batch_i_ == TTr::kPostlist) do_tx_burst_st();
+    if (tx_batch_i_ == TTr::kPostlist) {
+      do_tx_burst_st();
+    }
   }
 
   /// Enqueue a request packet to the timing wheel
@@ -782,7 +805,8 @@ class Rpc {
     size_t desired_tx_tsc =
         sslot->session_->cc_getupdate_tx_tsc(ref_tsc, pktsz);
 
-    ERPC_CC("Rpc %u: lsn/req/pkt %u/%zu/%zu, REQ wheeled for %.3f us.\n",
+    // ERPC_CC
+    ERPC_CC("enqueue_wheel_req_st: Rpc %u: lsn/req/pkt %u/%zu/%zu, REQ wheeled for %.3f us.\n",
             rpc_id_, sslot->session_->local_session_num_, sslot->cur_req_num_,
             pkt_num, to_usec(desired_tx_tsc - creation_tsc_, freq_ghz_));
 
@@ -828,7 +852,12 @@ class Rpc {
         }
       }
     }
-
+    #ifdef lqj_debug
+    size_t tsc = dpath_rdtsc();
+    // printf("do_tx_burst_st %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
+    std::string str = "do_tx_burst_st " + std::to_string(tsc%1000000) + "\n";
+    debug_buffer.push_back(str);
+    #endif
     transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
     tx_batch_i_ = 0;
   }
@@ -859,6 +888,8 @@ class Rpc {
    * session credits and packet pacing.
    */
   void process_comps_st();
+
+  void handle_arp_packet(uint8_t* pkthdr);
 
   /**
    * @brief Submit a request work item to a random background thread
@@ -964,6 +995,13 @@ class Rpc {
   /// Retry session connection if the remote RPC ID was invalid. This usually
   /// happens when the server RPC thread has not started.
   bool retry_connect_on_invalid_rpc_id_ = false;
+
+  // Transport
+  TTr *transport_ = nullptr;  ///< The unreliable transport
+
+  /// The append-only list of session pointers, indexed by session number.
+  /// Disconnected sessions are denoted by null pointers. This grows as sessions
+  /// are repeatedly connected and disconnected, but 8 bytes per session is OK.
   std::vector<Session *> session_vec_;
 
  private:
@@ -991,14 +1029,6 @@ class Rpc {
   TlsRegistry *tls_registry_;  ///< Pointer to the Nexus's thread-local registry
 
   // Sessions
-
-  /// The append-only list of session pointers, indexed by session number.
-  /// Disconnected sessions are denoted by null pointers. This grows as sessions
-  /// are repeatedly connected and disconnected, but 8 bytes per session is OK.
-  // std::vector<Session *> session_vec_;
-
-  // Transport
-  TTr *transport_ = nullptr;  ///< The unreliable transport
 
   /// Current number of ring buffers available to use for sessions
   size_t ring_entries_available_ = TTr::kNumRxRingEntries;

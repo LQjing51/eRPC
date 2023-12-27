@@ -10,7 +10,7 @@
 
 static constexpr size_t kAppReqType = 1;
 static constexpr uint8_t kAppDataByte = 3;  // Data transferred in req & resp
-static constexpr size_t kAppMaxConcurrency = 32;  // Outstanding reqs per thread
+static constexpr size_t kAppMaxConcurrency = 128;  // Outstanding reqs per thread
 
 // Globals
 volatile sig_atomic_t ctrl_c_pressed = 0;
@@ -19,6 +19,8 @@ void ctrl_c_handler(int) { ctrl_c_pressed = 1; }
 // Flags
 DEFINE_uint64(num_proc_0_threads, 0, "Threads in process 0");
 DEFINE_uint64(num_proc_other_threads, 0, "Threads in process with ID != 0");
+DEFINE_uint64(large_req_size, 0, "Large Request data size");
+DEFINE_uint64(small_req_size, 0, "Small Request data size");
 DEFINE_uint64(req_size, 0, "Request data size");
 DEFINE_uint64(resp_size, 0, "Response data size");
 DEFINE_uint64(concurrency, 0, "Concurrent requests per thread");
