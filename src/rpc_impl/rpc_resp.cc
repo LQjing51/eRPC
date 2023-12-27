@@ -120,10 +120,6 @@ void Rpc<TTr>::process_resp_one_st(SSlot *sslot, const pkthdr_t *pkthdr,
     // Transmit remaining RFRs before response memcpy. We have credits.
     if (ci.num_tx_ != wire_pkts(req_msgbuf, resp_msgbuf)) kick_rfr_st(sslot);
 
-    // #ifdef lqj_debug
-    //   printf("in process_resp_one_st: copy data to msgbuf\n");
-    // #endif
-
     // Hdr 0 was copied earlier, other headers are unneeded, so copy just data.
     const size_t pkt_idx = resp_ntoi(pkthdr->pkt_num_, req_msgbuf->num_pkts_);
     copy_data_to_msgbuf(resp_msgbuf, pkt_idx, pkthdr);
