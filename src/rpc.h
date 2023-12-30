@@ -30,7 +30,7 @@
 #define MACHINE_IP DTHUB_SERVER_IP
 
 #define ZeroCopyTX
-// #define KeepSend
+#define KeepSend
 // #define run_flow_distribution
 
 namespace erpc {
@@ -636,7 +636,6 @@ class Rpc {
   /// Complete transmission for all packets in the Rpc's TX batch and the
   /// transport's DMA queue
   void drain_tx_batch_and_dma_queue() {
-    printf("debug:drain_tx_batch_and_dma_queue\n");
     if (tx_batch_i_ > 0) do_tx_burst_st();
     transport_->tx_flush();
   }
@@ -754,7 +753,6 @@ class Rpc {
     tx_batch_i_++;
 
     if (tx_batch_i_ == TTr::kPostlist) {
-      printf("debug: enqueue_pkt_tx_burst_st\n");
       do_tx_burst_st();
     }
   }
@@ -790,7 +788,6 @@ class Rpc {
 
     tx_batch_i_++;
     if (tx_batch_i_ == TTr::kPostlist) {
-      printf("debug: enqueue_hdr_tx_burst_st\n");
       do_tx_burst_st();
     }
   }
@@ -851,7 +848,8 @@ class Rpc {
         }
       }
     }
-    transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
+    bool client = this->session_vec_[0]->is_client();
+    transport_->tx_burst(tx_burst_arr_, tx_batch_i_, client);
     tx_batch_i_ = 0;
   }
 
