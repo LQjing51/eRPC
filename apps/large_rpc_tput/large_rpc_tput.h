@@ -86,7 +86,6 @@ class AppContext : public BasicAppContext {
   size_t stat_rx_bytes_tot = 0;  // Total bytes received
   size_t stat_tx_bytes_tot = 0;  // Total bytes transmitted
 
-  long long req_time[kAppMaxConcurrency];
   uint64_t req_ts[kAppMaxConcurrency];  // Per-request timestamps
   erpc::MsgBuffer req_msgbuf[kAppMaxConcurrency];
   erpc::MsgBuffer resp_msgbuf[kAppMaxConcurrency];
@@ -106,7 +105,7 @@ void msgbuf_to_rte_mbuf(AppContext* c, erpc::MsgBuffer &msgbuf){
 
     msgbuf.buffer_.buf_ = hdr_mbuf;
     msgbuf.buf_ = hdr_mbuf + sizeof(erpc::pkthdr_t);
-    
+
     erpc::pkthdr_t *pkthdr_0 = msgbuf.get_pkthdr_0();
     pkthdr_0->magic_ = erpc::kPktHdrMagic;
     msgbuf.tx_mbuf = tx_mbuf;

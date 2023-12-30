@@ -32,7 +32,6 @@ void Rpc<TTr>::fake_process_resp(SSlot *sslot){
   }
 
   if (likely(cont_etid == kInvalidBgETid)) {
-    // printf("here\n");
     cont_func(context_, tag);
   } else {
     submit_bg_resp_st(cont_func, tag, cont_etid);
@@ -56,9 +55,7 @@ void Rpc<TTr>::run_event_loop_do_one_st() {
   if (kCcPacing) process_wheel_st();  // TX
 
   // Drain all packets
-  if (tx_batch_i_ > 0) {
-    do_tx_burst_st();
-  }
+  if (tx_batch_i_ > 0) do_tx_burst_st();
 
   if (unlikely(multi_threaded_)) {
     // Process the background queues
@@ -67,9 +64,13 @@ void Rpc<TTr>::run_event_loop_do_one_st() {
   }
   
   #ifdef KeepSend
-  Session *session = session_vec_[0];
-  for(SSlot &sslot : session->sslot_arr_){
-    fake_process_resp(&sslot);
+  if(session_vec_.size() > 0){
+    Session *session = session_vec_[0];
+    if(session->is_client()){
+      for(SSlot &sslot : session->sslot_arr_){
+        fake_process_resp(&sslot);
+      }
+    }
   }
   #endif
  

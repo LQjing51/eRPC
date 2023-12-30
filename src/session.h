@@ -60,7 +60,12 @@ class Session {
 
  public:
   enum class Role : int { kServer, kClient };
-
+  
+  inline bool is_client() const { return role_ == Role::kClient; }
+  inline bool is_server() const { return role_ == Role::kServer; }
+  inline bool is_connected() const {
+    return state_ == SessionState::kConnected;
+  }
  private:
   Session(Role role, conn_req_uniq_token_t uniq_token, double freq_ghz,
           double link_bandwidth)
@@ -100,12 +105,6 @@ class Session {
 
   /// All session resources are freed by the owner Rpc
   ~Session() {}
-
-  inline bool is_client() const { return role_ == Role::kClient; }
-  inline bool is_server() const { return role_ == Role::kServer; }
-  inline bool is_connected() const {
-    return state_ == SessionState::kConnected;
-  }
 
   /**
    * @brief Get the desired TX timestamp, and update TX timestamp tracking

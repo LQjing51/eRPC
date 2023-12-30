@@ -56,18 +56,21 @@ void send_req(AppContext *c, size_t msgbuf_idx) {
            c->thread_id_, msgbuf_idx);
   }
 
-  // c->req_ts[msgbuf_idx] = erpc::rdtsc();
   c->rpc_->enqueue_request(c->session_num_vec_[0], kAppReqType, &req_msgbuf,
                            &c->resp_msgbuf[msgbuf_idx], app_cont_func,
                            reinterpret_cast<void *>(msgbuf_idx));
 
   c->stat_tx_bytes_tot += cur_size;
-  
 }
 
 void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   auto *c = static_cast<AppContext *>(_context);
   const erpc::MsgBuffer *req_msgbuf = req_handle->get_req_msgbuf();
+  #ifdef KeepSend
+  size_t cur_size = req_msgbuf->get_data_size();
+  c->stat_rx_bytes_tot += cur_size;
+  #else
+
   uint8_t resp_byte = req_msgbuf->buf_[0];
 
   // Use dynamic response
@@ -85,6 +88,7 @@ void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   c->stat_tx_bytes_tot += FLAGS_resp_size;
 
   c->rpc_->enqueue_response(req_handle, &resp_msgbuf);
+  #endif
 }
 
 void app_cont_func(void *_context, void *_tag) {
@@ -108,12 +112,6 @@ void app_cont_func(void *_context, void *_tag) {
   if (kAppVerbose) {
     printf("large_rpc_tput: Received response for msgbuf %zu.\n", msgbuf_idx);
   }
-
-
-  // // Measure latency. 1 us granularity is sufficient for large RPC latency.
-  // double usec = erpc::to_usec(erpc::rdtsc() - c->req_ts[msgbuf_idx],
-  //                             c->rpc_->get_freq_ghz());
-  // c->lat_vec.push_back(usec);
 
   // Check the response
   erpc::rt_assert(resp_msgbuf.get_data_size() == FLAGS_resp_size,
@@ -186,25 +184,29 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   } else {
     printf("large_rpc_tput: Thread %zu: No sessions created.\n", thread_id);
   }
+
   // All threads allocate MsgBuffers, but they may not send requests
   alloc_req_resp_msg_buffers(&c);
+
   size_t console_ref_tsc = erpc::rdtsc();
 
   #ifdef run_flow_distribution
-  generate_distribution();
+  if (c.session_num_vec_.size() > 0) {
+    generate_distribution();
+  }
   #endif
+
   // Any thread that creates a session sends requests
   if (c.session_num_vec_.size() > 0) {
     for (size_t msgbuf_idx = 0; msgbuf_idx < FLAGS_concurrency; msgbuf_idx++) {
       send_req(&c, msgbuf_idx);
     }
   }
-  #ifdef lqj_debug
-  rpc.run_event_loop(1000);
-  for(auto &item : debug_buffer){
-    printf("%s", item.c_str());
+
+  while(!c.session_num_vec_.size() && !c.stat_rx_bytes_tot){  
+    rpc.run_event_loop_do_one_st();
+    if (unlikely(ctrl_c_pressed == 1)) break;
   }
-  #else
   c.tput_t0.reset();
   double ns = 0;
   for (size_t i = 0; i < FLAGS_test_ms; i += ns/1000000) {
@@ -212,19 +214,20 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
       while(true){
         rpc.run_event_loop_do_one_st();
         if (unlikely(ctrl_c_pressed == 1)) break;
-        if(c.stat_tx_bytes_tot >= transmission) break;
+        if(c.stat_tx_bytes_tot >= transmission || c.stat_rx_bytes_tot >= transmission) break;
       }
     #else
       rpc.run_event_loop(kAppEvLoopMs);
     #endif
 
     if (unlikely(ctrl_c_pressed == 1)) break;
-    if (c.session_num_vec_.size() == 0) continue;  // No stats to print
 
     ns = c.tput_t0.get_ns();
+
     auto &stats = c.app_stats[c.thread_id_];
     stats.rx_gbps = c.stat_rx_bytes_tot * 8 / ns;
     stats.tx_gbps = c.stat_tx_bytes_tot * 8 / ns;
+
     printf(
         "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
         "Gbps (IOPS).\n",
@@ -233,12 +236,19 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
 
     c.stat_rx_bytes_tot = 0;
     c.stat_tx_bytes_tot = 0;
+    if((c.rpc_->session_vec_[0])->is_server()){
+      while(c.stat_rx_bytes_tot == 0){
+        rpc.run_event_loop_do_one_st();
+        if (unlikely(ctrl_c_pressed == 1)) break;
+      }
+    }
     #ifdef run_flow_distribution
-    generate_distribution();
+    if((c.rpc_->session_vec_[0])->is_client()){
+      generate_distribution();
+    }
     #endif
     c.tput_t0.reset();
   }
-  #endif
 
   erpc::TimingWheel *wheel = rpc.get_wheel();
   if (wheel != nullptr && !wheel->record_vec_.empty()) {
@@ -297,7 +307,6 @@ int main(int argc, char **argv) {
                     FLAGS_numa_node, 0);
   nexus.register_req_func(kAppReqType, req_handler);
 
-  //client's process id = 1, so num_threads = FLAGS_num_proc_other_threads
   size_t num_threads = FLAGS_process_id == 0 ? FLAGS_num_proc_0_threads
                                              : FLAGS_num_proc_other_threads;
   std::vector<std::thread> threads(num_threads);

@@ -3,7 +3,7 @@ username='qijing'
 echo "" > ~/info.txt
 echo "" > ~/result.txt
 
-if [ 'tx_sin_core' == $1 ]; then
+if [ 'tx_sin_core' == $1 ] || [ 'all' == $1 ]; then
     echo "begin test of TX, Single Core" >> ~/result.txt
     sed -i "24s/.*/#define KeepSend/" src/rpc.h
     scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
@@ -21,8 +21,9 @@ if [ 'tx_sin_core' == $1 ]; then
         cat ~/info.txt | tail -n 1 >> ~/result.txt
         echo "finish $size" >> ~/info.txt
     done
+fi
 
-elif [ 'tx_mul_core' == $1 ]; then
+if [ 'tx_mul_core' == $1 ]|| [ 'all' == $1 ]; then
     echo "begin test of TX, Multiple Cores" >> ~/result.txt
     sed -i "24s/.*/#define KeepSend/" src/rpc.h
     scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
@@ -45,8 +46,9 @@ elif [ 'tx_mul_core' == $1 ]; then
             echo "finish thread[$thread] size[$size]" >> ~/info.txt
         done
     done
+fi
 
-elif [ 'sp_sin_core' == $1 ]; then
+if [ 'sp_sin_core' == $1 ]|| [ 'all' == $1 ]; then
     echo "begin test of Small Response, Single Core" >> ~/result.txt
     sed -i "24s/.*/\/\/ #define KeepSend/" src/rpc.h
     scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
@@ -64,7 +66,9 @@ elif [ 'sp_sin_core' == $1 ]; then
         cat ~/info.txt | tail -n 1 >> ~/result.txt
         echo "finish $size" >> ~/info.txt
     done
-elif [ 'sp_mul_core' == $1 ]; then
+fi
+
+if [ 'sp_mul_core' == $1 ]|| [ 'all' == $1 ]; then
     echo "begin test of Small Response, Multiple Cores" >> ~/result.txt
     sed -i "24s/.*/\/\/ #define KeepSend/" src/rpc.h
     scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
@@ -87,7 +91,9 @@ elif [ 'sp_mul_core' == $1 ]; then
             echo "finish thread[$thread] size[$size]" >> ~/info.txt
         done
     done
-elif [ 'ec_sin_core' == $1 ]; then
+fi
+
+if [ 'ec_sin_core' == $1 ]|| [ 'all' == $1 ]; then
     echo "begin test of Echo, Single Core" >> ~/result.txt
     sed -i "24s/.*/\/\/ #define KeepSend/" src/rpc.h
     scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
@@ -106,7 +112,9 @@ elif [ 'ec_sin_core' == $1 ]; then
         cat ~/info.txt | tail -n 1 >> ~/result.txt
         echo "finish $size" >> ~/info.txt
     done
-elif [ 'ec_mul_core' == $1 ]; then
+fi
+
+if [ 'ec_mul_core' == $1 ]|| [ 'all' == $1 ]; then
     echo "begin test of Echo, Multiple Cores" >> ~/result.txt
     sed -i "24s/.*/\/\/ #define KeepSend/" src/rpc.h
     scp src/rpc.h "$username@$server_ip:~/eRPC/src/"

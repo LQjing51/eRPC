@@ -52,8 +52,8 @@ void Rpc<TTr>::process_comps_st() {
             "Dropping.\n",
             rpc_id_, pkthdr->to_string().c_str(),
             pkthdr->headroom_string().c_str());
-        continue;
       }
+      continue;
     }
 
     assert(pkthdr->msg_size_ <= kMaxMsgSize);  // msg_size can be 0 here

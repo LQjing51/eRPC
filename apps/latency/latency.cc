@@ -40,11 +40,7 @@ class ClientContext : public BasicAppContext {
   static constexpr int64_t kLatencyPrecision = 2;  // Two significant digits
 
  public:
-  #ifdef lqj_debug
-  long long start_tsc_;
-  #else
   size_t start_tsc_;
-  #endif
   size_t req_size_;  // Between kAppStartReqSize and kAppEndReqSize
   erpc::MsgBuffer req_msgbuf_, resp_msgbuf_;
   hdr_histogram *latency_hist_;
@@ -139,16 +135,8 @@ void app_cont_func(void *_context, void *) {
            c->resp_msgbuf_.get_data_size());
   }
 
-  #ifdef lqj_debug
-    struct timeval cur_time;
-    gettimeofday(&cur_time, NULL);
-    // lqj_start_tsc = 0;
-    // const double send_lat_us = str2double(c->resp_msgbuf_.buf_);
-    const double req_lat_us = (cur_time.tv_sec * 1000000.0 + cur_time.tv_usec - c->start_tsc_);
-    printf("receive a response: total_latency = %.1f\n", req_lat_us);
-  #else
-    const double req_lat_us = erpc::to_usec(erpc::rdtsc() - c->start_tsc_, c->rpc_->get_freq_ghz());
-  #endif
+
+  const double req_lat_us = erpc::to_usec(erpc::rdtsc() - c->start_tsc_, c->rpc_->get_freq_ghz());
   
   hdr_record_value(c->latency_hist_,
                    static_cast<int64_t>(req_lat_us * kAppLatFac));
@@ -185,9 +173,6 @@ void client_func(erpc::Nexus *nexus) {
 
   send_req(c);
   
-  #ifdef lqj_debug
-  rpc.run_event_loop(30);
-  #else
   for (size_t i = 0; i < FLAGS_test_ms; i += 1000) {
     rpc.run_event_loop(kAppEvLoopMs);  // 1 second
     if (ctrl_c_pressed == 1) break;
@@ -226,7 +211,6 @@ void client_func(erpc::Nexus *nexus) {
     c.latency_samples_prev_ = c.latency_samples_;
     c.double_req_size_ = true;
   }
-  #endif
 }
 
 int main(int argc, char **argv) {
