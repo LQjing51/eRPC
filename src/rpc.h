@@ -27,10 +27,10 @@
 #define TACC_ClIENT_IP "10.0.13.1"
 #define TACC_SERVER_IP "10.0.14.1"
 
-#define MACHINE_IP DTHUB_ClIENT_IP
+#define MACHINE_IP DTHUB_SERVER_IP
 
-// #define ZeroCopyTX
-// #define KeepSend
+#define ZeroCopyTX
+#define KeepSend
 // #define run_flow_distribution
 
 namespace erpc {
@@ -848,7 +848,8 @@ class Rpc {
         }
       }
     }
-    transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
+    bool client = this->session_vec_[0]->is_client();
+    transport_->tx_burst(tx_burst_arr_, tx_batch_i_, client);
     tx_batch_i_ = 0;
   }
 

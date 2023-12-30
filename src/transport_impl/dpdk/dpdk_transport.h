@@ -272,7 +272,7 @@ class DpdkTransport : public Transport {
   static uint32_t get_port_ipv4_addr(size_t phy_port);
 
   // dpdk_transport_datapath.cc
-  void tx_burst(const tx_burst_item_t *tx_burst_arr, size_t num_pkts);
+  void tx_burst(const tx_burst_item_t *tx_burst_arr, size_t num_pkts, bool client);
 
   void tx_burst_for_arp(arp_hdr_t* arph);
 
