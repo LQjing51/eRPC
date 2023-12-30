@@ -30,12 +30,13 @@ class MsgBuffer {
   friend class Rpc<CTransport>;
   friend class Session;
 
- private:
+ public:
   /// Return a pointer to the pre-appended packet header of this MsgBuffer
   inline pkthdr_t *get_pkthdr_0() const {
     return reinterpret_cast<pkthdr_t *>(buf_ - sizeof(pkthdr_t));
   }
 
+ private:
   /// Return a pointer to the nth packet header of this MsgBuffer.
   /// get_pkthdr_0() is more efficient for retrieving the zeroth header.
   inline pkthdr_t *get_pkthdr_n(size_t n) const {
@@ -135,7 +136,8 @@ class MsgBuffer {
    */
   inline size_t get_data_size() const { return data_size_; }
 
- private:
+public:
+
   /// The optional backing hugepage buffer. buffer.buf points to the zeroth
   /// packet header, i.e., not application data.
   Buffer buffer_;
@@ -146,9 +148,9 @@ class MsgBuffer {
   size_t max_num_pkts_;   ///< Max number of packets in this MsgBuffer
   size_t num_pkts_;       ///< Current number of packets in this MsgBuffer
 
- public:
   /// Pointer to the first application data byte. The message buffer is invalid
   /// invalid if this is null.
   uint8_t *buf_;
+  void *tx_mbuf;
 };
 }  // namespace erpc

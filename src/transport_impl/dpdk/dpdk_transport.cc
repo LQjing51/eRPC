@@ -7,7 +7,7 @@
 #include "dpdk_externs.h"
 #include "util/huge_alloc.h"
 #include "util/numautils.h"
-
+#include "rpc.h"
 namespace erpc {
 
 constexpr size_t DpdkTransport::kMaxDataPerPkt;
@@ -170,10 +170,7 @@ void DpdkTransport::resolve_phy_port() {
   struct rte_ether_addr mac;
   rte_eth_macaddr_get(phy_port_, &mac);
   memcpy(resolve_.mac_addr_, &mac.addr_bytes, sizeof(resolve_.mac_addr_));
-
-  // resolve_.ipv4_addr_ = get_port_ipv4_addr(phy_port_);
-  const char* rdma_ip = "10.0.200.18";
-  resolve_.ipv4_addr_ = ipv4_from_str(rdma_ip);
+  resolve_.ipv4_addr_ = ipv4_from_str(MACHINE_IP);
 
   // Resolve RSS indirection table size
   struct rte_eth_dev_info dev_info;

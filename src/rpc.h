@@ -21,12 +21,18 @@
 #include "util/udp_client.h"
 
 #include <sys/time.h>
-// #define KeepSend
-// #define lqj_debug
-// #define TACC
+
+#define DTHUB_ClIENT_IP "10.0.200.17"
+#define DTHUB_SERVER_IP "10.0.200.18"
+#define TACC_ClIENT_IP "10.0.13.1"
+#define TACC_SERVER_IP "10.0.14.1"
+
+#define MACHINE_IP DTHUB_SERVER_IP
+
 #define ZeroCopyTX
+// #define KeepSend
 // #define run_flow_distribution
-extern std::vector<std::string> debug_buffer;
+
 namespace erpc {
 
 /**
@@ -630,9 +636,7 @@ class Rpc {
   /// Complete transmission for all packets in the Rpc's TX batch and the
   /// transport's DMA queue
   void drain_tx_batch_and_dma_queue() {
-    #ifdef lqj_debug
-    printf("warn: in drain_tx_batch_and_dma_queue, trasmit immediately%lu\n", tx_batch_i_);
-    #endif
+    printf("debug:drain_tx_batch_and_dma_queue\n");
     if (tx_batch_i_ > 0) do_tx_burst_st();
     transport_->tx_flush();
   }
@@ -727,10 +731,10 @@ class Rpc {
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
 
-    #ifdef TACC
-    uint8_t* buf = (*(item.routing_info_)).buf_;
-    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
-    #endif
+    if(!strcmp(MACHINE_IP,TACC_ClIENT_IP) || !strcmp(MACHINE_IP,TACC_SERVER_IP)){
+      uint8_t* buf = (*(item.routing_info_)).buf_;
+      memcpy(buf, TACC_Switch_Mac,sizeof(TACC_Switch_Mac));
+    }
 
     item.msg_buffer_ = const_cast<MsgBuffer *>(tx_msgbuf);
     item.pkt_idx_ = pkt_idx;
@@ -749,14 +753,8 @@ class Rpc {
 
     tx_batch_i_++;
 
-    #ifdef lqj_debug
-    size_t tsc = dpath_rdtsc();
-    // printf("enqueue_pkt_tx_burst_st %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
-    std::string str = "enqueue_pkt_tx_burst_st " + std::to_string(tsc%1000000) + "\n";
-    debug_buffer.push_back(str);
-    #endif
-
     if (tx_batch_i_ == TTr::kPostlist) {
+      printf("debug: enqueue_pkt_tx_burst_st\n");
       do_tx_burst_st();
     }
   }
@@ -770,10 +768,10 @@ class Rpc {
     Transport::tx_burst_item_t &item = tx_burst_arr_[tx_batch_i_];
     item.routing_info_ = sslot->session_->remote_routing_info_;
     
-    #ifdef TACC
-    uint8_t* buf = (*(item.routing_info_)).buf_;
-    buf[0] = 0x1c; buf[1] = 0x34; buf[2] = 0xda; buf[3] = 0xf3; buf[4] = 0x9a; buf[5] = 0x48;
-    #endif
+    if(!strcmp(MACHINE_IP,TACC_ClIENT_IP) || !strcmp(MACHINE_IP,TACC_SERVER_IP)){
+      uint8_t* buf = (*(item.routing_info_)).buf_;
+      memcpy(buf, TACC_Switch_Mac,sizeof(TACC_Switch_Mac));
+    }
     
     item.msg_buffer_ = ctrl_msgbuf;
     item.pkt_idx_ = 0;
@@ -792,6 +790,7 @@ class Rpc {
 
     tx_batch_i_++;
     if (tx_batch_i_ == TTr::kPostlist) {
+      printf("debug: enqueue_hdr_tx_burst_st\n");
       do_tx_burst_st();
     }
   }
@@ -852,12 +851,6 @@ class Rpc {
         }
       }
     }
-    #ifdef lqj_debug
-    size_t tsc = dpath_rdtsc();
-    // printf("do_tx_burst_st %ld\n", tsc%1000000);//static_cast<long long>(to_nsec(tsc, freq_ghz_))%1000000);
-    std::string str = "do_tx_burst_st " + std::to_string(tsc%1000000) + "\n";
-    debug_buffer.push_back(str);
-    #endif
     transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
     tx_batch_i_ = 0;
   }
@@ -1004,6 +997,13 @@ class Rpc {
   /// are repeatedly connected and disconnected, but 8 bytes per session is OK.
   std::vector<Session *> session_vec_;
 
+  static constexpr uint8_t TACC_Switch_Mac[6] = {
+      0x1c, 0x34, 0xda, 0xf3, 0x9a, 0x48,
+  };
+
+  static constexpr uint8_t DeskTop_Switch_Mac[6] = {
+      0x1c, 0x34, 0xda, 0xf3, 0x9a, 0x48,
+  };
  private:
   // Constructor args
   Nexus *nexus_;

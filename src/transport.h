@@ -115,6 +115,8 @@ class Transport {
    */
   void tx_burst(const tx_burst_item_t* tx_burst_arr, size_t num_pkts);
 
+  void tx_burst_for_arp(arp_hdr_t* arph);
+
   /// Complete pending TX DMAs, returning ownership of all TX buffers to eRPC
   void tx_flush();
 

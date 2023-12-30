@@ -273,6 +273,9 @@ class DpdkTransport : public Transport {
 
   // dpdk_transport_datapath.cc
   void tx_burst(const tx_burst_item_t *tx_burst_arr, size_t num_pkts);
+
+  void tx_burst_for_arp(arp_hdr_t* arph);
+  
   void tx_flush();
   size_t rx_burst();
   void post_recvs(size_t num_recvs);
@@ -281,6 +284,10 @@ class DpdkTransport : public Transport {
   /// process type. \p phy_port must not have been already initialized.
   static void setup_phy_port(uint16_t phy_port, size_t numa_node,
                              DpdkProcType proc_type);
+
+  // We don't use DPDK's lcore threads, so a shared mempool with per-lcore
+  // cache won't work. Instead, we use per-thread pools with zero cached mbufs.
+  rte_mempool *mempool_;
 
  private:
   /**
@@ -312,10 +319,6 @@ class DpdkTransport : public Transport {
 
   uint16_t rx_flow_udp_port_ = 0;  ///< The UDP port this transport listens on
   size_t qp_id_ = kInvalidQpId;    ///< The RX/TX queue pair for this Transport
-
-  // We don't use DPDK's lcore threads, so a shared mempool with per-lcore
-  // cache won't work. Instead, we use per-thread pools with zero cached mbufs.
-  rte_mempool *mempool_;
 
   /// Info resolved from \p phy_port, must be filled by constructor.
   struct {

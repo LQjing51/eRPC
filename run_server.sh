@@ -1,7 +1,7 @@
 cd ~/eRPC
 if [ 'make' == $1 ]; then
     make -j > ~/outputs.txt 2>&1
-    sleep 10
+    sleep 4
 elif [ 'run' == $1 ]; then
     sed -i "1s/.*/--test_ms 100000/" apps/large_rpc_tput/config
     make large_rpc_tput >> ~/outputs.txt 2>&1

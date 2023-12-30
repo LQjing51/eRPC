@@ -30,6 +30,51 @@ static void format_pkthdr(pkthdr_t *pkthdr,
   udp_hdr->len_ = htons(pkt_size - sizeof(eth_hdr_t) - sizeof(ipv4_hdr_t));
 }
 
+void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
+  uint8_t pkt_size = sizeof(eth_hdr_t)+sizeof(arp_hdr_t);
+  const char* ip = "10.0.14.1";
+  uint32_t host_ip = ipv4_from_str(ip);
+  uint8_t mac[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x47, 0xa8};
+
+  rte_mbuf *tx_mbufs[1];
+  tx_mbufs[0] = rte_pktmbuf_alloc(mempool_);
+  assert(tx_mbufs[0] != nullptr);
+
+  rte_mbuf * tx_mbuf = tx_mbufs[0];
+  uint8_t* packet = rte_pktmbuf_mtod(tx_mbuf, uint8_t *);
+
+  eth_hdr_t *eh = reinterpret_cast<eth_hdr_t *> (packet);
+  arp_hdr_t *arph = reinterpret_cast<arp_hdr_t*> (packet+sizeof(eth_hdr_t));
+
+  //set eth header
+	memcpy(eh->dst_mac_, req_hdr->arp_sha, ETH_ALEN);
+	memcpy(eh->src_mac_, mac, ETH_ALEN);
+	eh->eth_type_ = htons(ETH_P_ARP);
+
+  //set arp header
+  arph->arp_hrd = htons(ARPHRD_ETHER);
+	arph->arp_pro = htons(ETH_P_IP);
+	arph->arp_hln = 6;
+	arph->arp_pln = 4;
+	arph->arp_op =  htons(ARPOP_REPLY);
+	memcpy(arph->arp_sha, mac, ETH_ALEN);
+	arph->arp_spa = htonl(host_ip);
+	memcpy(arph->arp_tha, req_hdr->arp_sha, ETH_ALEN);
+	arph->arp_tpa = req_hdr->arp_spa;
+
+  //set tx_mbuf
+  tx_mbufs[0]->nb_segs = 1;
+  tx_mbufs[0]->pkt_len = pkt_size;
+  tx_mbufs[0]->data_len = pkt_size;
+
+  size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, 1);
+  if (nb_tx_new != 1){
+    printf("failed to send arp reponse\n");
+    nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, 1);
+  }
+  printf("send a arp reply!\n");
+}
+
 void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
                              size_t num_pkts) {
   rte_mbuf *tx_mbufs[kPostlist];
@@ -37,8 +82,13 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
   for (size_t i = 0; i < num_pkts; i++) {
     const tx_burst_item_t &item = tx_burst_arr[i];
     const MsgBuffer *msg_buffer = item.msg_buffer_;
+    #ifdef ZeroCopyTX
+      erpc::rt_assert(item.pkt_idx_ == 0 && msg_buffer->num_pkts_ == 1, "ZeroCopyTX but not a single-packet req");
+      tx_mbufs[i] = reinterpret_cast<rte_mbuf*>(msg_buffer->tx_mbuf);
+    #else
+      tx_mbufs[i] = rte_pktmbuf_alloc(mempool_);
+    #endif
 
-    tx_mbufs[i] = rte_pktmbuf_alloc(mempool_);
     assert(tx_mbufs[i] != nullptr);
 
     pkthdr_t *pkthdr;
@@ -51,7 +101,9 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       tx_mbufs[i]->nb_segs = 1;
       tx_mbufs[i]->pkt_len = pkt_size;
       tx_mbufs[i]->data_len = pkt_size;
+      #ifndef ZeroCopyTX
       memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
+      #endif
     } else {
       // This is not the first packet, we also need only one seg.
       pkthdr = msg_buffer->get_pkthdr_n(item.pkt_idx_);
@@ -77,6 +129,7 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
 
   size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, num_pkts);
   if (unlikely(nb_tx_new != num_pkts)) {
+    printf("warn: nb_tx_new != num_pkts\n");
     size_t retry_count = 0;
     while (nb_tx_new != num_pkts) {
       nb_tx_new += rte_eth_tx_burst(phy_port_, qp_id_, &tx_mbufs[nb_tx_new],

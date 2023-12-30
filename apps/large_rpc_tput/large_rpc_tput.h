@@ -7,10 +7,14 @@
 #include "rpc.h"
 #include "util/autorun_helpers.h"
 #include "util/numautils.h"
+#include "rte_mbuf.h"
+#include "rte_mbuf_core.h"
+#include "util/huge_alloc.h"
+#include "pkthdr.h"
 
 static constexpr size_t kAppReqType = 1;
 static constexpr uint8_t kAppDataByte = 3;  // Data transferred in req & resp
-static constexpr size_t kAppMaxConcurrency = 128;  // Outstanding reqs per thread
+static constexpr size_t kAppMaxConcurrency = 2048;  // Outstanding reqs per thread
 
 // Globals
 volatile sig_atomic_t ctrl_c_pressed = 0;
@@ -87,11 +91,35 @@ class AppContext : public BasicAppContext {
   erpc::MsgBuffer resp_msgbuf[kAppMaxConcurrency];
 };
 
+void msgbuf_to_rte_mbuf(AppContext* c, erpc::MsgBuffer &msgbuf){
+    assert(FLAGS_req_size < TTr::kMaxDataPerPkt);
+    /*
+    msgbuf.buffer: begin of all header+data
+    msgbuf.buf_: begin of pkt0 data, msgbuf.buffer + sizeof(pkthdr_t)
+    get_pkthdr_0(): buf_ - sizeof(pkthdr_t)
+    pkthdr and data need to store to "rte_mbuf->buf_addr + rte_mbuf->data_off"
+    */
+    erpc::Rpc<erpc::CTransport> *rpc = c->rpc_;
+    rte_mbuf *tx_mbuf = rte_pktmbuf_alloc(rpc->transport_->mempool_);
+    uint8_t *hdr_mbuf =  reinterpret_cast<uint8_t*>(tx_mbuf->buf_addr) + tx_mbuf->data_off;
+
+    msgbuf.buffer_.buf_ = hdr_mbuf;
+    msgbuf.buf_ = hdr_mbuf + sizeof(erpc::pkthdr_t);
+    
+    erpc::pkthdr_t *pkthdr_0 = msgbuf.get_pkthdr_0();
+    pkthdr_0->magic_ = erpc::kPktHdrMagic;
+    msgbuf.tx_mbuf = tx_mbuf;
+}
+
 // Allocate request and response MsgBuffers
 void alloc_req_resp_msg_buffers(AppContext* c) {
   for (size_t i = 0; i < FLAGS_concurrency; i++) {
     c->req_msgbuf[i] = c->rpc_->alloc_msg_buffer_or_die(FLAGS_req_size);
     c->resp_msgbuf[i] = c->rpc_->alloc_msg_buffer_or_die(FLAGS_resp_size);
+
+    #ifdef ZeroCopyTX
+    msgbuf_to_rte_mbuf(c, c->req_msgbuf[i]);
+    #endif
 
     // Fill the request regardless of kAppMemset. This is a one-time thing.
     memset(c->req_msgbuf[i].buf_, kAppDataByte, FLAGS_req_size);
