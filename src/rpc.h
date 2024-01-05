@@ -27,7 +27,8 @@
 #define TACC_ClIENT_IP "10.0.13.1"
 #define TACC_SERVER_IP "10.0.14.1"
 
-#define MACHINE_IP DTHUB_SERVER_IP
+#define MACHINE_IP DTHUB_CLIENT_IP
+#define MACHINE_MAC TACC_CLIENT_MAC
 
 #define ZeroCopyTX
 // #define KeepSend

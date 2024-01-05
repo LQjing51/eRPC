@@ -3,7 +3,6 @@
 *.ko
 *.obj
 *.elf
-*.a
 main
 tags
 1
@@ -68,8 +67,8 @@ gdb_history
 src/config.h
 .ycm_extra_conf.py
 
-# # Third-party downloads
-# third_party
+# Third-party downloads
+third_party
 
 # vscode
 .vscode

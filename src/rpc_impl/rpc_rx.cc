@@ -6,9 +6,7 @@ template <class TTr>
 void Rpc<TTr>::handle_arp_packet(uint8_t* pkthdr){
   arp_hdr_t *arph = reinterpret_cast<arp_hdr_t *>(pkthdr+sizeof(eth_hdr_t));
   if (ntohs(arph->arp_op)  == ARPOP_REQUEST) {
-    const char* ip = "10.0.13.1";
-    // const char* ip = "10.0.14.1";
-    if (ntohl(arph->arp_tpa) == ipv4_from_str(ip)) {
+    if (ntohl(arph->arp_tpa) == ipv4_from_str(MACHINE_IP)) {
       transport_->tx_burst_for_arp(arph);
     }
   }else{

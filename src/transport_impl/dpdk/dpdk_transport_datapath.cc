@@ -33,12 +33,7 @@ static void format_pkthdr(pkthdr_t *pkthdr,
 
 void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
   uint8_t pkt_size = sizeof(eth_hdr_t)+sizeof(arp_hdr_t);
-  const char* ip = "10.0.13.1";
-  uint32_t host_ip = ipv4_from_str(ip);
-  uint8_t mac[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x35, 0x10};
-  // const char* ip = "10.0.14.1";
-  // uint32_t host_ip = ipv4_from_str(ip);
-  // uint8_t mac[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x47, 0xa8};
+  uint32_t host_ip = ipv4_from_str(MACHINE_IP);
 
   rte_mbuf *tx_mbufs[1];
   tx_mbufs[0] = rte_pktmbuf_alloc(mempool_);
@@ -52,7 +47,7 @@ void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
 
   //set eth header
 	memcpy(eh->dst_mac_, req_hdr->arp_sha, ETH_ALEN);
-	memcpy(eh->src_mac_, mac, ETH_ALEN);
+	memcpy(eh->src_mac_, MACHINE_MAC, ETH_ALEN);
 	eh->eth_type_ = htons(ETH_P_ARP);
 
   //set arp header
@@ -61,7 +56,7 @@ void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
 	arph->arp_hln = 6;
 	arph->arp_pln = 4;
 	arph->arp_op =  htons(ARPOP_REPLY);
-	memcpy(arph->arp_sha, mac, ETH_ALEN);
+	memcpy(arph->arp_sha, MACHINE_MAC, ETH_ALEN);
 	arph->arp_spa = htonl(host_ip);
 	memcpy(arph->arp_tha, req_hdr->arp_sha, ETH_ALEN);
 	arph->arp_tpa = req_hdr->arp_spa;
