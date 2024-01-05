@@ -1,5 +1,4 @@
 #include "rpc.h"
-#include <sys/time.h>
 
 namespace erpc {
 
@@ -12,7 +11,7 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
   auto &ci = sslot->client_info_;
   size_t sending =
       (std::min)(credits, sslot->tx_msgbuf_->num_pkts_ - ci.num_tx_);
-  int bypass = can_bypass_wheel(sslot);
+  bool bypass = can_bypass_wheel(sslot);
   
   for (size_t x = 0; x < sending; x++) {
     if (bypass) {

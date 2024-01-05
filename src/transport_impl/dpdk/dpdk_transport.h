@@ -288,7 +288,7 @@ class DpdkTransport : public Transport {
   // We don't use DPDK's lcore threads, so a shared mempool with per-lcore
   // cache won't work. Instead, we use per-thread pools with zero cached mbufs.
   rte_mempool *mempool_;
-  
+
  private:
   /**
    * @brief Resolve fields in \p resolve using \p phy_port

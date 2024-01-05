@@ -24,8 +24,8 @@ void ctrl_c_handler(int) { ctrl_c_pressed = 1; }
 DEFINE_uint64(num_proc_0_threads, 0, "Threads in process 0");
 DEFINE_uint64(num_proc_other_threads, 0, "Threads in process with ID != 0");
 DEFINE_uint64(req_size, 0, "Request data size");
-DEFINE_uint64(small_req_size, 0, "Request data size");
-DEFINE_uint64(large_req_size, 0, "Request data size");
+DEFINE_uint64(small_req_size, 0, "Small request data size");
+DEFINE_uint64(large_req_size, 0, "Large request data size");
 DEFINE_uint64(resp_size, 0, "Response data size");
 DEFINE_uint64(concurrency, 0, "Concurrent requests per thread");
 DEFINE_double(drop_prob, 0, "Packet drop probability");
@@ -116,11 +116,11 @@ void alloc_req_resp_msg_buffers(AppContext* c) {
   for (size_t i = 0; i < FLAGS_concurrency; i++) {
     c->req_msgbuf[i] = c->rpc_->alloc_msg_buffer_or_die(FLAGS_req_size);
     c->resp_msgbuf[i] = c->rpc_->alloc_msg_buffer_or_die(FLAGS_resp_size);
-   
+
     #ifdef ZeroCopyTX
     msgbuf_to_rte_mbuf(c, c->req_msgbuf[i]);
     #endif
-    
+
     // Fill the request regardless of kAppMemset. This is a one-time thing.
     memset(c->req_msgbuf[i].buf_, kAppDataByte, FLAGS_req_size);
   }

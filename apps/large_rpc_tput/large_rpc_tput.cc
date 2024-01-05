@@ -177,7 +177,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   // Create the session. Some threads may not create any sessions, and therefore
   // not run the event loop required for other threads to connect them. This
   // is OK because all threads will run the event loop below.
-  connect_sessions_func(&c);  
+  connect_sessions_func(&c);
 
   if (c.session_num_vec_.size() > 0) {
     printf("large_rpc_tput: Thread %zu: All sessions connected.\n", thread_id);
@@ -228,22 +228,26 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     stats.rx_gbps = c.stat_rx_bytes_tot * 8 / ns;
     stats.tx_gbps = c.stat_tx_bytes_tot * 8 / ns;
 
+    bool server = (c.rpc_->session_vec_[0])->is_server();
+    size_t tx_size = server ? FLAGS_resp_size : FLAGS_req_size;
+    size_t rx_size = server ? FLAGS_req_size : FLAGS_resp_size;
+    
     printf(
         "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
         "Gbps (IOPS).\n",
-        c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot/FLAGS_resp_size,
-        stats.tx_gbps, c.stat_tx_bytes_tot/FLAGS_req_size);    
+        c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot/rx_size,
+        stats.tx_gbps, c.stat_tx_bytes_tot/tx_size);
 
     c.stat_rx_bytes_tot = 0;
     c.stat_tx_bytes_tot = 0;
-    if((c.rpc_->session_vec_[0])->is_server()){
+    if(server){
       while(c.stat_rx_bytes_tot == 0){
         rpc.run_event_loop_do_one_st();
         if (unlikely(ctrl_c_pressed == 1)) break;
       }
     }
     #ifdef run_flow_distribution
-    if((c.rpc_->session_vec_[0])->is_client()){
+    if(!server){
       generate_distribution();
     }
     #endif
@@ -289,8 +293,8 @@ void setup_profile() {
 int main(int argc, char **argv) {
   signal(SIGINT, ctrl_c_handler);
   gflags::ParseCommandLineFlags(&argc, &argv, true);
-  erpc::rt_assert(FLAGS_concurrency <= kAppMaxConcurrency, "Invalid conc");// concurrency = 1
-  erpc::rt_assert(FLAGS_profile == "incast" || FLAGS_profile == "victim", // profile = incast
+  erpc::rt_assert(FLAGS_concurrency <= kAppMaxConcurrency, "Invalid conc");
+  erpc::rt_assert(FLAGS_profile == "incast" || FLAGS_profile == "victim",
                   "Invalid profile");
   erpc::rt_assert(FLAGS_process_id < FLAGS_num_processes, "Invalid process ID");
 

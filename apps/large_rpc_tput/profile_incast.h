@@ -25,7 +25,7 @@ void connect_sessions_func_incast(AppContext *c) {
   c->session_num_vec_[0] =
       c->rpc_->create_session(erpc::get_uri_for_process(0), rem_tid);
   erpc::rt_assert(c->session_num_vec_[0] >= 0, "create_session() failed");
-      
+
   while (c->num_sm_resps_ != 1) {
     c->rpc_->run_event_loop(200);  // 200 milliseconds
     if (ctrl_c_pressed == 1) return;

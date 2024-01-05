@@ -92,7 +92,7 @@ void Rpc<TTr>::run_event_loop_timeout_st(size_t timeout_ms) {
   size_t start_tsc = rdtsc();  // For counting timeout_ms
 
   while (true) {
-    run_event_loop_do_one_st();  // Run at least once even if timeout_ms is 0   
+    run_event_loop_do_one_st();  // Run at least once even if timeout_ms is 0
     if (unlikely(ev_loop_tsc_ - start_tsc > timeout_tsc)) break;
   }
 }

@@ -56,7 +56,6 @@ void Rpc<TTr>::process_rfr_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     // If we're here, this is a past RFR packet for this request. So, we still
     // have the response, and we saved request packet count.
     ERPC_REORDER("%s: Re-sending response.\n", issue_msg);
-    ERPC_INFO("in process_rfr_st\n");
     enqueue_pkt_tx_burst_st(
         sslot, resp_ntoi(pkthdr->pkt_num_, si.sav_num_req_pkts_), nullptr);
     drain_tx_batch_and_dma_queue();
@@ -64,7 +63,6 @@ void Rpc<TTr>::process_rfr_st(SSlot *sslot, const pkthdr_t *pkthdr) {
   }
 
   sslot->server_info_.num_rx_++;
-  ERPC_INFO("in process_rfr_st\n");
   enqueue_pkt_tx_burst_st(
       sslot, resp_ntoi(pkthdr->pkt_num_, si.sav_num_req_pkts_), nullptr);
 }

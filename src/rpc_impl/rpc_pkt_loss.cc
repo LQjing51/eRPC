@@ -99,7 +99,7 @@ void Rpc<TTr>::pkt_loss_retransmit_st(SSlot *sslot) {
   assert(credits + delta <= kSessionCredits);
 
   if (unlikely(delta == 0)) {
-    ERPC_REORDER("pkt_loss_retransmit_st1 : %s: False positive. Ignoring.\n", issue_msg);
+    ERPC_REORDER("%s: False positive. Ignoring.\n", issue_msg);
     return;
   }
 
@@ -110,7 +110,7 @@ void Rpc<TTr>::pkt_loss_retransmit_st(SSlot *sslot) {
   // from the wheel is too complex.
   if (unlikely(sslot->client_info_.wheel_count_ > 0)) {
     pkt_loss_stats_.still_in_wheel_during_retx_++;
-    ERPC_REORDER("pkt_loss_retransmit_st2 : %s: Packets still in wheel. Ignoring.\n", issue_msg);
+    ERPC_REORDER("%s: Packets still in wheel. Ignoring.\n", issue_msg);
     return;
   }
 
@@ -118,8 +118,7 @@ void Rpc<TTr>::pkt_loss_retransmit_st(SSlot *sslot) {
   pkt_loss_stats_.num_re_tx_++;
   sslot->session_->client_info_.num_re_tx_++;
   
-  // ERPC_REORDER(
-  printf("pkt_loss_retransmit_st3 : %s: Retransmitting %s.\n", issue_msg,
+  ERPC_REORDER("%s: Retransmitting %s.\n", issue_msg,
                ci.num_rx_ < req_msgbuf->num_pkts_ ? "requests" : "RFRs");
   credits += delta;
   ci.num_tx_ = ci.num_rx_;
