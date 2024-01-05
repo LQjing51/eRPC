@@ -4,7 +4,7 @@ erpc::MsgBuffer req;
 erpc::MsgBuffer resp;
 
 void cont_func(void *, void *) { 
-  printf("%s\n", resp.buf_); 
+  printf("%s\n", resp.buf_);
 }
 
 void sm_handler(int, erpc::SmEventType, erpc::SmErrType, void *) {
@@ -33,10 +33,10 @@ int main() {
   req = rpc->alloc_msg_buffer_or_die(kMsgSize);
   resp = rpc->alloc_msg_buffer_or_die(kMsgSize);
 
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 100; i++){
     rpc->enqueue_request(session_num, kReqType, &req, &resp, cont_func, nullptr);
   }
-  rpc->run_event_loop(100000);
+  rpc->run_event_loop(1000);
   printf("finish client\n");
 
   delete rpc;
