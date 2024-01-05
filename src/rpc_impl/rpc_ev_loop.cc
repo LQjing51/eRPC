@@ -55,7 +55,7 @@ void Rpc<TTr>::run_event_loop_do_one_st() {
   if (kCcPacing) process_wheel_st();  // TX
 
   // Drain all packets
-  if (tx_batch_i_ > 0) {do_tx_burst_st();}
+  if (tx_batch_i_ > 0) do_tx_burst_st();
 
   if (unlikely(multi_threaded_)) {
     // Process the background queues
@@ -73,7 +73,7 @@ void Rpc<TTr>::run_event_loop_do_one_st() {
     }
   }
   #endif
-  
+
   #ifndef KeepSend
   // Check for packet loss if we're in a new epoch. ev_loop_tsc is stale by
   // less than one event loop iteration, which is negligible compared to epoch.

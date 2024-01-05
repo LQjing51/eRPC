@@ -770,7 +770,7 @@ class Rpc {
       uint8_t* buf = (*(item.routing_info_)).buf_;
       memcpy(buf, TACC_Switch_Mac,sizeof(TACC_Switch_Mac));
     }
-    
+
     item.msg_buffer_ = ctrl_msgbuf;
     item.pkt_idx_ = 0;
     if (kCcRTT) item.tx_ts_ = tx_ts;

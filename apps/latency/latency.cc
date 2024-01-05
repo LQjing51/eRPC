@@ -73,7 +73,6 @@ void server_func(erpc::Nexus *nexus) {
   erpc::Rpc<erpc::CTransport> rpc(nexus, static_cast<void *>(&c), 0 /* tid */,
                                   basic_sm_handler, phy_port);
   rpc.set_pre_resp_msgbuf_size(FLAGS_resp_size);
-  printf("Latency: Server_func, resp_size = %lu\n", FLAGS_resp_size);
   c.rpc_ = &rpc;
 
   while (true) {
@@ -194,12 +193,12 @@ void client_func(erpc::Nexus *nexus) {
     fflush(stdout);
 
     // Warmup for the first two seconds. Also, reset percentiles every minute.
-    const size_t seconds = i / 1000;
-    if (seconds < 2 || (seconds % 60 == 0)) {
+    // const size_t seconds = i / 1000;
+    // if (seconds < 2 || (seconds % 60 == 0)) {
       hdr_reset(c.latency_hist_);
       c.latency_samples_ = 0;
       c.latency_samples_prev_ = 0;
-    }
+    // }
 
     c.latency_samples_prev_ = c.latency_samples_;
     c.double_req_size_ = true;

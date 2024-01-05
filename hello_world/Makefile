@@ -37,4 +37,3 @@ dpdk:
 		$(LDFLAGS_STATIC)
 clean:
 	rm server client
-

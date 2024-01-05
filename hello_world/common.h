@@ -3,8 +3,6 @@
 
 static const std::string kServerHostname = "192.168.1.137";
 static const std::string kClientHostname = "192.168.1.131";
-// static const std::string kServerHostname = "10.0.18.1";
-// static const std::string kClientHostname = "10.0.17.1";
 
 static constexpr uint16_t kUDPPort_Server = 31850;
 static constexpr uint16_t kUDPPort_Client = 31850;

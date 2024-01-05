@@ -4,7 +4,6 @@ erpc::MsgBuffer req;
 erpc::MsgBuffer resp;
 
 void cont_func(void *, void *) { 
-  printf("in continuation function\n");
   printf("%s\n", resp.buf_); 
 }
 
@@ -33,7 +32,6 @@ int main() {
 
   req = rpc->alloc_msg_buffer_or_die(kMsgSize);
   resp = rpc->alloc_msg_buffer_or_die(kMsgSize);
-  // printf("allocate req & resp buffers, %llx %llx\n", (unsigned long long) req.buf_, (unsigned long long) resp.buf_);
 
   for (int i = 0; i < 100; i++) {
     rpc->enqueue_request(session_num, kReqType, &req, &resp, cont_func, nullptr);

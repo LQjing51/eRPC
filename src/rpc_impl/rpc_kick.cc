@@ -18,6 +18,7 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
       enqueue_pkt_tx_burst_st(sslot, ci.num_tx_ /* pkt_idx */,
                               &ci.tx_ts_[ci.num_tx_ % kSessionCredits]);
     } else {
+      printf("warn: in kick_req_st, do not bypass cc, enqueue wheel\n");
       enqueue_wheel_req_st(sslot, ci.num_tx_);
     }
 

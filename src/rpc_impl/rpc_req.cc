@@ -25,6 +25,7 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
 
   // If a free sslot is unavailable, save to session backlog
   if (unlikely(session->client_info_.sslot_free_vec_.size() == 0)) {
+    printf("warn: no available ssot, save to session backlog\n");
     session->client_info_.enq_req_backlog_.emplace(session_num, req_type,
                                                    req_msgbuf, resp_msgbuf,
                                                    cont_func, tag, cont_etid);
@@ -70,6 +71,7 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
   if (likely(session->client_info_.credits_ > 0)) {
     kick_req_st(&sslot);
   } else {
+    printf("warn: no credits, push to stallq\n");
     stallq_.push_back(&sslot);
   }
 }
@@ -154,7 +156,7 @@ void Rpc<TTr>::process_small_req_st(SSlot *sslot, pkthdr_t *pkthdr) {
 template <class TTr>
 void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
   assert(in_dispatch());
-  
+
   // Handle reordering
   bool is_next_pkt_same_req =  // Is this the next packet in this request?
       (pkthdr->req_num_ == sslot->cur_req_num_) &&
@@ -232,12 +234,8 @@ void Rpc<TTr>::process_large_req_one_st(SSlot *sslot, const pkthdr_t *pkthdr) {
     enqueue_cr_st(sslot, pkthdr);
   }
 
-  // if (pkthdr->pkt_num_ == 0){
-  //   // printf("in process_large_req_one_st: copy data to msgbuf\n");
-  //   copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
-  // }
   copy_data_to_msgbuf(&req_msgbuf, pkthdr->pkt_num_, pkthdr);  // Omits header
- 
+
   // Invoke the request handler iff we have all the request packets
   if (sslot->server_info_.num_rx_ != req_msgbuf.num_pkts_) return;
 

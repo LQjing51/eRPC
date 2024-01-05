@@ -214,7 +214,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
       while(true){
         rpc.run_event_loop_do_one_st();
         if (unlikely(ctrl_c_pressed == 1)) break;
-         if(c.stat_tx_bytes_tot >= transmission || c.stat_rx_bytes_tot >= transmission) break;
+        if(c.stat_tx_bytes_tot >= transmission || c.stat_rx_bytes_tot >= transmission) break;
       }
     #else
       rpc.run_event_loop(kAppEvLoopMs);
@@ -227,23 +227,27 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     auto &stats = c.app_stats[c.thread_id_];
     stats.rx_gbps = c.stat_rx_bytes_tot * 8 / ns;
     stats.tx_gbps = c.stat_tx_bytes_tot * 8 / ns;
+    
+    bool server = (c.rpc_->session_vec_[0])->is_server();
+    size_t tx_size = server ? FLAGS_resp_size : FLAGS_req_size;
+    size_t rx_size = server ? FLAGS_req_size : FLAGS_resp_size;
 
     printf(
-    "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
-    "Gbps (IOPS).\n",
-    c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot/FLAGS_req_size,
-    stats.tx_gbps, c.stat_tx_bytes_tot/FLAGS_resp_size);
+        "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
+        "Gbps (IOPS).\n",
+        c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot/rx_size,
+        stats.tx_gbps, c.stat_tx_bytes_tot/tx_size);
 
     c.stat_rx_bytes_tot = 0;
     c.stat_tx_bytes_tot = 0;
-    if((c.rpc_->session_vec_[0])->is_server()){
+    if(server){
       while(c.stat_rx_bytes_tot == 0){
         rpc.run_event_loop_do_one_st();
         if (unlikely(ctrl_c_pressed == 1)) break;
       }
     }
     #ifdef run_flow_distribution
-    if((c.rpc_->session_vec_[0])->is_client()){
+    if(!server){
       generate_distribution();
     }
     #endif
