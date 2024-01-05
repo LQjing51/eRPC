@@ -33,7 +33,7 @@ int main() {
   req = rpc->alloc_msg_buffer_or_die(kMsgSize);
   resp = rpc->alloc_msg_buffer_or_die(kMsgSize);
 
-  for (int i = 0; i < 100; i++){
+  for(int i = 0; i < 100; i++){
     rpc->enqueue_request(session_num, kReqType, &req, &resp, cont_func, nullptr);
   }
   rpc->run_event_loop(1000);
