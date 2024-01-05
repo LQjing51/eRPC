@@ -18,10 +18,10 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
     bg_queues_.enqueue_request_.unlocked_push(req_args);
     return;
   }
+
   // If we're here, we're in the dispatch thread
   Session *session = session_vec_[static_cast<size_t>(session_num)];
   assert(session->is_connected());  // User is notified before we disconnect
-
 
   // If a free sslot is unavailable, save to session backlog
   if (unlikely(session->client_info_.sslot_free_vec_.size() == 0)) {
@@ -79,7 +79,7 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
 template <class TTr>
 void Rpc<TTr>::process_small_req_st(SSlot *sslot, pkthdr_t *pkthdr) {
   assert(in_dispatch());
-  
+
   // Handle reordering
   if (unlikely(pkthdr->req_num_ <= sslot->cur_req_num_)) {
     char issue_msg[kMaxIssueMsgLen];

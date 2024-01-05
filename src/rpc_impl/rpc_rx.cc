@@ -75,8 +75,8 @@ void Rpc<TTr>::process_comps_st() {
 
     // If we are here, we have a valid packet for a connected session
     ERPC_TRACE(
-      "comps3: Rpc %u, lsn %u (%s): RX %s. Frame %s.\n", rpc_id_, session->local_session_num_,
-      session->get_remote_hostname().c_str(), pkthdr->to_string().c_str(),  frame_header_to_string(&pkthdr->headroom_[0]).c_str());
+      "Rpc %u, lsn %u (%s): RX %s. Frame %s.\n", rpc_id_, session->local_session_num_,
+      session->get_remote_hostname().c_str(), pkthdr->to_string().c_str());
 
     const size_t sslot_i = pkthdr->req_num_ % kSessionReqWindow;  // Bit shift
     SSlot *sslot = &session->sslot_arr_[sslot_i];

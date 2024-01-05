@@ -12,7 +12,7 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
   size_t sending =
       (std::min)(credits, sslot->tx_msgbuf_->num_pkts_ - ci.num_tx_);
   bool bypass = can_bypass_wheel(sslot);
-  
+
   for (size_t x = 0; x < sending; x++) {
     if (bypass) {
       enqueue_pkt_tx_burst_st(sslot, ci.num_tx_ /* pkt_idx */,

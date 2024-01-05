@@ -231,7 +231,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     bool server = (c.rpc_->session_vec_[0])->is_server();
     size_t tx_size = server ? FLAGS_resp_size : FLAGS_req_size;
     size_t rx_size = server ? FLAGS_req_size : FLAGS_resp_size;
-    
+
     printf(
         "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
         "Gbps (IOPS).\n",

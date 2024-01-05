@@ -60,7 +60,7 @@ class Session {
 
  public:
   enum class Role : int { kServer, kClient };
-  
+
   inline bool is_client() const { return role_ == Role::kClient; }
   inline bool is_server() const { return role_ == Role::kServer; }
   inline bool is_connected() const {

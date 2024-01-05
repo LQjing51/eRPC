@@ -73,7 +73,7 @@ void Rpc<TTr>::run_event_loop_do_one_st() {
     }
   }
   #endif
- 
+
   #ifndef KeepSend
   // Check for packet loss if we're in a new epoch. ev_loop_tsc is stale by
   // less than one event loop iteration, which is negligible compared to epoch.

@@ -137,7 +137,7 @@ class MsgBuffer {
   inline size_t get_data_size() const { return data_size_; }
 
  public:
-  
+
   /// The optional backing hugepage buffer. buffer.buf points to the zeroth
   /// packet header, i.e., not application data.
   Buffer buffer_;
