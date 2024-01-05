@@ -36,6 +36,9 @@ void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
   const char* ip = "10.0.13.1";
   uint32_t host_ip = ipv4_from_str(ip);
   uint8_t mac[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x35, 0x10};
+  // const char* ip = "10.0.14.1";
+  // uint32_t host_ip = ipv4_from_str(ip);
+  // uint8_t mac[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x47, 0xa8};
 
   rte_mbuf *tx_mbufs[1];
   tx_mbufs[0] = rte_pktmbuf_alloc(mempool_);
