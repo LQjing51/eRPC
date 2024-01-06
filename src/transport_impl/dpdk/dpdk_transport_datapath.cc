@@ -12,7 +12,13 @@ static void format_pkthdr(pkthdr_t *pkthdr,
   // We can do an 8-byte aligned memcpy as the 2-byte UDP csum is already 0
   static constexpr size_t kHdrCopySz = kInetHdrsTotSize - 2;
   static_assert(kHdrCopySz == 40, "");
-  memcpy(&pkthdr->headroom_[0], item.routing_info_, kHdrCopySz);
+  if(!strcmp(MACHINE_IP,TACC_CLIENT_IP) || !strcmp(MACHINE_IP,TACC_SERVER_IP)){
+    uint8_t* buf = &pkthdr->headroom_[0];
+    memcpy(buf, TACC_Switch_Mac, sizeof(TACC_Switch_Mac));
+    memcpy(&pkthdr->headroom_[0]+6, (reinterpret_cast<uint8_t*>(item.routing_info_))+6, kHdrCopySz-6);
+  }else{
+    memcpy(&pkthdr->headroom_[0], item.routing_info_, kHdrCopySz);
+  }
 
   if (kTesting && item.drop_) {
     // XXX: Can this cause performance problems?

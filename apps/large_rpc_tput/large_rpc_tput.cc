@@ -209,7 +209,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   }
   c.tput_t0.reset();
   double ns = 0;
-  for (size_t i = 0; i < FLAGS_test_ms; i += ns/1000000) {
+  for (size_t i = 0; i < FLAGS_test_ms; i += kAppEvLoopMs) {
     #ifdef run_flow_distribution
       while(true){
         rpc.run_event_loop_do_one_st();
