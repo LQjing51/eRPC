@@ -12,7 +12,13 @@ static void format_pkthdr(pkthdr_t *pkthdr,
   // We can do an 8-byte aligned memcpy as the 2-byte UDP csum is already 0
   static constexpr size_t kHdrCopySz = kInetHdrsTotSize - 2;
   static_assert(kHdrCopySz == 40, "");
-  memcpy(&pkthdr->headroom_[0], item.routing_info_, kHdrCopySz);
+  if(!strcmp(MACHINE_IP,TACC_CLIENT_IP) || !strcmp(MACHINE_IP,TACC_SERVER_IP)){
+    uint8_t* buf = &pkthdr->headroom_[0];
+    memcpy(buf, TACC_Switch_Mac, sizeof(TACC_Switch_Mac));
+    memcpy(&pkthdr->headroom_[0]+6, (reinterpret_cast<uint8_t*>(item.routing_info_))+6, kHdrCopySz-6);
+  }else{
+    memcpy(&pkthdr->headroom_[0], item.routing_info_, kHdrCopySz);
+  }
 
   if (kTesting && item.drop_) {
     // XXX: Can this cause performance problems?
@@ -135,7 +141,6 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
 
   size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, num_pkts);
   if (unlikely(nb_tx_new != num_pkts)) {
-    printf("warn: nb_tx_new != num_pkts\n");
     size_t retry_count = 0;
     while (nb_tx_new != num_pkts) {
       nb_tx_new += rte_eth_tx_burst(phy_port_, qp_id_, &tx_mbufs[nb_tx_new],
