@@ -135,7 +135,6 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
 
   size_t nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, num_pkts);
   if (unlikely(nb_tx_new != num_pkts)) {
-    printf("warn: nb_tx_new != num_pkts\n");
     size_t retry_count = 0;
     while (nb_tx_new != num_pkts) {
       nb_tx_new += rte_eth_tx_burst(phy_port_, qp_id_, &tx_mbufs[nb_tx_new],
