@@ -87,16 +87,13 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
   for (size_t i = 0; i < num_pkts; i++) {
     const tx_burst_item_t &item = tx_burst_arr[i];
     const MsgBuffer *msg_buffer = item.msg_buffer_;
-    if(client){
-      #ifdef ZeroCopyTX
-        erpc::rt_assert(item.pkt_idx_ == 0 && msg_buffer->num_pkts_ == 1, "ZeroCopyTX but not a single-packet req");
-        tx_mbufs[i] = reinterpret_cast<rte_mbuf*>(msg_buffer->tx_mbuf);
-      #else
-        tx_mbufs[i] = rte_pktmbuf_alloc(mempool_);
-      #endif
-    }else{
+    _unused(client);
+    #ifdef ZeroCopyTX
+      erpc::rt_assert(item.pkt_idx_ == 0 && msg_buffer->num_pkts_ == 1, "ZeroCopyTX but not a single-packet");
+      tx_mbufs[i] = reinterpret_cast<rte_mbuf*>(msg_buffer->tx_mbuf);
+    #else
       tx_mbufs[i] = rte_pktmbuf_alloc(mempool_);
-    }
+    #endif
     assert(tx_mbufs[i] != nullptr);
 
     pkthdr_t *pkthdr;
@@ -109,13 +106,9 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       tx_mbufs[i]->nb_segs = 1;
       tx_mbufs[i]->pkt_len = pkt_size;
       tx_mbufs[i]->data_len = pkt_size;
-      if(client){
-        #ifndef ZeroCopyTX
+      #ifndef ZeroCopyTX
         memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
-        #endif
-      }else{
-        memcpy(rte_pktmbuf_mtod(tx_mbufs[i], uint8_t *), pkthdr, pkt_size);
-      }
+      #endif
     } else {
       // This is not the first packet, we also need only one seg.
       pkthdr = msg_buffer->get_pkthdr_n(item.pkt_idx_);

@@ -1,8 +1,8 @@
---test_ms 4000
+--test_ms 10000
 --req_size 968
 --small_req_size 32
 --large_req_size 968
---resp_size 32
+--resp_size 8
 --num_processes 2
 --num_proc_0_threads 1
 --num_proc_other_threads 1

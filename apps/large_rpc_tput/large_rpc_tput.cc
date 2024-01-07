@@ -77,6 +77,10 @@ void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   erpc::MsgBuffer &resp_msgbuf = req_handle->dyn_resp_msgbuf_;
   resp_msgbuf = c->rpc_->alloc_msg_buffer_or_die(FLAGS_resp_size);
 
+  #ifdef ZeroCopyTX
+  msgbuf_to_rte_mbuf(c, resp_msgbuf);
+  #endif
+
   // Touch the response
   if (kAppServerMemsetResp) {
     memset(resp_msgbuf.buf_, resp_byte, FLAGS_resp_size);

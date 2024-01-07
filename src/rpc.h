@@ -693,7 +693,7 @@ class Rpc {
    * @brief Process a single-packet response
    * @param rx_tsc The timestamp at which this packet was received
    */
-  void process_resp_one_st(SSlot *, const pkthdr_t *, size_t rx_tsc);
+  void process_resp_one_st(SSlot *, pkthdr_t *, size_t rx_tsc);
 
   /**
    * @brief Enqueue an explicit credit return
