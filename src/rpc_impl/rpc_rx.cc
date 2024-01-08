@@ -2,17 +2,17 @@
 
 namespace erpc {
 
-template <class TTr>
-void Rpc<TTr>::handle_arp_packet(uint8_t* pkthdr){
-  arp_hdr_t *arph = reinterpret_cast<arp_hdr_t *>(pkthdr+sizeof(eth_hdr_t));
-  if (ntohs(arph->arp_op)  == ARPOP_REQUEST) {
-    if (ntohl(arph->arp_tpa) == ipv4_from_str(MACHINE_IP)) {
-      transport_->tx_burst_for_arp(arph);
-    }
-  }else{
-    printf("receive arp packet(non request)\n");
-  }
-}
+// template <class TTr>
+// void Rpc<TTr>::handle_arp_packet(uint8_t* pkthdr){
+//   arp_hdr_t *arph = reinterpret_cast<arp_hdr_t *>(pkthdr+sizeof(eth_hdr_t));
+//   if (ntohs(arph->arp_op)  == ARPOP_REQUEST) {
+//     if (ntohl(arph->arp_tpa) == ipv4_from_str(MACHINE_IP)) {
+//       transport_->tx_burst_for_arp(arph);
+//     }
+//   }else{
+//     printf("receive arp packet(non request)\n");
+//   }
+// }
 
 template <class TTr>
 void Rpc<TTr>::process_comps_st() {
@@ -34,18 +34,18 @@ void Rpc<TTr>::process_comps_st() {
     // XXX: This acts as a stopgap function to filter non-eRPC packets, like
     // broadcast/ARP packets.
     if (unlikely(!pkthdr->check_magic())) {
-      uint8_t* hdr = &(pkthdr->headroom_[0]);
-      auto* eth_hdr = reinterpret_cast<const eth_hdr_t*>(hdr);
-      if(ntohs(eth_hdr->eth_type_) == ETH_P_ARP){
-        handle_arp_packet(hdr);
-      }else{
+      // uint8_t* hdr = &(pkthdr->headroom_[0]);
+      // auto* eth_hdr = reinterpret_cast<const eth_hdr_t*>(hdr);
+      // if(ntohs(eth_hdr->eth_type_) == ETH_P_ARP){
+      //   handle_arp_packet(hdr);
+      // }else{
         ERPC_INFO(
             "Rpc %u: Received %s with invalid magic. Packet headroom = %s. "
             "Dropping.\n",
             rpc_id_, pkthdr->to_string().c_str(),
             pkthdr->headroom_string().c_str());
-      }
-      continue;
+      // }
+      // continue;
     }
 
     assert(pkthdr->msg_size_ <= kMaxMsgSize);  // msg_size can be 0 here
