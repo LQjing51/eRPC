@@ -77,9 +77,9 @@ void req_handler(erpc::ReqHandle *req_handle, void *_context) {
   erpc::MsgBuffer &resp_msgbuf = req_handle->dyn_resp_msgbuf_;
   resp_msgbuf = c->rpc_->alloc_msg_buffer_or_die(FLAGS_resp_size);
 
-  #ifdef ZeroCopyTX
-  msgbuf_to_rte_mbuf(c, resp_msgbuf);
-  #endif
+  // #ifdef ZeroCopyTX
+  // msgbuf_to_rte_mbuf(c, resp_msgbuf);
+  // #endif
 
   // Touch the response
   if (kAppServerMemsetResp) {
@@ -99,9 +99,9 @@ void app_cont_func(void *_context, void *_tag) {
   auto *c = static_cast<AppContext *>(_context);
   auto msgbuf_idx = reinterpret_cast<size_t>(_tag);
   #ifdef KeepSend
-    #ifdef ZeroCopyTX
-    msgbuf_to_rte_mbuf(c, c->req_msgbuf[msgbuf_idx]);
-    #endif
+    // #ifdef ZeroCopyTX
+    // msgbuf_to_rte_mbuf(c, c->req_msgbuf[msgbuf_idx]);
+    // #endif
 
     // Create a new request clocking this response, and put in request queue
     if (kAppClientMemsetReq) {
@@ -134,9 +134,9 @@ void app_cont_func(void *_context, void *_tag) {
 
   c->stat_rx_bytes_tot += FLAGS_resp_size;
 
-  #ifdef ZeroCopyTX
-  msgbuf_to_rte_mbuf(c, c->req_msgbuf[msgbuf_idx]);
-  #endif
+  // #ifdef ZeroCopyTX
+  // msgbuf_to_rte_mbuf(c, c->req_msgbuf[msgbuf_idx]);
+  // #endif
 
   // Create a new request clocking this response, and put in request queue
   if (kAppClientMemsetReq) {

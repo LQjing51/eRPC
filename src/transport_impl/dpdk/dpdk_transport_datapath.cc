@@ -81,13 +81,12 @@ void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
 }
 
 void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
-                             size_t num_pkts, bool client) {
+                             size_t num_pkts) {
   rte_mbuf *tx_mbufs[kPostlist];
 
   for (size_t i = 0; i < num_pkts; i++) {
     const tx_burst_item_t &item = tx_burst_arr[i];
     const MsgBuffer *msg_buffer = item.msg_buffer_;
-    _unused(client);
     #ifdef ZeroCopyTX
       erpc::rt_assert(item.pkt_idx_ == 0 && msg_buffer->num_pkts_ == 1, "ZeroCopyTX but not a single-packet");
       tx_mbufs[i] = reinterpret_cast<rte_mbuf*>(msg_buffer->tx_mbuf);

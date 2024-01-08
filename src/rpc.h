@@ -32,11 +32,11 @@ static constexpr uint8_t TACC_SERVER_MAC[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x47, 0xa
 static constexpr uint8_t TACC_Switch_Mac[6] = {0x1c, 0x34, 0xda, 0xf3, 0x9a, 0x48,};
 static constexpr uint8_t DeskTop_Switch_Mac[6] = {0x1c, 0x34, 0xda, 0xf3, 0x9a, 0x48,};
 
-#define MACHINE_IP TACC_CLIENT_IP
+#define MACHINE_IP DTHUB_SERVER_IP
 #define MACHINE_MAC TACC_CLIENT_MAC
 
-#define ZeroCopyTX
-#define KeepSend
+// #define ZeroCopyTX
+// #define KeepSend
 // #define run_flow_distribution
 
 namespace erpc {
@@ -844,8 +844,7 @@ class Rpc {
         }
       }
     }
-    bool client = this->session_vec_[0]->is_client();
-    transport_->tx_burst(tx_burst_arr_, tx_batch_i_, client);
+    transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
     tx_batch_i_ = 0;
   }
 

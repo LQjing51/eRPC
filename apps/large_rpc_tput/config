@@ -1,4 +1,4 @@
---test_ms 10000
+--test_ms 100000
 --req_size 968
 --small_req_size 32
 --large_req_size 968
