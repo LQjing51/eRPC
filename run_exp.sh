@@ -1,4 +1,5 @@
 server_ip='192.168.1.231'
+#test#
 username='qijing'
 echo "" > ~/info.txt
 echo "" > ~/result.txt
