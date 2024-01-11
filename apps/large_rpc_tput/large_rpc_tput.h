@@ -7,8 +7,8 @@
 #include "rpc.h"
 #include "util/autorun_helpers.h"
 #include "util/numautils.h"
-#include "rte_mbuf.h"
-#include "rte_mbuf_core.h"
+// #include "rte_mbuf.h"
+// #include "rte_mbuf_core.h"
 #include "util/huge_alloc.h"
 #include "pkthdr.h"
 
