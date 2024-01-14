@@ -1,4 +1,4 @@
---test_ms 4000
+--test_ms 6000
 --req_size 8
 --small_req_size 32
 --large_req_size 950
@@ -12,4 +12,4 @@
 --throttle 0
 --throttle_fraction 0.9
 --numa_0_ports 0
---numa_1_ports 1
+--numa_1_ports 0

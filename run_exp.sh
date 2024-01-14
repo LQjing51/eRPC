@@ -1,12 +1,14 @@
-server_ip='192.168.1.231'
+server_ip='192.168.0.212'
 username='qijing'
+numa=1
+
 echo "" > ~/info.txt
 echo "" > ~/result.txt
 for i in "$@"; do
 
     if [ 'tx_sin_core' == $i ] || [ 'all' == $1 ]; then
         echo "begin test of TX, Single Core" >> ~/result.txt
-        sed -i "39s/.*/#define KeepSend/" src/rpc.h
+        sed -i "41s/.*/#define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -23,7 +25,7 @@ for i in "$@"; do
                 ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh run"
                 make large_rpc_tput
                 echo "begin test $size" >> ~/info.txt
-                sudo ./scripts/do.sh 1 0 >> ~/info.txt
+                sudo ./scripts/do.sh 1 $numa >> ~/info.txt
                 mpps=$(cat ~/info.txt | tail -n 1 | awk '{print $10}')
                 mpps=${mpps:1:0-2}
                 if [ $mpps -gt $max_mpps ]; then
@@ -36,15 +38,14 @@ for i in "$@"; do
 
     if [ 'tx_mul_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of TX, Multiple Cores" >> ~/result.txt
-        sed -i "39s/.*/#define KeepSend/" src/rpc.h
+        sed -i "41s/.*/#define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
         for thread in {1,2,4,8,16}
         do 
-            # for size in {968}
-            # do
-                size=456
+            for size in {8,456}
+            do
                 cp apps/large_rpc_tput/config_template apps/large_rpc_tput/config
                 sed -i "2s/.*/--req_size $size/" apps/large_rpc_tput/config
                 sed -i "7s/.*/--num_proc_0_threads $thread/" apps/large_rpc_tput/config
@@ -57,7 +58,7 @@ for i in "$@"; do
                     ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh run"
                     make large_rpc_tput
                     echo "begin test thread[$thread] size[$size]" >> ~/info.txt
-                    sudo ./scripts/do.sh 1 0 >> ~/info.txt
+                    sudo ./scripts/do.sh 1 $numa >> ~/info.txt
                     tmp_mpps=0
                     mpps=0
                     for((line=1;line<=$thread;line++))
@@ -71,13 +72,13 @@ for i in "$@"; do
                     fi
                 done
                 echo "$max_mpps" >> ~/result.txt
-            # done
+            done
         done
     fi
 
     if [ 'sp_sin_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Small Response, Single Core" >> ~/result.txt
-        sed -i "39s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -94,7 +95,7 @@ for i in "$@"; do
                 ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh run"
                 make large_rpc_tput
                 echo "begin test $size" >> ~/info.txt
-                sudo ./scripts/do.sh 1 0 >> ~/info.txt
+                sudo ./scripts/do.sh 1 $numa >> ~/info.txt
                 mpps=$(cat ~/info.txt | tail -n 1 | awk '{print $10}')
                 mpps=${mpps:1:0-2}
                 if [ $mpps -gt $max_mpps ]; then
@@ -107,15 +108,14 @@ for i in "$@"; do
 
     if [ 'sp_mul_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Small Response, Multiple Cores" >> ~/result.txt
-        sed -i "39s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
         for thread in {1,2,4,8,16}
         do 
-            # for size in {968}
-            # do
-                size=456
+            for size in {8,456}
+            do
                 cp apps/large_rpc_tput/config_template apps/large_rpc_tput/config
                 sed -i "2s/.*/--req_size $size/" apps/large_rpc_tput/config
                 sed -i "7s/.*/--num_proc_0_threads $thread/" apps/large_rpc_tput/config
@@ -128,7 +128,7 @@ for i in "$@"; do
                     ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh run"
                     make large_rpc_tput
                     echo "begin test thread[$thread] size[$size]" >> ~/info.txt
-                    sudo ./scripts/do.sh 1 0 >> ~/info.txt
+                    sudo ./scripts/do.sh 1 $numa >> ~/info.txt
                     tmp_mpps=0
                     mpps=0
                     for((line=1;line<=$thread;line++))
@@ -142,13 +142,13 @@ for i in "$@"; do
                     fi
                 done
                 echo "$max_mpps" >> ~/result.txt
-            # done
+            done
         done
     fi
 
     if [ 'ec_sin_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Echo, Single Core" >> ~/result.txt
-        sed -i "39s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -166,7 +166,7 @@ for i in "$@"; do
                 ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh run"
                 make large_rpc_tput
                 echo "begin test $size" >> ~/info.txt
-                sudo ./scripts/do.sh 1 0 >> ~/info.txt
+                sudo ./scripts/do.sh 1 $numa >> ~/info.txt
                 mpps=$(cat ~/info.txt | tail -n 1 | awk '{print $10}')
                 mpps=${mpps:1:0-2}
                 if [ $mpps -gt $max_mpps ]; then
@@ -179,15 +179,14 @@ for i in "$@"; do
 
     if [ 'ec_mul_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Echo, Multiple Cores" >> ~/result.txt
-        sed -i "39s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
         for thread in {1,2,4,8,16}
         do 
-            # for size in {968}
-            # do
-                size=456
+            for size in {8,456}
+            do
                 cp apps/large_rpc_tput/config_template apps/large_rpc_tput/config
                 sed -i "2s/.*/--req_size $size/" apps/large_rpc_tput/config
                 sed -i "5s/.*/--resp_size $size/" apps/large_rpc_tput/config
@@ -201,7 +200,7 @@ for i in "$@"; do
                     ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh run"
                     make large_rpc_tput
                     echo "begin test thread[$thread] size[$size]" >> ~/info.txt
-                    sudo ./scripts/do.sh 1 0 >> ~/info.txt
+                    sudo ./scripts/do.sh 1 $numa >> ~/info.txt
                     tmp_mpps=0
                     mpps=0
                     for((line=1;line<=$thread;line++))
@@ -215,7 +214,7 @@ for i in "$@"; do
                     fi
                 done
                 echo "$max_mpps" >> ~/result.txt
-            # done
+            done
         done
     fi
 

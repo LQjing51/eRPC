@@ -2,6 +2,8 @@
 # Run an eRPC app on this machine. This script must be run from eRPC homedir.
 source $(dirname $0)/utils.sh
 
+LD_LIBRARY_PATH="/usr/local/lib"
+
 assert_file_exists scripts/autorun_app_file
 export autorun_app=`cat scripts/autorun_app_file`
 

@@ -9,8 +9,8 @@ class RawTransport;
 class DpdkTransport;
 class FakeTransport;
 
-#define CTransport IBTransport
+#define CTransport DpdkTransport
 static constexpr size_t kHeadroom = 40;
-static constexpr size_t kIsRoCE = true;
+static constexpr size_t kIsRoCE = false;
 static constexpr size_t kIsAzure = false;
 }  // namespace erpc
