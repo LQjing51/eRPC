@@ -100,22 +100,7 @@ void req_handler(erpc::ReqHandle *req_handle, void *_context) {
 void app_cont_func(void *_context, void *_tag) {
   auto *c = static_cast<AppContext *>(_context);
   auto msgbuf_idx = reinterpret_cast<size_t>(_tag);
-  #ifdef KeepSend
-    #ifdef DPDK
-    #ifdef ZeroCopyTX
-    msgbuf_to_rte_mbuf(c, c->req_msgbuf[msgbuf_idx]);
-    #endif
-    #endif
-
-    // Create a new request clocking this response, and put in request queue
-    if (kAppClientMemsetReq) {
-      memset(c->req_msgbuf[msgbuf_idx].buf_, kAppDataByte, FLAGS_req_size);
-    } else {
-      c->req_msgbuf[msgbuf_idx].buf_[0] = kAppDataByte;
-    }
-
-    send_req(c, msgbuf_idx);
-  #else
+  #ifndef KeepSend
   const erpc::MsgBuffer &resp_msgbuf = c->resp_msgbuf[msgbuf_idx];
   if (kAppVerbose) {
     printf("large_rpc_tput: Received response for msgbuf %zu.\n", msgbuf_idx);
@@ -137,6 +122,7 @@ void app_cont_func(void *_context, void *_tag) {
   }
 
   c->stat_rx_bytes_tot += FLAGS_resp_size;
+  #endif
 
   #ifdef DPDK
   #ifdef ZeroCopyTX
@@ -152,7 +138,6 @@ void app_cont_func(void *_context, void *_tag) {
   }
 
   send_req(c, msgbuf_idx);
-  #endif
 }
 void generate_distribution(){
   distrib.clear();
