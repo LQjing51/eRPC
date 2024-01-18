@@ -11,6 +11,7 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
                                MsgBuffer *req_msgbuf, MsgBuffer *resp_msgbuf,
                                erpc_cont_func_t cont_func, void *tag,
                                size_t cont_etid) {
+  // update_begin_time(EQ_REQ);
   // When called from a background thread, enqueue to the foreground thread
   if (unlikely(!in_dispatch())) {
     auto req_args = enq_req_args_t(session_num, req_type, req_msgbuf,
@@ -67,6 +68,8 @@ void Rpc<TTr>::enqueue_request(int session_num, uint8_t req_type,
       pkthdr_i->pkt_num_ = i;
     }
   }
+
+//  update_time(EQ_REQ);
 
   if (likely(session->client_info_.credits_ > 0)) {
     kick_req_st(&sslot);

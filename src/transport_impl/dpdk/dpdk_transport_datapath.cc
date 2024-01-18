@@ -82,6 +82,7 @@ void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
 
 void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
                              size_t num_pkts) {
+  update_begin_time(TX_BURST);
   rte_mbuf *tx_mbufs[kPostlist];
 
   for (size_t i = 0; i < num_pkts; i++) {
@@ -144,6 +145,7 @@ void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
       }
     }
   }
+  update_time(TX_BURST);
 }
 
 void DpdkTransport::tx_flush() {

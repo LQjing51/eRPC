@@ -732,6 +732,7 @@ class Rpc {
    */
   inline void enqueue_pkt_tx_burst_st(SSlot *sslot, size_t pkt_idx,
                                       size_t *tx_ts) {
+    // update_begin_time(EQ_TX_BURST);
     assert(in_dispatch());
     const MsgBuffer *tx_msgbuf = sslot->tx_msgbuf_;
 
@@ -755,6 +756,7 @@ class Rpc {
 
     tx_batch_i_++;
 
+    // update_time(EQ_TX_BURST);
     if (tx_batch_i_ == TTr::kPostlist) {
       do_tx_burst_st();
     }
@@ -829,6 +831,7 @@ class Rpc {
 
   /// Transmit packets in the TX batch
   inline void do_tx_burst_st() {
+    // update_begin_time(DO_TX_BURST);
     assert(in_dispatch());
     assert(tx_batch_i_ > 0);
 
@@ -846,6 +849,7 @@ class Rpc {
         }
       }
     }
+    // update_time(DO_TX_BURST);
     transport_->tx_burst(tx_burst_arr_, tx_batch_i_);
     tx_batch_i_ = 0;
   }

@@ -4,6 +4,7 @@ namespace erpc {
 
 template <class TTr>
 void Rpc<TTr>::kick_req_st(SSlot *sslot) {
+  // update_begin_time(KICK_REQ);
   assert(in_dispatch());
   auto &credits = sslot->session_->client_info_.credits_;
   assert(credits > 0);  // Precondition
@@ -15,6 +16,7 @@ void Rpc<TTr>::kick_req_st(SSlot *sslot) {
 
   for (size_t x = 0; x < sending; x++) {
     if (bypass) {
+      // update_time(KICK_REQ);
       enqueue_pkt_tx_burst_st(sslot, ci.num_tx_ /* pkt_idx */,
                               &ci.tx_ts_[ci.num_tx_ % kSessionCredits]);
     } else {

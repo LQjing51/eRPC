@@ -20,6 +20,27 @@ static inline size_t rdtsc() {
   return static_cast<size_t>((rdx << 32) | rax);
 }
 
+extern size_t begin_time[5];
+extern size_t time[5];
+extern size_t ct[5];
+
+enum phase_type{
+  EQ_REQ,
+  KICK_REQ,
+  EQ_TX_BURST,
+  DO_TX_BURST,
+  TX_BURST
+};
+
+static inline void update_begin_time(int phase){
+  // _unused(phase);
+  begin_time[phase] = rdtsc();
+}
+static inline void update_time(int phase){
+  // _unused(phase);
+  time[phase] += rdtsc() - begin_time[phase];
+  ct[phase]++;
+}
 /// An alias for rdtsc() to distinguish calls on the critical path
 static const auto &dpath_rdtsc = rdtsc;
 
@@ -106,6 +127,21 @@ static size_t ns_to_cycles(double ns, double freq_ghz) {
 /// Convert cycles measured by rdtsc with frequence \p freq_ghz to nsec
 static double to_nsec(size_t cycles, double freq_ghz) {
   return (cycles / freq_ghz);
+}
+
+static inline void print_stat(double freq_ghz){
+  // double time0 = to_usec(time[0]/ct[0],freq_ghz);
+  // double time1 = to_usec(time[1]/ct[1],freq_ghz);
+  // double time2 = to_usec(time[2]/ct[2],freq_ghz);
+  // double time3 = to_usec(time[3]/ct[3],freq_ghz);
+  double time4 = to_usec(time[4]/ct[4],freq_ghz);
+
+  // printf("eq_req_time      = %f\n", time0);
+  // printf("kick_req_time    = %f\n", time1);
+  // printf("eq_tx_burst_time = %f\n", time2);
+  // printf("do_tx_burst_time = %f\n", time3);
+  printf("tx_burst_time    = %f\n", time4);
+  // printf("mpps = %f\n", 32/((time0+time1+time2)*32+time3+time4));
 }
 
 /// Simple time that uses RDTSC

@@ -1,6 +1,11 @@
 #include "rpc.h"
 
 namespace erpc {
+
+size_t begin_time[5];
+size_t time[5];
+size_t ct[5];
+
 template <class TTr>
 void Rpc<TTr>::fake_process_resp(SSlot *sslot){
   if (!sslot->client_info_.cont_func_) return;
