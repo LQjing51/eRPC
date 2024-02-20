@@ -4,7 +4,7 @@
 #   * If DTRANSPORT=raw, use `make raw`
 #   * If DTRANSPORT=infiniband, use `make infiniband`
 LIBS = -lerpc -lpthread -lnuma -ldl
-PKG_CONFIG_PATH=$(RTE_SDK)/build/install/lib/x86_64-linux-gnu/pkgconfig
+PKG_CONFIG_PATH=$(RTE_SDK)/build/install/usr/local/lib/x86_64-linux-gnu/pkgconfig
 LDFLAGS_SHARED = $(shell PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) pkg-config --libs libdpdk)
 LDFLAGS_STATIC = $(shell PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) pkg-config --static --libs libdpdk)
 
@@ -21,7 +21,7 @@ dpdk:
 	g++ -g -std=c++11 -o server server.cc \
 		-Wno-deprecated-declarations \
 		-DERPC_DPDK=true -march=native \
-		-I ../src -I ../third_party/asio/include -I $(RTE_SDK)/build/install/include \
+		-I ../src -I ../third_party/asio/include -I $(RTE_SDK)/build/install/usr/local/include \
 		-L ../build $(LIBS) \
 		-Wl,--no-whole-archive \
 		-lnuma -ldl -libverbs -lmlx5 \
@@ -30,7 +30,7 @@ dpdk:
 	g++ -g -std=c++11 -o client client.cc \
 		-Wno-deprecated-declarations \
 		-DERPC_DPDK=true -march=native \
-		-I ../src -I ../third_party/asio/include -I $(RTE_SDK)/build/install/include \
+		-I ../src -I ../third_party/asio/include -I $(RTE_SDK)/build/install/usr/local/include \
 		-L ../build $(LIBS) \
 		-Wl,--no-whole-archive \
 		-lnuma -ldl -libverbs -lmlx5 \

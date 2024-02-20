@@ -249,7 +249,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     c.tput_t0.reset();
   }
 
-  erpc::print_stat(c.rpc_->get_freq_ghz());
+  // erpc::print_stat(c.rpc_->get_freq_ghz());
 
   erpc::TimingWheel *wheel = rpc.get_wheel();
   if (wheel != nullptr && !wheel->record_vec_.empty()) {
