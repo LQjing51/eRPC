@@ -8,7 +8,7 @@ for i in "$@"; do
 
     if [ 'tx_sin_core' == $i ] || [ 'all' == $1 ]; then
         echo "begin test of TX, Single Core" >> ~/result.txt
-        sed -i "40s/.*/#define KeepSend/" src/rpc.h
+        sed -i "41s/.*/#define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -38,7 +38,7 @@ for i in "$@"; do
 
     if [ 'tx_mul_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of TX, Multiple Cores" >> ~/result.txt
-        sed -i "40s/.*/#define KeepSend/" src/rpc.h
+        sed -i "41s/.*/#define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -78,7 +78,7 @@ for i in "$@"; do
 
     if [ 'sp_sin_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Small Response, Single Core" >> ~/result.txt
-        sed -i "40s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -108,7 +108,7 @@ for i in "$@"; do
 
     if [ 'sp_mul_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Small Response, Multiple Cores" >> ~/result.txt
-        sed -i "40s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -148,7 +148,7 @@ for i in "$@"; do
 
     if [ 'ec_sin_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Echo, Single Core" >> ~/result.txt
-        sed -i "40s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
@@ -179,7 +179,7 @@ for i in "$@"; do
 
     if [ 'ec_mul_core' == $i ]|| [ 'all' == $1 ]; then
         echo "begin test of Echo, Multiple Cores" >> ~/result.txt
-        sed -i "40s/.*/\/\/ #define KeepSend/" src/rpc.h
+        sed -i "41s/.*/\/\/ #define KeepSend/" src/rpc.h
         scp src/rpc.h "$username@$server_ip:~/eRPC/src/"
         ssh -tt "$username@$server_ip" "bash eRPC/run_server.sh make"
         make -j
