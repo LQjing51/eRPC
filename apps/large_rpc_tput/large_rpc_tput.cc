@@ -222,6 +222,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     #endif
 
     if (unlikely(ctrl_c_pressed == 1)) break;
+    if (c.session_num_vec_.size() == 0) continue;  // No stats to print
 
     ns = c.tput_t0.get_ns();
     erpc::Timely *timely_0 = c.rpc_->get_timely(0);
