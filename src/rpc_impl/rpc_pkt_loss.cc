@@ -123,7 +123,7 @@ void Rpc<TTr>::pkt_loss_retransmit_st(SSlot *sslot) {
   credits += delta;
   ci.num_tx_ = ci.num_rx_;
   ci.progress_tsc_ = ev_loop_tsc_;
-  erpc::rt_assert(0==1, "quit for pkt loss");
+  // erpc::rt_assert(0==1, "quit for pkt loss");
 
   req_pkts_pending(sslot) ? kick_req_st(sslot) : kick_rfr_st(sslot);
 }
