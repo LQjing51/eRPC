@@ -258,13 +258,11 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
 
     printf(
         "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
-        "Gbps (IOPS). Retransmissions %zu. Packet RTTs: {%.1f, %.1f} us. "
-        "RPC latency {%.1f 50th, %.1f 99th, %.1f 99.9th}. Timely rate %.1f "
-        "Gbps. Credits %zu (best = 32).\n",
+        "Gbps (IOPS)."
+        "RPC latency {%.1f 50th, %.1f 99th, %.1f 99.9th}.\n",
         c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot / rx_size,
-        stats.tx_gbps, c.stat_tx_bytes_tot / tx_size, stats.re_tx,
-        stats.rtt_50_us, stats.rtt_99_us, stats.rpc_50_us, stats.rpc_99_us,
-        stats.rpc_999_us, timely_0->get_rate_gbps(), erpc::kSessionCredits);
+        stats.tx_gbps, c.stat_tx_bytes_tot / tx_size, stats.rpc_50_us, stats.rpc_99_us,
+        stats.rpc_999_us);
 
     c.stat_rx_bytes_tot = 0;
     c.stat_tx_bytes_tot = 0;
@@ -302,7 +300,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   }
 
   // erpc::print_stat(c.rpc_->get_freq_ghz());
-  printf("Thread %zu, freq:%f\n", c.thread_id_, c.rpc_->get_freq_ghz());
+  // printf("Thread %zu, freq:%f\n", c.thread_id_, c.rpc_->get_freq_ghz());
 
   erpc::TimingWheel *wheel = rpc.get_wheel();
   if (wheel != nullptr && !wheel->record_vec_.empty()) {
