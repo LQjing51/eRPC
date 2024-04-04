@@ -76,7 +76,7 @@ void DpdkTransport::setup_phy_port(uint16_t phy_port, size_t numa_node,
   for (size_t i = 0; i < kMaxQueuesPerPort; i++) {
     const std::string pname = get_mempool_name(phy_port, i);
     rte_mempool *mempool =
-        rte_pktmbuf_pool_create(pname.c_str(), kNumMbufs, 0 /* cache */,
+        rte_pktmbuf_pool_create(pname.c_str(), kNumMbufs, RTE_MEMPOOL_CACHE_MAX_SIZE /* cache */,
                                 0 /* priv size */, kMbufSize, numa_node);
     rt_assert(mempool != nullptr, "Mempool create failed: " + dpdk_strerror());
 

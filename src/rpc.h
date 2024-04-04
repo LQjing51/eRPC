@@ -26,14 +26,14 @@
 #define DTHUB_SERVER_IP "10.0.0.19"
 #define TACC_CLIENT_IP "10.0.13.1"
 #define TACC_SERVER_IP "10.0.14.1"
-#define DESKTOP_CLIENT_IP "10.0.2.101"
-#define DESKTOP_SERVER_IP "10.0.2.102"
+#define DESKTOP_CLIENT_IP "10.0.2.102"
+#define DESKTOP_SERVER_IP "10.0.2.101"
 
 static constexpr uint8_t TACC_CLIENT_MAC[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x35, 0x10,};
 static constexpr uint8_t TACC_SERVER_MAC[6] = {0xb8, 0xce, 0xf6, 0x7f, 0x47, 0xa8,};
 static constexpr uint8_t TACC_Switch_Mac[6] = {0x1c, 0x34, 0xda, 0xf3, 0x9a, 0x48,};
 
-#define MACHINE_IP DTHUB_CLIENT_IP
+#define MACHINE_IP DESKTOP_SERVER_IP
 #define MACHINE_MAC TACC_CLIENT_MAC
 
 #define DPDK
