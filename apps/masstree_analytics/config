@@ -1,12 +1,12 @@
 --test_ms 1000000
 --num_processes 2
---num_server_fg_threads 1
+--num_server_fg_threads 10
 --num_server_bg_threads 0
 --num_population_threads 32
---num_client_threads 1
---req_window 1
+--num_client_threads 16
+--req_window 8
 --num_keys 2500
 --range_size 128
---range_req_percent 0
+--range_req_percent 50
 --numa_0_ports 0
 --numa_1_ports 0

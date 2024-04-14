@@ -14,7 +14,8 @@
 #include "util/huge_alloc.h"
 #include "pkthdr.h"
 
-static constexpr size_t kAppReqType = 1;
+static constexpr size_t kAppReqType_Bg = 1;
+static constexpr size_t kAppReqType_Fg = 2;
 static constexpr uint8_t kAppDataByte = 3;  // Data transferred in req & resp
 static constexpr size_t kAppMaxConcurrency = 2048;  // Outstanding reqs per thread
 
@@ -26,14 +27,14 @@ void ctrl_c_handler(int) { ctrl_c_pressed = 1; }
 DEFINE_uint64(num_proc_0_threads, 0, "Threads in process 0");
 DEFINE_uint64(num_proc_other_threads, 0, "Threads in process with ID != 0");
 DEFINE_uint64(req_size, 0, "Request data size");
-DEFINE_uint64(small_req_size, 0, "Small request data size");
-DEFINE_uint64(large_req_size, 0, "Large request data size");
 DEFINE_uint64(resp_size, 0, "Response data size");
 DEFINE_uint64(concurrency, 0, "Concurrent requests per thread");
 DEFINE_double(drop_prob, 0, "Packet drop probability");
 DEFINE_string(profile, "", "Experiment profile to use");
 DEFINE_double(throttle, 0, "Throttle flows to incast receiver?");
 DEFINE_double(throttle_fraction, 1, "Fraction of fair share to throttle to.");
+DEFINE_uint64(bgthread_req_percent, 0, "Percentage of req send to background thread");
+DEFINE_uint64(num_bg_threads, 0, "Number of server background threads");
 
 struct app_stats_t {
   double rx_gbps;

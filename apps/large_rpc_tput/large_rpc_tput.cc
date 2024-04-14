@@ -51,13 +51,22 @@ void send_req(AppContext *c, size_t msgbuf_idx) {
   size_t cur_size = FLAGS_req_size;
   #endif
 
+  size_t req_type;
+  if (c->fastrand_.next_u32() % 100 < FLAGS_bgthread_req_percent) {
+    // handled by background thread
+    req_type = kAppReqType_Bg;
+  } else {
+    // handled by foreground thread
+    req_type = kAppReqType_Fg;  // Generate a point request
+  }
+
   if (kAppVerbose) {
     printf("large_rpc_tput: Thread %zu sending request using msgbuf_idx %zu.\n",
            c->thread_id_, msgbuf_idx);
   }
 
   c->req_ts[msgbuf_idx] = erpc::rdtsc();
-  c->rpc_->enqueue_request(c->session_num_vec_[0], kAppReqType, &req_msgbuf,
+  c->rpc_->enqueue_request(c->session_num_vec_[0], req_type, &req_msgbuf,
                            &c->resp_msgbuf[msgbuf_idx], app_cont_func,
                            reinterpret_cast<void *>(msgbuf_idx));
 
@@ -145,6 +154,7 @@ void app_cont_func(void *_context, void *_tag) {
 
   send_req(c, msgbuf_idx);
 }
+#ifdef run_flow_distribution
 void generate_distribution(){
   distrib.clear();
   std::discrete_distribution<size_t> d{small_prop*FLAGS_large_req_size, large_prop*FLAGS_small_req_size}; // probability
@@ -155,6 +165,7 @@ void generate_distribution(){
     distrib.push_back(random);
   }
 }
+#endif
 // The function executed by each thread in the cluster
 void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
   AppContext c;
@@ -356,15 +367,17 @@ int main(int argc, char **argv) {
   erpc::rt_assert(connect_sessions_func != nullptr, "No connect_sessions_func");
 
   erpc::Nexus nexus(erpc::get_uri_for_process(FLAGS_process_id),
-                    FLAGS_numa_node, 0);
-  nexus.register_req_func(kAppReqType, req_handler);
+                    FLAGS_numa_node, FLAGS_num_bg_threads);
+
+  nexus.register_req_func(kAppReqType_Fg, req_handler, erpc::ReqFuncType::kForeground);
+  nexus.register_req_func(kAppReqType_Bg, req_handler, erpc::ReqFuncType::kBackground);
 
   size_t num_threads = FLAGS_process_id == 0 ? FLAGS_num_proc_0_threads
                                              : FLAGS_num_proc_other_threads;
   std::vector<std::thread> threads(num_threads);
   auto *app_stats = new app_stats_t[num_threads];
 
-  for (size_t i = 0; i < num_threads; i++) {
+  for (size_t i = 0; i < num_threads - FLAGS_num_bg_threads; i++) {
     threads[i] = std::thread(thread_func, i, app_stats, &nexus);
     erpc::bind_to_core(threads[i], FLAGS_numa_node, i);
   }

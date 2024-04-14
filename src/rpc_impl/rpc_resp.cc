@@ -103,9 +103,12 @@ void Rpc<TTr>::process_resp_one_st(SSlot *sslot, pkthdr_t *pkthdr,
     // will be needed (e.g., to determine the request type) if the continuation
     // runs in a background thread.
     #ifdef DPDK
-    #ifdef ZeroCopyTX
-    *resp_msgbuf = MsgBuffer(pkthdr, pkthdr->msg_size_);
-    #endif
+      #ifdef ZeroCopyTX
+      *resp_msgbuf = MsgBuffer(pkthdr, pkthdr->msg_size_);
+      #else
+      memcpy(resp_msgbuf->get_pkthdr_0()->ehdrptr(), pkthdr->ehdrptr(),
+        pkthdr->msg_size_ + sizeof(pkthdr_t) - kHeadroom);
+      #endif
     #else
     memcpy(resp_msgbuf->get_pkthdr_0()->ehdrptr(), pkthdr->ehdrptr(),
            pkthdr->msg_size_ + sizeof(pkthdr_t) - kHeadroom);

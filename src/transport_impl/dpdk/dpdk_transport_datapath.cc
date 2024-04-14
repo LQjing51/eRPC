@@ -77,7 +77,7 @@ void DpdkTransport::tx_burst_for_arp(arp_hdr_t* req_hdr){
     printf("failed to send arp reponse\n");
     nb_tx_new = rte_eth_tx_burst(phy_port_, qp_id_, tx_mbufs, 1);
   }
-  printf("send a arp reply!\n");
+  printf("send an arp reply!\n");
 }
 
 void DpdkTransport::tx_burst(const tx_burst_item_t *tx_burst_arr,
