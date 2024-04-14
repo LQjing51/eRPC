@@ -2,9 +2,10 @@
 --req_size 72
 --resp_size 72
 --num_processes 2
---num_bg_threads 2
---num_proc_0_threads 4
---num_proc_other_threads 4
+--num_server_bg_threads 2
+--num_client_bg_threads 0
+--num_server_fg_threads 2
+--num_client_fg_threads 4
 --bgthread_req_percent 50
 --concurrency 2048
 --drop_prob 0.0

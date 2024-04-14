@@ -13,8 +13,8 @@ void connect_sessions_func_incast(AppContext *c) {
   if (FLAGS_process_id == 0) return;
 
   size_t global_thread_id =
-      FLAGS_process_id * FLAGS_num_proc_other_threads + c->thread_id_;
-  size_t rem_tid = global_thread_id % FLAGS_num_proc_0_threads;
+      FLAGS_process_id * FLAGS_num_client_fg_threads + c->thread_id_;
+  size_t rem_tid = global_thread_id % FLAGS_num_server_fg_threads;
 
   c->session_num_vec_.resize(1);
 
@@ -33,7 +33,7 @@ void connect_sessions_func_incast(AppContext *c) {
 
   if (FLAGS_throttle == 1) {
     erpc::Timely *timely_0 = c->rpc_->get_timely(c->session_num_vec_[0]);
-    double num_flows = (FLAGS_num_processes - 1) * FLAGS_num_proc_other_threads;
+    double num_flows = (FLAGS_num_processes - 1) * FLAGS_num_client_fg_threads;
     double fair_share = c->rpc_->get_bandwidth() / num_flows;
 
     timely_0->rate_ = fair_share * FLAGS_throttle_fraction;

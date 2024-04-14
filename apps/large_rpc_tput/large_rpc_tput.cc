@@ -283,16 +283,16 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
 
     if (c.thread_id_ == 0) {
       app_stats_t accum_stats;
-      for (size_t i = 0; i < FLAGS_num_proc_other_threads; i++) {
+      for (size_t i = 0; i < FLAGS_num_client_fg_threads; i++) {
         accum_stats += c.app_stats[i];
       }
 
       // Compute averages for non-additive stats
-      accum_stats.rtt_50_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rtt_99_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rpc_50_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rpc_99_us /= FLAGS_num_proc_other_threads;
-      accum_stats.rpc_999_us /= FLAGS_num_proc_other_threads;
+      accum_stats.rtt_50_us /= FLAGS_num_client_fg_threads;
+      accum_stats.rtt_99_us /= FLAGS_num_client_fg_threads;
+      accum_stats.rpc_50_us /= FLAGS_num_client_fg_threads;
+      accum_stats.rpc_99_us /= FLAGS_num_client_fg_threads;
+      accum_stats.rpc_999_us /= FLAGS_num_client_fg_threads;
       c.tmp_stat_->write(accum_stats.to_string());
     }
 
@@ -343,7 +343,7 @@ void setup_profile() {
 
   if (FLAGS_profile == "victim") {
     erpc::rt_assert(FLAGS_num_processes >= 3, "Too few processes");
-    erpc::rt_assert(FLAGS_num_proc_other_threads >= 2, "Too few threads");
+    erpc::rt_assert(FLAGS_num_client_fg_threads >= 2, "Too few threads");
     connect_sessions_func = connect_sessions_func_victim;
     return;
   }
@@ -366,18 +366,21 @@ int main(int argc, char **argv) {
   setup_profile();
   erpc::rt_assert(connect_sessions_func != nullptr, "No connect_sessions_func");
 
+  size_t num_bg_threads = FLAGS_process_id == 0 ? FLAGS_num_server_bg_threads
+                                             : FLAGS_num_client_bg_threads;
+
   erpc::Nexus nexus(erpc::get_uri_for_process(FLAGS_process_id),
-                    FLAGS_numa_node, FLAGS_num_bg_threads);
+                    FLAGS_numa_node, num_bg_threads);
 
   nexus.register_req_func(kAppReqType_Fg, req_handler, erpc::ReqFuncType::kForeground);
   nexus.register_req_func(kAppReqType_Bg, req_handler, erpc::ReqFuncType::kBackground);
 
-  size_t num_threads = FLAGS_process_id == 0 ? FLAGS_num_proc_0_threads
-                                             : FLAGS_num_proc_other_threads;
+  size_t num_threads = FLAGS_process_id == 0 ? FLAGS_num_server_fg_threads
+                                             : FLAGS_num_client_fg_threads;
   std::vector<std::thread> threads(num_threads);
   auto *app_stats = new app_stats_t[num_threads];
 
-  for (size_t i = 0; i < num_threads - FLAGS_num_bg_threads; i++) {
+  for (size_t i = 0; i < num_threads; i++) {
     threads[i] = std::thread(thread_func, i, app_stats, &nexus);
     erpc::bind_to_core(threads[i], FLAGS_numa_node, i);
   }
