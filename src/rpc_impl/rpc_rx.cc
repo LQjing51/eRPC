@@ -62,8 +62,8 @@ void Rpc<TTr>::process_comps_st() {
 
     if (unlikely(pkthdr->dest_session_num_ >= session_vec_.size())) {
       ERPC_WARN(
-          "Rpc %u: Received %s for a session yet to be connected. Dropping.\n",
-          rpc_id_, pkthdr->to_string().c_str());
+          "Rpc %u: Received %s for a session yet to be connected. Fram %s.Dropping.\n",
+          rpc_id_, pkthdr->to_string().c_str(),  frame_header_to_string(&pkthdr->headroom_[0]).c_str());
       continue;
     }
 

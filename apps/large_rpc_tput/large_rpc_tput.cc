@@ -233,7 +233,7 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
     #endif
 
     if (unlikely(ctrl_c_pressed == 1)) break;
-    if (c.session_num_vec_.size() == 0) continue;  // No stats to print
+    if (c.session_num_vec_.size() == 0) continue;  // server do not print stats
 
     ns = c.tput_t0.get_ns();
     erpc::Timely *timely_0 = c.rpc_->get_timely(0);
@@ -366,6 +366,7 @@ int main(int argc, char **argv) {
   setup_profile();
   erpc::rt_assert(connect_sessions_func != nullptr, "No connect_sessions_func");
 
+  erpc::rt_assert(FLAGS_bgthread_req_percent == 0 || FLAGS_num_server_bg_threads != 0, "server has no bgthreads, bgthread_req_percent should be 0");
   size_t num_bg_threads = FLAGS_process_id == 0 ? FLAGS_num_server_bg_threads
                                              : FLAGS_num_client_bg_threads;
 
@@ -373,7 +374,7 @@ int main(int argc, char **argv) {
                     FLAGS_numa_node, num_bg_threads);
 
   nexus.register_req_func(kAppReqType_Fg, req_handler, erpc::ReqFuncType::kForeground);
-  nexus.register_req_func(kAppReqType_Bg, req_handler, erpc::ReqFuncType::kBackground);
+  if(num_bg_threads) nexus.register_req_func(kAppReqType_Bg, req_handler, erpc::ReqFuncType::kBackground);
 
   size_t num_threads = FLAGS_process_id == 0 ? FLAGS_num_server_fg_threads
                                              : FLAGS_num_client_fg_threads;

@@ -93,6 +93,7 @@ struct pkthdr_t {
   std::string to_string() const {
     std::ostringstream ret;
     ret << "[type " << pkt_type_str(pkt_type_) << ", "
+        << "req_type " << std::to_string(req_type_) << ", "
         << "dsn " << std::to_string(dest_session_num_) << ", "
         << "reqn " << std::to_string(req_num_) << ", "
         << "pktn " << std::to_string(pkt_num_) << ", "
