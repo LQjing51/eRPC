@@ -1,12 +1,47 @@
 --test_ms 1000000
 --num_processes 2
---num_server_fg_threads 10
+--num_server_fg_threads 16
 --num_server_bg_threads 0
 --num_population_threads 32
 --num_client_threads 16
---req_window 8
---num_keys 2500
+--req_window 128
+--num_keys 250000000
 --range_size 128
---range_req_percent 50
+--range_req_percent 0
 --numa_0_ports 0
 --numa_1_ports 0
+
+dpdk:
+Client 12. Tput = 0.690 Mrps. Point-query latency (us) = {184.0 50th, 189.6 90th, 208.0 99th}. Range-query latency (us) = {3968 99th}.
+Client 5. Tput =  0.707 Mrps. Point-query latency (us) = {180.0 50th, 184.8 90th, 203.2 99th}. Range-query latency (us) = {3968 99th}.
+Client 0. Tput =  0.634 Mrps. Point-query latency (us) = {201.6 50th, 204.8 90th, 212.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 1. Tput =  0.702 Mrps. Point-query latency (us) = {181.6 50th, 186.4 90th, 204.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 7. Tput =  0.693 Mrps. Point-query latency (us) = {184.0 50th, 188.8 90th, 208.0 99th}. Range-query latency (us) = {3968 99th}.
+Client 2. Tput =  0.701 Mrps. Point-query latency (us) = {181.6 50th, 186.4 90th, 206.4 99th}. Range-query latency (us) = {3968 99th}.
+Client 4. Tput =  0.691 Mrps. Point-query latency (us) = {184.0 50th, 188.8 90th, 209.6 99th}. Range-query latency (us) = {3968 99th}.
+Client 9. Tput =  0.701 Mrps. Point-query latency (us) = {181.6 50th, 186.4 90th, 204.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 13. Tput = 0.707 Mrps. Point-query latency (us) = {180.0 50th, 185.6 90th, 204.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 8. Tput =  0.783 Mrps. Point-query latency (us) = {162.4 50th, 167.2 90th, 185.6 99th}. Range-query latency (us) = {3968 99th}.
+Client 6. Tput =  0.705 Mrps. Point-query latency (us) = {180.8 50th, 185.6 90th, 204.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 14. Tput = 0.706 Mrps. Point-query latency (us) = {180.0 50th, 185.6 90th, 203.2 99th}. Range-query latency (us) = {3968 99th}.
+Client 10. Tput = 0.706 Mrps. Point-query latency (us) = {180.0 50th, 185.6 90th, 203.2 99th}. Range-query latency (us) = {3968 99th}.
+Client 15. Tput = 0.694 Mrps. Point-query latency (us) = {184.0 50th, 188.0 90th, 208.0 99th}. Range-query latency (us) = {3968 99th}.
+Client 3. Tput =  0.702 Mrps. Point-query latency (us) = {181.6 50th, 186.4 90th, 204.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 11. Tput = 0.700 Mrps. Point-query latency (us) = {181.6 50th, 186.4 90th, 206.4 99th}. Range-query latency (us) = {3968 99th}.
+
+Client 2. Tput =  0.859 Mrps. Point-query latency (us) = {148.0 50th, 152.0 90th, 171.2 99th}. Range-query latency (us) = {3968 99th}.
+Client 6. Tput =  0.860 Mrps. Point-query latency (us) = {148.0 50th, 152.0 90th, 172.0 99th}. Range-query latency (us) = {3968 99th}.
+Client 14. Tput = 0.855 Mrps. Point-query latency (us) = {148.8 50th, 152.8 90th, 172.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 1. Tput =  0.849 Mrps. Point-query latency (us) = {149.6 50th, 153.6 90th, 172.8 99th}. Range-query latency (us) = {3968 99th}.
+Client 3. Tput =  0.854 Mrps. Point-query latency (us) = {148.8 50th, 152.8 90th, 172.0 99th}. Range-query latency (us) = {3968 99th}.
+Client 9. Tput =  0.855 Mrps. Point-query latency (us) = {148.8 50th, 152.8 90th, 172.0 99th}. Range-query latency (us) = {3968 99th}.
+Client 7. Tput =  0.842 Mrps. Point-query latency (us) = {151.2 50th, 155.2 90th, 175.2 99th}. Range-query latency (us) = {3968 99th}.
+Client 11. Tput = 0.852 Mrps. Point-query latency (us) = {148.8 50th, 152.8 90th, 173.6 99th}. Range-query latency (us) = {3968 99th}.
+Client 10. Tput = 0.855 Mrps. Point-query latency (us) = {148.8 50th, 152.8 90th, 172.0 99th}. Range-query latency (us) = {3968 99th}.
+Client 5. Tput =  0.859 Mrps. Point-query latency (us) = {148.0 50th, 152.0 90th, 171.2 99th}. Range-query latency (us) = {3968 99th}.
+Client 13. Tput = 0.863 Mrps. Point-query latency (us) = {147.2 50th, 151.2 90th, 170.4 99th}. Range-query latency (us) = {3968 99th}.
+Client 15. Tput = 0.842 Mrps. Point-query latency (us) = {151.2 50th, 155.2 90th, 174.4 99th}. Range-query latency (us) = {3968 99th}.
+Client 4. Tput =  0.843 Mrps. Point-query latency (us) = {150.4 50th, 154.4 90th, 175.2 99th}. Range-query latency (us) = {3968 99th}.
+Client 8. Tput =  0.842 Mrps. Point-query latency (us) = {151.2 50th, 154.4 90th, 174.4 99th}. Range-query latency (us) = {3968 99th}.
+Client 0. Tput =  0.849 Mrps. Point-query latency (us) = {149.6 50th, 153.6 90th, 174.4 99th}. Range-query latency (us) = {3968 99th}.
+Client 12. Tput = 0.842 Mrps. Point-query latency (us) = {151.2 50th, 155.2 90th, 176.0 99th}. Range-query latency (us) = {3968 99th}.

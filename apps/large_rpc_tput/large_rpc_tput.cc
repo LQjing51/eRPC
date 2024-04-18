@@ -25,7 +25,7 @@ static constexpr bool kAppVerbose = false;
 
 // Experiment control flags
 static constexpr bool kAppClientMemsetReq = false;   // Fill entire request
-static constexpr bool kAppServerMemsetResp = false;  // Fill entire response
+static constexpr bool kAppServerMemsetResp = true;  // Fill entire response
 static constexpr bool kAppClientCheckResp = false;   // Check entire response
 
 // Profile-specifc session connection function
@@ -269,10 +269,10 @@ void thread_func(size_t thread_id, app_stats_t *app_stats, erpc::Nexus *nexus) {
 
     printf(
         "large_rpc_tput: Thread %zu: Tput {RX %.2f (%zu), TX %.2f (%zu)} "
-        "Gbps (IOPS)."
+        "Gbps (IOPS).Retransmissions %zu."
         "RPC latency {%.1f 50th, %.1f 99th, %.1f 99.9th}.\n",
         c.thread_id_, stats.rx_gbps, c.stat_rx_bytes_tot / rx_size,
-        stats.tx_gbps, c.stat_tx_bytes_tot / tx_size, stats.rpc_50_us, stats.rpc_99_us,
+        stats.tx_gbps, c.stat_tx_bytes_tot / tx_size, stats.re_tx, stats.rpc_50_us, stats.rpc_99_us,
         stats.rpc_999_us);
 
     c.stat_rx_bytes_tot = 0;

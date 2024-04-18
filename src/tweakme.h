@@ -10,7 +10,7 @@
 namespace erpc {
 
 /// Packet loss timeout for an RPC request in microseconds
-static constexpr size_t kRpcRTOUs = 5000*1000;
+static constexpr size_t kRpcRTOUs = 5000;
 
 // Congestion control
 static constexpr bool kEnableCc = false;
